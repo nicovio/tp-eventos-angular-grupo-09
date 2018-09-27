@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+.fa-calendar-alt {
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
+.titulo {
+    color: white;
+}
+
+/* @font-face {
+    font-family: 'Chunkfive';
+    src: url(assets/font/Chunkfive.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'kavika';
+    src: url(assets/font/Klavika-Bold.ttf) format('opentype');
+} */
