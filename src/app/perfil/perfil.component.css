@@ -1,0 +1,45 @@
+.container-fluid {
+    /* padding-top: 0.7em;
+    padding-left: 1.4em; */
+    border-style: solid;
+    width: 22em;
+    margin: 0em;
+    padding-top: 1em;
+}
+
+.perfil {
+    padding-top: 1em;
+}
+
+.img-fluid {
+    border-style: solid;
+}
+
+.nombre-de-usuario {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 2em;
+}
+
+.contenedor-username {
+    padding-top: 1em;
+}
+
+.id-usuario {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.datos-usuario {
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 0.3em;
+}
+
+.contenedor-id-usuario {
+    padding-bottom: 1em;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

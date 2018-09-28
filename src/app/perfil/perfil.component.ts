@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
+
 })
-export class PerfilComponent {
+
+export class PerfilComponent implements OnInit {
   title = 'perfil';
+
+  ngOnInit() { }
 }
+
+
+
+
