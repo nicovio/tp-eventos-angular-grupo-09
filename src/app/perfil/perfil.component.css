@@ -31,15 +31,13 @@ ul {
     padding: 0;
 }
 
-.cours2 {
-    padding-bottom: 0em;
+.zoom {
     overflow: hidden;
     max-width: 18rem;
     border-style: solid;
 }
 
-.cours2:hover .img-fluid {
+.zoom:hover .img-fluid {
     transform: scale(1.3);
     transition: all 2s ease;
-
 }
