@@ -41,9 +41,9 @@
         <span class="amigos">
             Amigos
         </span>
-        <div class="table-wrapper-scroll-y">
-            <mat-card>
 
+        <mat-card>
+            <div class="table-wrapper-scroll-y">
                 <div class="row">
                     <mat-card-content>
                         <div class="col-nombre-apellido" *ngFor='let amigo of amigos'>
@@ -64,8 +64,8 @@
                         </div>
                     </mat-card-content>
                 </div>
+            </div>
+        </mat-card>
 
-            </mat-card>
-        </div>
     </div>
 </div>

@@ -57,6 +57,8 @@ ul {
 
 .mat-card {
     margin-top: 1rem;
+    border-style: groove;
+    border-style:none;
 }
 
 .fas {
@@ -73,6 +75,7 @@ ul {
 .lista-amigos {
     margin-left: 3rem;
     margin-top: 2rem;
+    width: 38rem;
 }
 
 .card {
@@ -83,6 +86,10 @@ ul {
 .table-wrapper-scroll-y {
     display: block;
     overflow-y: auto;
-    max-height: 25rem;
+    max-height: 23rem;
     -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.mat-card-content{
+    margin-left: 2rem;
 }
