@@ -1,67 +1,69 @@
-<div class="row">
-    <div class="perfil-container">
-        <div class="zoom">
-            <img class="img-fluid" alt="smaple image" src="images/supergirl.jpg">
-        </div>
-        <div>
-            <ul>
-                <li class="contenedor-nombre-apellido">
-                    <span class="nombre-apellido">{{usuario.nombre}}&nbsp;{{usuario.apellido}} </span>
-                </li>
-
-                <li class="contenedor-username">
-                    <span class="username">{{usuario.username}}</span>
-                </li>
-            </ul>
-
-            <ul>
-                <li>
-                    <span class="material-icons">stars</span>
-                    <span class="datos-usuario">{{usuario.tipoDeUsuario}}</span>
-                </li>
-
-                <li>
-                    <span class="material-icons">email</span>
-                    <span class="datos-usuario">{{usuario.email}}</span>
-                </li>
-
-                <li>
-                    <span class="material-icons md-light">person_pin</span>
-                    <span class="datos-usuario">{{usuario.amigos.length}}</span>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-
-
-
-    <div class="tabla">
-        <span class="amigos">
-            Amigos
-        </span>
-        <mat-card>
-            <div class="row">
-                <mat-card-content>
-                    <div class="col-nombre-apellido" *ngFor='let amigo of amigos'>
-                        {{amigo.nombre}}
-                        {{amigo.apellido}}
-                    </div>
-
-                </mat-card-content>
-
-                <mat-card-content>
-                    <div class="col-user-name" *ngFor='let amigo of amigos'>
-                        {{amigo.username}}
-                    </div>
-                </mat-card-content>
-                <mat-card-content>
-                    <div class="col-eliminar" *ngFor='let amigo of amigos'>
-                        <button class="fas fa-times" (click)="usuario.eliminarAmigo(amigo)"></button>
-                    </div>
-                </mat-card-content>
+<div class="perfil">
+    <div class="row">
+        <div class="perfil-container">
+            <div class="zoom">
+                <img class="img-fluid" alt="smaple image" src="images/supergirl.jpg">
             </div>
-        </mat-card>
-    </div>
+            <div>
+                <ul>
+                    <li class="contenedor-nombre-apellido">
+                        <span class="nombre-apellido">{{usuario.nombre}}&nbsp;{{usuario.apellido}} </span>
+                    </li>
 
+                    <li class="contenedor-username">
+                        <span class="username">{{usuario.username}}</span>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li>
+                        <span class="material-icons">stars</span>
+                        <span class="datos-usuario">{{usuario.tipoDeUsuario}}</span>
+                    </li>
+
+                    <li>
+                        <span class="material-icons">email</span>
+                        <span class="datos-usuario">{{usuario.email}}</span>
+                    </li>
+
+                    <li>
+                        <span class="material-icons md-light">person_pin</span>
+                        <span class="datos-usuario">{{usuario.amigos.length}}</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="tabla">
+            <span class="amigos">
+                Amigos
+            </span>
+            <mat-card>
+                <div class="row">
+                    <mat-card-content>
+                        <div class="col-nombre-apellido" *ngFor='let amigo of amigos'>
+                            {{amigo.nombre}}
+                            {{amigo.apellido}}
+                        </div>
+
+                    </mat-card-content>
+
+                    <mat-card-content>
+                        <div class="col-user-name" *ngFor='let amigo of amigos'>
+                            {{amigo.username}}
+                        </div>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <div class="col-eliminar" *ngFor='let amigo of amigos'>
+                            <button class="fas fa-times" (click)="usuario.eliminarAmigo(amigo)"></button>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+        </div>
+
+    </div>
 </div>

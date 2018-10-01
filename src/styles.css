@@ -6,12 +6,10 @@
 
 .nav-link {
     color: white;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .titulo {
     color: white;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .material-icons {
@@ -19,5 +17,11 @@
     vertical-align: text-top;
     padding-bottom: 0.3em;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+html, body {
+    height: 100%;
+}
+
+.todos-los-componentes {
+    font-family: 'Roboto Condensed', sans-serif;
+}
