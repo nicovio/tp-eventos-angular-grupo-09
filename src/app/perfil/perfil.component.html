@@ -1,6 +1,6 @@
-<div class="perfil">
-    <div class="row">
-        <div class="perfil-container">
+<div class="row">
+    <div class="container">
+        <div class="card">
             <div class="zoom">
                 <img class="img-fluid" alt="smaple image" src="images/supergirl.jpg">
             </div>
@@ -34,14 +34,16 @@
                 </ul>
             </div>
         </div>
+    </div>
 
 
-
-        <div class="tabla">
-            <span class="amigos">
-                Amigos
-            </span>
+    <div class="lista-amigos">
+        <span class="amigos">
+            Amigos
+        </span>
+        <div class="table-wrapper-scroll-y">
             <mat-card>
+
                 <div class="row">
                     <mat-card-content>
                         <div class="col-nombre-apellido" *ngFor='let amigo of amigos'>
@@ -62,8 +64,8 @@
                         </div>
                     </mat-card-content>
                 </div>
+
             </mat-card>
         </div>
-
     </div>
 </div>

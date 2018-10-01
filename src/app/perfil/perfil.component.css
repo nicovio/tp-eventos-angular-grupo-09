@@ -42,17 +42,17 @@ ul {
 }
 
 .col-nombre-apellido {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     margin-right: 6rem;
 }
 
 .col-user-name {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     margin-right: 3rem;
 }
 
 .col-eliminar {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .mat-card {
@@ -63,12 +63,26 @@ ul {
     color: #DC143C;
 }
 
-.perfil-container {
-    margin-left: 2.5rem;
+.container {
+    margin-right: 0rem;
+    margin-left: 1rem;
     margin-top: 1rem;
+    max-width: 30rem;
 }
 
-.tabla {
-    margin-left: 12rem;
+.lista-amigos {
+    margin-left: 3rem;
     margin-top: 2rem;
+}
+
+.card {
+    max-width: 14.1rem;
+    margin-left: 1rem;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+    overflow-y: auto;
+    max-height: 25rem;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
 }
