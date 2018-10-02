@@ -42,27 +42,30 @@ ul {
 }
 
 .col-nombre-apellido {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
+    margin-top: 1.4rem;
     margin-right: 6rem;
 }
 
 .col-user-name {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
+    margin-top: 1.4rem;
     margin-right: 3rem;
 }
 
 .col-eliminar {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
+    margin-top: 1.4rem;
 }
 
-.mat-card {
+.mdb-card {
     margin-top: 1rem;
-    border-style: groove;
-    border-style:none;
 }
 
 .fas {
     color: #DC143C;
+    background-color: white;
+    border-style: none;
 }
 
 .container {
@@ -79,8 +82,7 @@ ul {
 }
 
 .card {
-    max-width: 14.1rem;
-    margin-left: 1rem;
+    max-width: 14rem;
 }
 
 .table-wrapper-scroll-y {
@@ -90,6 +92,13 @@ ul {
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-.mat-card-content{
+.amigos-card {
+    margin-top: 1rem;
+    max-width: 33rem;
+    max-height: 34rem;
+}
+
+.mdb-card-content {
     margin-left: 2rem;
+    font-size: 0.9rem;
 }
