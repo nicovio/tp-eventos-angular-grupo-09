@@ -9,6 +9,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarComponent } from './share/navbar/navbar.component';
 import { UserImageComponent } from './perfil/user-image/user-image.component';
 import { AmigosComponent } from './perfil/amigos/amigos.component';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { AmigosComponent } from './perfil/amigos/amigos.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

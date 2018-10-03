@@ -4,27 +4,19 @@
   </span>
 
   <mdb-card class="amigos-card">
-    <div class="table-wrapper-scroll-y">
-      <div class="row">
-        <div class="mdb-card-content">
-          <div class="col-nombre-apellido" *ngFor='let amigo of usuarioAmigos.amigos'>
+    <table class="table" *ngFor='let amigo of usuarioAmigos.amigos'>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-nombre-apellido">
             {{amigo.nombre}}
             {{amigo.apellido}}
           </div>
-
-        </div>
-
-        <div class="mdb-card-content">
-          <div class="col-user-name" *ngFor='let amigo of usuarioAmigos.amigos'>
-            {{amigo.username}}
-          </div>
-        </div>
-        <div class="mdb-card-content">
-          <div class="col-eliminar" *ngFor='let amigo of usuarioAmigos.amigos'>
+          <div class="col-user-name">{{amigo.username}}</div>
+          <div class="col-eliminar">
             <button class="fas fa-times" (click)="usuarioAmigos.eliminarAmigo(amigo)"></button>
           </div>
         </div>
       </div>
-    </div>
+    </table>
   </mdb-card>
 </div>
