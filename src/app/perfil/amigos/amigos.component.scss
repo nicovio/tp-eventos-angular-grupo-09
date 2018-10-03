@@ -1,0 +1,56 @@
+.lista-amigos {
+    margin-left: 3rem;
+    margin-top: 2rem;
+    width: 38rem;
+}
+
+.amigos {
+    font-size: 2rem;
+    font-weight: bold;
+    max-height: 3rem;
+}
+
+.mdb-card {
+    margin-top: 1rem;
+}
+
+.amigos-card {
+    margin-top: 1rem;
+    max-width: 33rem;
+    max-height: 34rem;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+    overflow-y: auto;
+    max-height: 23rem;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.mdb-card-content {
+    margin-left: 2rem;
+    font-size: 0.9rem;
+}
+
+.col-nombre-apellido {
+    margin-bottom: 1.4rem;
+    margin-top: 1.4rem;
+    margin-right: 6rem;
+}
+
+.col-user-name {
+    margin-bottom: 1.4rem;
+    margin-top: 1.4rem;
+    margin-right: 3rem;
+}
+
+.col-eliminar {
+    margin-bottom: 1.4rem;
+    margin-top: 1.4rem;
+}
+
+.fas {
+    color: #DC143C;
+    background-color: white;
+    border-style: none;
+}

@@ -1,0 +1,30 @@
+<div class="lista-amigos">
+  <span class="amigos">
+    Amigos
+  </span>
+
+  <mdb-card class="amigos-card">
+    <div class="table-wrapper-scroll-y">
+      <div class="row">
+        <div class="mdb-card-content">
+          <div class="col-nombre-apellido" *ngFor='let amigo of usuarioAmigos.amigos'>
+            {{amigo.nombre}}
+            {{amigo.apellido}}
+          </div>
+
+        </div>
+
+        <div class="mdb-card-content">
+          <div class="col-user-name" *ngFor='let amigo of usuarioAmigos.amigos'>
+            {{amigo.username}}
+          </div>
+        </div>
+        <div class="mdb-card-content">
+          <div class="col-eliminar" *ngFor='let amigo of usuarioAmigos.amigos'>
+            <button class="fas fa-times" (click)="usuarioAmigos.eliminarAmigo(amigo)"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mdb-card>
+</div>

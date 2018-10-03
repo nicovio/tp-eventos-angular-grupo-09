@@ -1,0 +1,34 @@
+<mdb-card>
+  <div class="zoom">
+    <img class="img-fluid" alt="smaple image" src="images/supergirl.jpg">
+  </div>
+  <div>
+    <ul>
+      <li class="contenedor-nombre-apellido">
+        <span class="nombre-apellido">{{usuarioImage.nombre}}&nbsp;{{usuarioImage.apellido}} </span>
+      </li>
+
+      <li class="contenedor-username">
+        <span class="username">{{usuarioImage.username}}</span>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        <span class="material-icons">stars</span>
+        <span class="datos-usuario">{{usuarioImage.tipoDeUsuario}}</span>
+      </li>
+
+      <li>
+        <span class="material-icons">email</span>
+        <span class="datos-usuario">{{usuarioImage.email}}</span>
+      </li>
+
+      <li>
+        <span class="material-icons md-light">person_pin</span>
+        <span class="datos-usuario">{{usuarioImage.amigos.length}}</span>
+      </li>
+
+    </ul>
+  </div>
+</mdb-card>

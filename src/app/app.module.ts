@@ -6,10 +6,13 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NavbarComponent } from './share/navbar/navbar.component';
+import { UserImageComponent } from './perfil/user-image/user-image.component';
+import { AmigosComponent } from './perfil/amigos/amigos.component';
 
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, PerfilComponent],
+  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
