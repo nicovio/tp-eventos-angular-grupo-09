@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +6,4 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
-  constructor() { }
-
 }

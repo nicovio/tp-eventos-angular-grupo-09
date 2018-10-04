@@ -1,18 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import Usuario from '../../../domain/usuario';
-import { UsuarioService } from 'src/app/usuario.service';
+import {usuarioService}  from 'src/app/app.component';
 
 @Component({
   selector: 'app-user-image',
   templateUrl: './user-image.component.html',
   styleUrls: ['./user-image.component.scss']
 })
-export class UserImageComponent {
+export class UserImageComponent  {
   usuarioImage: Usuario
 
-  constructor(private usuarioService: UsuarioService) {
-    this.usuarioImage = this.usuarioService.getUsuarioByUsername('@kara95')
+  constructor(){
+    this.usuarioImage = usuarioService.getUsuarioByUsername('@kara95')
   }
-
 
 }

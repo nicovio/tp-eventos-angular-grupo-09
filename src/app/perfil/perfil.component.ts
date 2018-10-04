@@ -1,5 +1,4 @@
-import Usuario from 'src/domain/usuario';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-perfil',
@@ -10,8 +9,6 @@ import { Component, Input } from '@angular/core';
 
 export class PerfilComponent {
     title = 'perfil';
-    // @Input() usuario: Usuario;
-   
 }
 
 

@@ -1,16 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import Usuario from '../../../domain/usuario';
-import { UsuarioService } from 'src/app/usuario.service';
+import { usuarioService } from 'src/app/app.component';
 
 @Component({
   selector: 'app-amigos',
   templateUrl: './amigos.component.html',
   styleUrls: ['./amigos.component.scss']
 })
-export class AmigosComponent {
-  usuarioAmigos: Usuario
+export class AmigosComponent{
+  usuarioAmigos : Usuario
 
-  constructor(private usuarioService: UsuarioService) {
-    this.usuarioAmigos = this.usuarioService.getUsuarioByUsername('@kara95')
+  constructor() {
+    this.usuarioAmigos = usuarioService.getUsuarioByUsername('@kara95')
   }
+
 }
