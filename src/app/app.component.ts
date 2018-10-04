@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StubUsuarioService, UsuarioService } from 'src/app/usuario.service';
+import { StubUsuarioService } from 'src/app/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,5 @@ export class AppComponent {
   title = 'tp-eventos-angular-grupo9';
 }
 
-export let usuarioService = new StubUsuarioService;
-
-
+let usuarioService = new StubUsuarioService
+export let usuario = usuarioService.getUsuarioByUsername('@kara95')
