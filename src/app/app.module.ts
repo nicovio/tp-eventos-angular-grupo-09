@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatToolbarModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NavbarComponent } from './share/navbar/navbar.component';
+import { UserImageComponent } from './perfil/user-image/user-image.component';
+import { AmigosComponent } from './perfil/amigos/amigos.component';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, PerfilComponent],
-   imports: [
+  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent],
+  imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
     FlexLayoutModule,
-    MatToolbarModule
+    MDBBootstrapModule.forRoot(),
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

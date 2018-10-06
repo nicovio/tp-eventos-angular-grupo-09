@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/perfil', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   // por defecto redirigimos al perfil
   { path: 'perfil', component: PerfilComponent }
 ];

@@ -1,0 +1,72 @@
+.lista-amigos {
+    margin-left: 2rem;
+    margin-top: 2rem;
+    max-width: auto;
+}
+
+.amigos {
+    font-size: 2rem;
+    font-weight: bold;
+    max-height: 3rem;
+}
+
+.mdb-card {
+    margin-top: 1rem;
+}
+
+.amigos-card {
+    margin-top: 1rem;
+}
+
+// .table-wrapper-scroll-y {
+//     display: block;
+//     overflow-y: auto;
+//     -ms-overflow-style: -ms-autohiding-scrollbar;
+// }
+
+.container-fluid {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+}
+
+.col-nombre-apellido {
+    width: 14rem;
+}
+
+.col-user-name {
+    width: 10rem;
+}
+
+.col-eliminar {
+    width: 4rem;
+}
+
+.fas {
+    color: #DC143C;
+    background-color: white;
+    border-style: none;
+}
+
+.row {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.scrollbar-ripe-malinka::-webkit-scrollbar {
+    width: 0.6rem;
+    background-color: #F5F5F5;
+}
+
+.scrollbar-ripe-malinka::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-image: -webkit-linear-gradient(330deg, #f093fb 0%, #f5576c 100%);
+    background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+}
+
+.amigos-scroll {
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 40rem;
+}
