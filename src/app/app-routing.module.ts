@@ -9,11 +9,11 @@ import { InvitacionesPendientesComponent } from './mis-eventos/invitaciones-pend
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'mis-eventos/agenda', pathMatch: 'full' },
+  { path: '', redirectTo: 'mis-eventos', pathMatch: 'full' },
 
   { path: 'perfil', component: PerfilComponent },
   {
-    path: 'mis-eventos', component: MisEventosComponent,
+    path: 'mis-eventos',  component: MisEventosComponent,
     children: [
       { path: 'agenda', component: AgendaComponent },
       { path: 'organizados-por-mi', component: OrganizadosPorMiComponent },
