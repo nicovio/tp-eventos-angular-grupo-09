@@ -10,12 +10,13 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { UserImageComponent } from './perfil/user-image/user-image.component';
 import { NavbarComponent } from './share/navbar/navbar.component';
 import { MaterialModule } from './material.module';
-
+import { MisEventosComponent } from './mis-eventos/mis-eventos.component';
+import { SidebarEventosComponent } from './mis-eventos/shared/sidebar-eventos/sidebar-eventos.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent],
+  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent, MisEventosComponent, SidebarEventosComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +24,7 @@ import { MaterialModule } from './material.module';
     FlexLayoutModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
