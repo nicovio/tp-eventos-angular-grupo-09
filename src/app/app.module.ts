@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PerfilComponent } from './perfil/perfil.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { NavbarComponent } from './share/navbar/navbar.component';
-import { UserImageComponent } from './perfil/user-image/user-image.component';
 import { AmigosComponent } from './perfil/amigos/amigos.component';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { PerfilComponent } from './perfil/perfil.component';
+import { UserImageComponent } from './perfil/user-image/user-image.component';
+import { NavbarComponent } from './share/navbar/navbar.component';
+import { MaterialModule } from './material.module';
+
+
 
 
 @NgModule({
@@ -20,8 +22,8 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MDBBootstrapModule.forRoot(),
-    MatButtonModule,
-    MatCheckboxModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

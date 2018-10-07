@@ -6,7 +6,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   // por defecto redirigimos al perfil
-  { path: 'perfil', component: PerfilComponent }
+  { path: 'perfil', component: PerfilComponent },
+  // { path: 'mis-eventos', component: MisEventosComponent }
 ];
 
 @NgModule({
