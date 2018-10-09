@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StubUsuarioService } from 'src/app/usuario.service';
+import { StubUsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-root',

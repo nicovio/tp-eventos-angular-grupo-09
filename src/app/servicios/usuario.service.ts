@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import Usuario from 'src/app/domain/usuario';
-import EventoAbierto from './domain/evento-abierto';
-import EventoCerrado from './domain/evento-cerrado';
+import EventoAbierto from '../domain/evento-abierto';
+import EventoCerrado from '../domain/evento-cerrado';
 
 @Injectable({
     providedIn: 'root'
