@@ -4,7 +4,7 @@
     <table class="table" *ngFor='let evento of usuarioEventos.eventos | eventosSegunFechaFilter: criterioDeFiltro'>
       <div class="container-fluid">
         <div class="row">
-          <div class="fecha"> {{evento.fechaHoraInicio | date: 'MM/dd/yyyy h:mm a'}}</div>
+          <div class="fecha"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</div>
           <div class="evento">{{evento.descripcion}}</div>
           <div class="lugar">{{evento.locacion}}</div>
           <div class="nombre-apellido">{{evento.organizador}}</div>
