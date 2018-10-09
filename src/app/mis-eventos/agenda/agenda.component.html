@@ -1,17 +1,13 @@
 <div class="componente-container">
   <div class="titulo-componente">Agenda</div>
   <mdb-card class="amigos-card">
-    <table class="table">
-      <div class="container-fluid">
-        <div class="titulo">Hoy</div>
-        <div class="row">
-          <div class="fecha">10/10/2018</div>
-          <div class="hora">22:00</div>
-          <div class="evento">Cumple Kara</div>
-          <div class="lugar">Mi Casa</div>
-          <div class="nombre-apellido">Kara Danvers</div>
-        </div>
-      </div>
-    </table>
+
+    <lista-de-eventos [criterioDeFiltro]="filtrosEventos.eventosDeHoy"> </lista-de-eventos>
+
+    <lista-de-eventos [criterioDeFiltro]="filtrosEventos.eventosEstaSemana"> </lista-de-eventos>
+
+    <lista-de-eventos [criterioDeFiltro]="filtrosEventos.eventosProximos"> </lista-de-eventos>
+
   </mdb-card>
+  
 </div>

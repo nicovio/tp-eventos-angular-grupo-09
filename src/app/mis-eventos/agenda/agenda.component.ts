@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
+import { usuario } from 'src/app/app.component';
 
 @Component({
-  selector: 'app-agenda',
-  templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss']
+    selector: 'app-agenda',
+    templateUrl: './agenda.component.html',
+    styleUrls: ['./agenda.component.scss']
 })
-export class AgendaComponent implements OnInit {
+export class AgendaComponent {
 
-  constructor() { }
+    usuarioEventos = usuario
+    filtrosEventos = filtrosEventos
+}
 
-  ngOnInit() {
-  }
-
+enum filtrosEventos {
+    eventosDeHoy = 'Hoy',
+    eventosEstaSemana = 'Esta Semana',
+    eventosProximos = 'Próximos'
 }

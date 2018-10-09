@@ -1,3 +1,5 @@
+import Evento from "./evento";
+
 export default class Usuario {
     nombre;
     apellido;
@@ -5,6 +7,7 @@ export default class Usuario {
     tipoDeUsuario;
     email;
     public amigos: Array<Usuario> = [];
+    public eventos: Array<Evento> = [];
 
     constructor(nombre, apellido, username) {
         this.nombre = nombre;
