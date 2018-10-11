@@ -15,13 +15,12 @@ import { SidebarEventosComponent } from './mis-eventos/shared/sidebar-eventos/si
 import { AgendaComponent } from './mis-eventos/agenda/agenda.component';
 import { OrganizadosPorMiComponent } from './mis-eventos/organizados-por-mi/organizados-por-mi.component';
 import { InvitacionesPendientesComponent } from './mis-eventos/invitaciones-pendientes/invitaciones-pendientes.component';
-import { EventosPorFecha } from './mis-eventos/pipes/eventos-segun-fecha.pipe';
 import { ListaDeEventosComponent } from './mis-eventos/agenda/lista-de-eventos/lista-de-eventos.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent, MisEventosComponent, SidebarEventosComponent, AgendaComponent, OrganizadosPorMiComponent, InvitacionesPendientesComponent, EventosPorFecha, ListaDeEventosComponent],
+  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent, MisEventosComponent, SidebarEventosComponent, AgendaComponent, OrganizadosPorMiComponent, InvitacionesPendientesComponent, ListaDeEventosComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

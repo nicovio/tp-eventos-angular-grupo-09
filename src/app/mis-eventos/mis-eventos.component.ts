@@ -5,11 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './mis-eventos.component.html',
   styleUrls: ['./mis-eventos.component.scss']
 })
-export class MisEventosComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class MisEventosComponent {
 
 }

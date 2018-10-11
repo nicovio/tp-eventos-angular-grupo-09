@@ -1,5 +1,5 @@
-import { Component, OnInit, PipeTransform } from '@angular/core';
-import { usuario } from 'src/app/app.component';
+import { Component } from '@angular/core';
+import { MockUsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
     selector: 'app-agenda',
@@ -8,12 +8,20 @@ import { usuario } from 'src/app/app.component';
 })
 export class AgendaComponent {
 
-    usuarioEventos = usuario
-    filtrosEventos = filtrosEventos
-}
+    constructor(private usuarioService: MockUsuarioService) {
+    }
 
-enum filtrosEventos {
-    eventosDeHoy = 'Hoy',
-    eventosEstaSemana = 'Esta Semana',
-    eventosProximos = 'Próximos'
+    eventosDeHoy() {
+        return this.usuarioService.eventosDeHoy()
+    }
+
+    eventosDeEstaSemana() {
+        return this.usuarioService.eventosDeEstaSemana()
+    }
+
+    eventosProximos() {
+         return this.usuarioService.eventosProximos()
+
+    }
+
 }

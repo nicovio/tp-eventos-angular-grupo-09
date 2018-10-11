@@ -1,15 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { usuario } from '../../../app.component';
+import Evento from 'src/app/domain/evento';
 
 @Component({
   selector: 'lista-de-eventos',
   templateUrl: './lista-de-eventos.component.html',
   styleUrls: ['./lista-de-eventos.component.scss']
 })
+
 export class ListaDeEventosComponent {
 
-  @Input() criterioDeFiltro: String;
+  @Input() titulo: String
 
-  usuarioEventos = usuario;
+  @Input() eventosAMostrar: Array<Evento>
 
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { usuario } from 'src/app/app.component';
+import { MockUsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-amigos',
@@ -7,5 +7,10 @@ import { usuario } from 'src/app/app.component';
   styleUrls: ['./amigos.component.scss']
 })
 export class AmigosComponent {
-  usuarioAmigos = usuario
+  
+  usuarioAmigos
+
+  constructor(private usuarioService: MockUsuarioService){
+    this.usuarioAmigos = usuarioService.usuarioLogueado
+  }
 }

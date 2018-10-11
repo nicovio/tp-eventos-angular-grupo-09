@@ -1,13 +1,13 @@
- <div class="titulo" *ngIf="(usuarioEventos.eventos | eventosSegunFechaFilter: criterioDeFiltro).length >0">
-      {{criterioDeFiltro}}
+<div class="titulo">
+  {{titulo}}
+</div>
+<table class="table" *ngFor='let evento of eventosAMostrar'>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="fecha"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</div>
+      <div class="evento">{{evento.descripcion}}</div>
+      <div class="lugar">{{evento.locacion}}</div>
+      <div class="nombre-apellido">{{evento.organizador}}</div>
     </div>
-    <table class="table" *ngFor='let evento of usuarioEventos.eventos | eventosSegunFechaFilter: criterioDeFiltro'>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="fecha"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</div>
-          <div class="evento">{{evento.descripcion}}</div>
-          <div class="lugar">{{evento.locacion}}</div>
-          <div class="nombre-apellido">{{evento.organizador}}</div>
-        </div>
-      </div>
-    </table>
+  </div>
+</table>
