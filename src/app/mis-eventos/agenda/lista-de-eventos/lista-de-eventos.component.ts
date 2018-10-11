@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Evento from 'src/app/domain/evento';
+import Evento from 'src/app/domain/eventos/evento';
 
 @Component({
   selector: 'lista-de-eventos',
