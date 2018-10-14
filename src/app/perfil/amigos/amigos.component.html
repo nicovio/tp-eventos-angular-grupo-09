@@ -14,7 +14,9 @@
           </div>
           <div class="col-user-name">{{amigo.username}}</div>
           <div class="col-eliminar">
-            <button class="fas fa-times" (click)="basicModal.show()" (click)="setUsuarioAEliminar(amigo)"mdbWavesEffect data-toggle="tooltip" data-placement="top" title="Eliminar amigo"></button>
+            <button type="button" class="fas fa-times waves-light" data-toggle="modal" data-target="#basicExample"
+              data-toggle="tooltip" data-placement="top" title="Eliminar amigo" (click)="setUsuarioAEliminar(amigo)"
+              (click)="frame.show()" mdbWavesEffect></button>
           </div>
         </div>
       </div>
@@ -23,21 +25,28 @@
 </div>
 
 
-<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title w-100" id="myModalLabel">¿Eliminar Amigo?</h4>
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">¿Eliminar amigo?</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close" (click)="basicModal.hide()"
-          mdbWavesEffect>No</button>
-        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="usuarioAmigos.eliminarAmigo(usuarioAEliminar)" (click)="basicModal.hide()">Si</button>
+
+      <!--Body-->
+      <div class="modal-body">
+        <i class="fa fa-times fa-4x animated rotateIn"></i>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="usuarioAmigos.eliminarAmigo(usuarioAEliminar)"
+          (click)="frame.hide()" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
       </div>
     </div>
+    <!--/.Content-->
   </div>
 </div>
