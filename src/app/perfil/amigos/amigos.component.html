@@ -1,11 +1,12 @@
-<div class="lista-amigos">
-  <span class="amigos">
-    Amigos
-  </span>
-
+<div class="margen">
+  <div class="title-container">
+    <span class="amigos-title">
+      Amigos
+    </span>
+  </div>
   <mdb-card class="amigos-card">
     <table class="table" *ngFor='let amigo of usuarioAmigos.amigos'>
-      <div class="container-fluid">
+      <div class="margen-amigos">
         <div class="row">
           <div class="col-nombre-apellido">
             {{amigo.nombre}}
@@ -13,11 +14,30 @@
           </div>
           <div class="col-user-name">{{amigo.username}}</div>
           <div class="col-eliminar">
-            <button class="fas fa-times" (click)="usuarioAmigos.eliminarAmigo(amigo)"></button>
+            <button class="fas fa-times" (click)="basicModal.show()" (click)="setUsuarioAEliminar(amigo)"mdbWavesEffect data-toggle="tooltip" data-placement="top" title="Eliminar amigo"></button>
           </div>
         </div>
       </div>
     </table>
   </mdb-card>
+</div>
 
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">¿Eliminar Amigo?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close" (click)="basicModal.hide()"
+          mdbWavesEffect>No</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="usuarioAmigos.eliminarAmigo(usuarioAEliminar)" (click)="basicModal.hide()">Si</button>
+      </div>
+    </div>
+  </div>
 </div>

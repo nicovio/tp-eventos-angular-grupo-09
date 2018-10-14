@@ -1,13 +1,17 @@
-<div class="titulo" *ngIf= "eventosAMostrar.length > 0">
-  {{titulo}}
+<div class="titulo-container">
+  <div class="titulo" *ngIf="eventosAMostrar.length > 0">
+    {{titulo}}
+  </div>
 </div>
 <table class="table" *ngFor='let evento of eventosAMostrar'>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="fecha"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</div>
-      <div class="evento">{{evento.descripcion}}</div>
-      <div class="lugar">{{evento.locacion.descripcion}}</div>
-      <div class="nombre-apellido">{{evento.organizador.nombre}} {{evento.organizador.apellido}}</div>
-    </div>
+  <div class="centrado">
+    <tbody>
+      <tr>
+        <td class="fecha"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</td>
+        <td class="evento">{{evento.descripcion}}</td>
+        <td class="lugar">{{evento.locacion.descripcion}}</td>
+        <td class="nombre-apellido">{{evento.organizador.nombre}} {{evento.organizador.apellido}}</td>
+      </tr>
+    </tbody>
   </div>
 </table>

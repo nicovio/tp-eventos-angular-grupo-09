@@ -52,10 +52,15 @@ export class MockUsuarioService implements UsuarioService {
         karaDanvers.agregarAmigo(fernandoDodino);
         let cumpleKara = new EventoCerrado("Cumple Kara", new Date('2018/10/11 23:59'), new Date('2018/11/8 15:00'), new Locacion("Mi Casa"), karaDanvers)
         let cumpleDodain = new EventoCerrado("Cumple Dodain", new Date('2018/10/18 23:59'), new Date('2018/12/7 22:00'), new Locacion("Lo de Dodino"), fernandoDodino)
-        let salidaBoliche = new EventoAbierto("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano, 50)
+        let salidaBoliche = new EventoCerrado("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano)
+        let racingBoca = new EventoAbierto("Racing vs Boca", new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), new Locacion("La bombonera"), karaDanvers, 500)
+        let casamientoMarley = new EventoAbierto("Casamiento Marley", new Date(), new Date('2020/3/2 21:00'), new Locacion("Uganda"), cristianMaggiorano, 250000)
         let invitacionCumpleDodino = new Invitacion(cumpleDodain, 2) 
         karaDanvers.invitaciones = [invitacionCumpleDodino, new Invitacion(cumpleKara,5), new Invitacion(salidaBoliche,10) ]
         karaDanvers.aceptarInvitacion(invitacionCumpleDodino)
+        karaDanvers.comprarEntrada(racingBoca)
+        karaDanvers.comprarEntrada(casamientoMarley)
+        karaDanvers.comprarEntrada(casamientoMarley)
         // karaDanvers.eventos = [cumpleKara, cumpleDodain, salidaBoliche]
         this.agregarUsuario(karaDanvers)
         this.usuarioLogueado = karaDanvers
