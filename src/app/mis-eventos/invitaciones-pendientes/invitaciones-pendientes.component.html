@@ -1,5 +1,8 @@
+<div class="espaciado-estetico">
+<mdb-card >
 <div class="table-responsive">
     <table class="table table-striped">
+      <div class="centrado">
       <thead>
         <tr>
           <th>Fecha</th>
@@ -10,45 +13,33 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let invitacion of invitaciones">
+        <td > {{ invitacion.evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
+        <td > {{ invitacion.evento.descripcion }} </td>
+        <td > {{ invitacion.evento.locacion.descripcion }} </td>
+        <td > {{ invitacion.evento.organizador.nombre }} &nbsp; {{ invitacion.evento.organizador.apellido }}</td>
+        <td > {{ invitacion.cantidadAcompaniantes }} </td>
+        <td >   
+          <i class="material-icons">
+            <span class ="colorear-verde">check</span>
+          </i>
+          <i class="material-icons">
+            <span class ="colorear-rojo">clear</span>
+          </i>
+        </td>
         <tr>
-          <td>20/11/2018</td>
+          <!-- <td>20/11/2018</td>
           <td>Cumpleaños</td>
           <td>Triunvirato 3140</td>
           <td>Perry White</td>
           <td>0</td>
-          <td>
-            <button>Aceptar</button>
-            <button>Cancelar</button> <!-- PONER IMAGENES DE ACEPTAR Y CANCELAR. VALDRA LA PENA HACER UN COMPONENT PARA ESTO?-->
+          <td>   
           </td>
+          -->
         </tr>
-        <tr>
-          <td>20/12/2018</td>
-          <td>AGS</td>
-          <td>Av Santa Fe 2501</td>
-          <td>Jackson Hyde</td>
-          <td>2</td>
-          <td>
-            <button>Aceptar</button>
-            <button>Cancelar</button> <!-- PONER IMAGENES DE ACEPTAR Y CANCELAR-->
-          </td>
-        </tr>
-        <tr>
-            <td>14/10/2018</td>
-            <td>Casamiento</td>
-            <td>Cramer 4550</td>
-            <td>Catherine Grant</td>
-            <td>1</td>
-            <td>
-              <button>Aceptar</button>
-              <button>Cancelar</button> <!-- PONER IMAGENES DE ACEPTAR Y CANCELAR-->
-            </td>
-          </tr>
       </tbody>
+      </div>
     </table>
   </div>
-  <div class="botones-nuevos-eventos">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nuevo evento abierto</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nuevo evento cerrado</button>
-  </div>
-
+</mdb-card>
+</div>

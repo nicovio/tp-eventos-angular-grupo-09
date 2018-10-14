@@ -55,7 +55,7 @@ export class MockUsuarioService implements UsuarioService {
         let salidaBoliche = new EventoAbierto("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano, 50)
         karaDanvers.invitaciones = [new Invitacion(cumpleKara, 2), new Invitacion(cumpleDodain, 2)]
         karaDanvers.eventos = [cumpleKara, cumpleDodain, salidaBoliche]
-        karaDanvers.aceptacionMasiva()
+//        karaDanvers.aceptacionMasiva()
         this.agregarUsuario(karaDanvers)
         this.usuarioLogueado = karaDanvers
     }
