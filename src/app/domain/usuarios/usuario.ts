@@ -31,7 +31,7 @@ export default class Usuario {
     }
 
     invitacionesPendientes(){
-        this.invitaciones.filter(invitacion => invitacion.pendiente)
+        return this.invitaciones.filter(invitacion => invitacion.pendiente)
     }
 
     eliminarAmigo(usuario: Usuario) {
