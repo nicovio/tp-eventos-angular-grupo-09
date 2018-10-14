@@ -1,4 +1,4 @@
-<div class="titulo">
+<div class="titulo" *ngIf= "eventosAMostrar.length > 0">
   {{titulo}}
 </div>
 <table class="table" *ngFor='let evento of eventosAMostrar'>

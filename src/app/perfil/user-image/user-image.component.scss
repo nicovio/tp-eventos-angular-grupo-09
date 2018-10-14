@@ -20,6 +20,7 @@
 .contenedor-username {
     padding-bottom: 1em;
     font-size: 1.2rem;
+    align-content: center;
 }
 
 .nombre-apellido {
@@ -41,4 +42,8 @@ ul {
 
 .card {
     max-width: 14rem;
+}
+
+.centrado {
+    margin: 1.1rem;
 }
