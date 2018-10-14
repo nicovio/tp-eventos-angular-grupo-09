@@ -17,14 +17,14 @@
         <td > {{ invitacion.evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
         <td > {{ invitacion.evento.descripcion }} </td>
         <td > {{ invitacion.evento.locacion.descripcion }} </td>
-        <td > {{ invitacion.evento.organizador.nombre }} &nbsp; {{ invitacion.evento.organizador.apellido }}</td>
+        <td > {{ invitacion.evento.organizador.nombre }} {{ invitacion.evento.organizador.apellido }}</td>
         <td > {{ invitacion.cantidadAcompaniantes }} </td>
         <td >   
           <i class="material-icons">
-            <span class ="colorear-verde">check</span>
+            <button class ="colorear-verde" (click)="invitacion.rechazar()">check</button>
           </i>
           <i class="material-icons">
-            <span class ="colorear-rojo">clear</span>
+            <button class ="colorear-rojo" (click)="invitacion.rechazar()">clear</button>
           </i>
         </td>
         <tr>

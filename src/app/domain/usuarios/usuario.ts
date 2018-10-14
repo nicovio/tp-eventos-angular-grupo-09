@@ -75,4 +75,11 @@ export default class Usuario {
         this.invitaciones.forEach(invitacion => invitacion.serAceptada(this))
     }
 
+    rechazarInvitacion(invitacion: Invitacion){
+        const index = this.invitaciones.indexOf(invitacion, 0);
+
+        if (index > -1) {
+            this.invitaciones.splice(index, 1);
+        }
+    }
 }
