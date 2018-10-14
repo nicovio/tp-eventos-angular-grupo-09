@@ -21,21 +21,13 @@
         <td > {{ invitacion.cantidadAcompaniantes }} </td>
         <td >   
           <i class="material-icons">
-            <button class ="colorear-verde" (click)="invitacion.rechazar()">check</button>
+            <button class ="colorear-verde" (click)="aceptarInvitacion(invitacion)">check</button>
           </i>
           <i class="material-icons">
-            <button class ="colorear-rojo" (click)="invitacion.rechazar()">clear</button>
+            <button class ="colorear-rojo" (click)="rechazarInvitacion(invitacion)">clear</button>
           </i>
         </td>
         <tr>
-          <!-- <td>20/11/2018</td>
-          <td>Cumpleaños</td>
-          <td>Triunvirato 3140</td>
-          <td>Perry White</td>
-          <td>0</td>
-          <td>   
-          </td>
-          -->
         </tr>
       </tbody>
       </div>

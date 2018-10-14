@@ -20,7 +20,7 @@ export class Invitacion {
         return this.pendiente
     }
 
-    rechazar(usuario: Usuario) {
+    rechazar() {
         this.pendiente = false
         // evento.rechazarInvitacion(usuario, this)
     }
@@ -55,7 +55,7 @@ export class Invitacion {
         return true;
     }
 
-    serAceptada(usuario: Usuario){
+    serAceptada(){
         this.pendiente = false
         this.aceptada = true
     }

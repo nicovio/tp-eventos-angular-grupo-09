@@ -68,11 +68,11 @@ export default class Usuario {
     }
 
     aceptarInvitacion(invitacion: Invitacion){
-        invitacion.serAceptada(this)
+        invitacion.serAceptada()
     }
 
     aceptacionMasiva(){
-        this.invitaciones.forEach(invitacion => invitacion.serAceptada(this))
+        this.invitaciones.forEach(invitacion => invitacion.serAceptada())
     }
 
     rechazarInvitacion(invitacion: Invitacion){
