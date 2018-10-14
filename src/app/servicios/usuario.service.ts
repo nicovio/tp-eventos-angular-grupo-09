@@ -53,9 +53,10 @@ export class MockUsuarioService implements UsuarioService {
         let cumpleKara = new EventoCerrado("Cumple Kara", new Date('2018/10/11 23:59'), new Date('2018/11/8 15:00'), new Locacion("Mi Casa"), karaDanvers)
         let cumpleDodain = new EventoCerrado("Cumple Dodain", new Date('2018/10/18 23:59'), new Date('2018/12/7 22:00'), new Locacion("Lo de Dodino"), fernandoDodino)
         let salidaBoliche = new EventoAbierto("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano, 50)
-        karaDanvers.invitaciones = [new Invitacion(cumpleKara, 2), new Invitacion(cumpleDodain, 2)]
-        karaDanvers.eventos = [cumpleKara, cumpleDodain, salidaBoliche]
-//        karaDanvers.aceptacionMasiva()
+        let invitacionCumpleDodino = new Invitacion(cumpleDodain, 2) 
+        karaDanvers.invitaciones = [invitacionCumpleDodino, new Invitacion(cumpleKara,5), new Invitacion(salidaBoliche,10) ]
+        karaDanvers.aceptarInvitacion(invitacionCumpleDodino)
+        // karaDanvers.eventos = [cumpleKara, cumpleDodain, salidaBoliche]
         this.agregarUsuario(karaDanvers)
         this.usuarioLogueado = karaDanvers
     }
@@ -81,7 +82,7 @@ export class MockUsuarioService implements UsuarioService {
         var finalDelDia = new Date()
         principioDelDia.setHours(0, 0, 0, 0)
         finalDelDia.setHours(23, 59, 59, 59)
-        return this.filtrarEventosPorFechas(this.usuarioLogueado.eventos, principioDelDia, finalDelDia)
+        return this.filtrarEventosPorFechas(this.usuarioLogueado.todosLosEventos(), principioDelDia, finalDelDia)
     }
 
     eventosDeEstaSemana(): Array<Evento> {
@@ -89,13 +90,13 @@ export class MockUsuarioService implements UsuarioService {
         var mañana = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 0, 0, 0, 0)
         var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
 
-        return this.filtrarEventosPorFechas(this.usuarioLogueado.eventos, mañana, semanaQueViene)
+        return this.filtrarEventosPorFechas(this.usuarioLogueado.todosLosEventos(), mañana, semanaQueViene)
     }
 
     eventosProximos(): Array<Evento> {
         var today = new Date()
         var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
-        return this.usuarioLogueado.eventos.filter(evento => evento.fechaHoraInicio > semanaQueViene)
+        return this.usuarioLogueado.todosLosEventos().filter(evento => evento.fechaHoraInicio > semanaQueViene)
     }
 
 

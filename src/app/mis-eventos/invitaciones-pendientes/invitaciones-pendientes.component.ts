@@ -11,7 +11,7 @@ export class InvitacionesPendientesComponent implements OnInit {
   invitaciones: Array<Invitacion> 
 
   constructor(private usuarioService: MockUsuarioService) { 
-    this.invitaciones = usuarioService.usuarioLogueado.invitaciones
+    this.invitaciones = usuarioService.usuarioLogueado.invitacionesPendientes()
   }
 
   ngOnInit() {

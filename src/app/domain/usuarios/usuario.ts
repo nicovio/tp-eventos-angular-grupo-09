@@ -13,7 +13,7 @@ export default class Usuario {
     public invitaciones: Array<Invitacion>
     public amigos: Array<Usuario> = [];
     public eventosAbiertos: Array<EventoAbierto> = [];
-    public eventos: Array<Evento> = [];
+    // public eventos: Array<Evento> = [];
 
     constructor(nombre, apellido, username) {
         this.nombre = nombre;
@@ -27,8 +27,11 @@ export default class Usuario {
 
 
     eventosCerrados(): Array<Evento> {
-        var filtro1 = this.invitaciones.filter(invitacion => invitacion.aceptada)
-        return filtro1.map(invitacion => invitacion.getEvento())
+        return this.invitaciones.filter(invitacion => invitacion.aceptada).map(invitacion => invitacion.getEvento())
+    }
+
+    invitacionesPendientes(){
+        this.invitaciones.filter(invitacion => invitacion.pendiente)
     }
 
     eliminarAmigo(usuario: Usuario) {
