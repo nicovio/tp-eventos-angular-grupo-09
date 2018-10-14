@@ -6,10 +6,11 @@ import { MisEventosComponent } from './mis-eventos/mis-eventos.component';
 import { AgendaComponent } from './mis-eventos/agenda/agenda.component';
 import { OrganizadosPorMiComponent } from './mis-eventos/organizados-por-mi/organizados-por-mi.component';
 import { InvitacionesPendientesComponent } from './mis-eventos/invitaciones-pendientes/invitaciones-pendientes.component';
+import { NotFoundComponent } from './share/not-found/not-found.component';
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: 'mis-eventos/agenda', pathMatch: 'full' },
 
   { path: 'perfil', component: PerfilComponent },
   {
@@ -19,7 +20,9 @@ export const routes: Routes = [
       { path: 'organizados-por-mi', component: OrganizadosPorMiComponent },
       { path: 'pendientes', component: InvitacionesPendientesComponent }
     ]
-  }
+  },
+
+  { path: '**', component: NotFoundComponent}
 
 ];
 
