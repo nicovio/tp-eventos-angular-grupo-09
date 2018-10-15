@@ -9,12 +9,10 @@ import Usuario from 'src/app/domain/usuarios/usuario';
   styleUrls: ['./invitaciones-pendientes.component.scss']
 })
 export class InvitacionesPendientesComponent{
-    invitaciones: Array<Invitacion> 
   invitacionSeleccionada: Invitacion
   usuarioLogueado: Usuario
 
   constructor(private usuarioService: MockUsuarioService) { 
-    this.invitaciones = usuarioService.usuarioLogueado.invitacionesPendientes()
     this.usuarioLogueado = usuarioService.usuarioLogueado
   }
 
@@ -25,20 +23,11 @@ export class InvitacionesPendientesComponent{
   aceptarInvitacion(){
     this.invitacionSeleccionada.serAceptada
     this.usuarioLogueado.aceptarInvitacion(this.invitacionSeleccionada)
-    this.eliminarInvitacion()
   }
 
   rechazarInvitacion(){
     this.invitacionSeleccionada.rechazar
     this.usuarioLogueado.rechazarInvitacion(this.invitacionSeleccionada)
-    this.eliminarInvitacion()
   }
 
-  eliminarInvitacion(){
-    const index = this.invitaciones.indexOf(this.invitacionSeleccionada, 0);
-
-        if (index > -1) {
-            this.invitaciones.splice(index, 1);
-        }
-  } 
 }
