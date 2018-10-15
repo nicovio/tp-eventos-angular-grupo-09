@@ -13,7 +13,7 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody *ngFor="let invitacion of invitaciones">
+      <tbody *ngFor="let invitacion of usuarioLogueado.invitacionesPendientes()">
         <td > {{ invitacion.evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
         <td > {{ invitacion.evento.descripcion }} </td>
         <td > {{ invitacion.evento.locacion.descripcion }} </td>
@@ -21,10 +21,10 @@
         <td > {{ invitacion.cantidadAcompaniantes }} </td>
         <td >   
           <i class="material-icons">
-            <button class ="colorear-verde" (click)="aceptarInvitacion(invitacion)">check</button>
+            <button type="button" class ="colorear-verde" mdbTooltip="Aceptar Invitacion" placement="left" (click)="setInvitacionSeleccionada(invitacion)" (click)="aceptar.show()">check</button>
           </i>
           <i class="material-icons">
-            <button class ="colorear-rojo" (click)="rechazarInvitacion(invitacion)">clear</button>
+              <button type="button" class ="colorear-rojo" mdbTooltip="Rechazar Invitacion"  placement="right" (click)="setInvitacionSeleccionada(invitacion)" (click)="rechazar.show()" >clear</button>
           </i>
         </td>
         <tr>
@@ -34,4 +34,58 @@
     </table>
   </div>
 </mdb-card>
+</div>
+
+<!-- MODAL ACEPTAR INVITACION -->
+<div mdbModal #aceptar="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-success" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">¿Aceptar Invitación?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <i color="success" class="fa fa-check fa-4x animated rotateIn"></i>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a mdbBtn color="success" outline="true" class="waves-effect" (click)="aceptarInvitacion()"
+          (click)="aceptar.hide()" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="aceptar.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<!-- MODAL RECHAZAR INVITACION -->
+<div mdbModal #rechazar="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">¿Rechazar Invitación?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <i class="fa fa-times fa-4x animated rotateIn"></i>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="rechazarInvitacion()"
+          (click)="rechazar.hide()" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="rechazar.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
 </div>
