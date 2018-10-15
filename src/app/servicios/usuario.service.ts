@@ -60,7 +60,6 @@ export class MockUsuarioService implements UsuarioService {
         karaDanvers.aceptarInvitacion(invitacionCumpleKara)
         karaDanvers.comprarEntrada(racingBoca)
         karaDanvers.comprarEntrada(casamientoMarley)
-        // karaDanvers.eventos = [cumpleKara, cumpleDodain, salidaBoliche]
         this.agregarUsuario(karaDanvers)
         this.usuarioLogueado = karaDanvers
     }
