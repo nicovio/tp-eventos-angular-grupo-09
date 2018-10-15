@@ -14,8 +14,7 @@
           </div>
           <div class="col-user-name">{{amigo.username}}</div>
           <div class="col-eliminar">
-            <button type="button" class="fas fa-times waves-light" data-toggle="modal" data-target="#basicExample"
-              data-toggle="tooltip" data-placement="top" title="Eliminar amigo" (click)="setUsuarioAEliminar(amigo)"
+            <button type="button" class="fas fa-times waves-light" mdbTooltip="Eliminar Amigo"  placement="right" (click)="setUsuarioAEliminar(amigo)"
               (click)="frame.show()" mdbWavesEffect></button>
           </div>
         </div>
