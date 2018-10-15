@@ -7,10 +7,10 @@
   <div class="centrado">
     <tbody>
       <tr>
-        <td class="fecha"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</td>
-        <td class="evento">{{evento.descripcion}}</td>
-        <td class="lugar">{{evento.locacion.descripcion}}</td>
-        <td class="nombre-apellido">{{evento.organizador.nombre}} {{evento.organizador.apellido}}</td>
+        <td class="fecha" mdbTooltip="Fecha" placement="left"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</td>
+        <td class="evento" mdbTooltip="Evento" placement="left">{{evento.descripcion}}</td>
+        <td class="lugar" mdbTooltip="Lugar" placement="left">{{evento.locacion.descripcion}}</td>
+        <td class="nombre-apellido" mdbTooltip="Organizador" placement="left">{{evento.organizador.nombre}} {{evento.organizador.apellido}}</td>
       </tr>
     </tbody>
   </div>
