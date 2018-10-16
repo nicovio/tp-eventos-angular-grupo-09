@@ -7,12 +7,12 @@ export class Invitacion {
     pendiente: boolean = true
     aceptada: boolean = false
 
-    constructor(evento: EventoCerrado, cantidadAcompaniantes: number){
+    constructor(evento: EventoCerrado, cantidadAcompaniantes: number) {
         this.evento = evento
         this.cantidadAcompaniantes = cantidadAcompaniantes
     }
 
-    getEvento(): EventoCerrado{
+    getEvento(): EventoCerrado {
         return this.evento
     }
 
@@ -51,11 +51,11 @@ export class Invitacion {
         //     throw new ExceptionExcedidaLaFechaDeConfirmacion
     }
 
-    validarInvitado(invitado: Usuario){
+    validarInvitado(invitado: Usuario) {
         return true;
     }
 
-    serAceptada(){
+    serAceptada() {
         this.pendiente = false
         this.aceptada = true
     }

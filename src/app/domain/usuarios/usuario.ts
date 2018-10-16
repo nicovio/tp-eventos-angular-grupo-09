@@ -3,6 +3,7 @@ import EventoAbierto from '../eventos/evento-abierto';
 import { TipoUsuario } from './tipo-de-usuario';
 import { Invitacion } from '../eventos/invitacion';
 import EventoCerrado from '../eventos/evento-cerrado';
+import { Entrada } from '../eventos/entrada';
 
 export default class Usuario {
     nombre: string
@@ -10,10 +11,9 @@ export default class Usuario {
     username: string
     tipoDeUsuario: TipoUsuario
     email: string
-    public invitaciones: Array<Invitacion>
-    public amigos: Array<Usuario> = [];
-    public eventosAbiertos: Array<EventoAbierto> = [];
-    // public eventos: Array<Evento> = [];
+    invitaciones: Array<Invitacion>
+    amigos: Array<Usuario> = [];
+    entradas: Array<Entrada> = [];
 
     constructor(nombre, apellido, username) {
         this.nombre = nombre;
@@ -22,7 +22,7 @@ export default class Usuario {
     }
 
     todosLosEventos(): Array<Evento>{
-        return this.eventosCerrados().concat(this.eventosAbiertos)
+        return this.eventosCerrados().concat(this.eventosAbiertos())
     }
 
 
@@ -32,6 +32,10 @@ export default class Usuario {
 
     invitacionesPendientes(){
         return this.invitaciones.filter(invitacion => invitacion.pendiente)
+    }
+
+    eventosAbiertos(): Array<EventoAbierto>{
+        return this.entradas.map(entrada => entrada.evento)
     }
 
     eliminarAmigo(usuario: Usuario) {
@@ -54,8 +58,8 @@ export default class Usuario {
 
     }
 
-    agregarEventoAbierto(evento: EventoAbierto){
-        this.eventosAbiertos.push(evento)
+    agregarEntrada(entrada: Entrada){
+        this.entradas.push(entrada)
     }
 
     invitar(usuarioInvitado: Usuario, invitacion: Invitacion){

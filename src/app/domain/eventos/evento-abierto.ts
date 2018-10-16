@@ -1,25 +1,27 @@
 import Evento from "src/app/domain/eventos/evento"
 import Usuario from "../usuarios/usuario";
+import { Entrada } from "./entrada";
 
 export default class EventoAbierto extends Evento {
 
-    precioDeEntrada : number
+    precioDeEntrada: number
+    entrada: Entrada
 
-    
-    constructor(descripcion?, fechaHoraInicio?, fechaHoraFin?, locacion?, organizador?, precioDeEntrada?: number){
+
+    constructor(descripcion?, fechaHoraInicio?, fechaHoraFin?, locacion?, organizador?, precioEntrada?: number ) {
         super(descripcion, fechaHoraInicio, fechaHoraFin, locacion, organizador)
-        this.precioDeEntrada = precioDeEntrada
+        this.entrada = new Entrada(this, precioEntrada)
     }
 
-    venderEntrada(usuario: Usuario){
-        if (this.quedanEntradas){
+    venderEntrada(usuario: Usuario) {
+        if (this.quedanEntradas) {
             usuario.pagarEntrada(this.precioDeEntrada)
-            usuario.agregarEventoAbierto(this)
+            usuario.agregarEntrada(this.entrada)
         }
     }
 
-    quedanEntradas(){
-       return true
+    quedanEntradas() {
+        return true
     }
 
 }
