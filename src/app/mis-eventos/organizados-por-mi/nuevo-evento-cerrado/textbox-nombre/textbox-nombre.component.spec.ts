@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NuevoEventoCerradoComponent } from './nuevo-evento-cerrado.component';
+import { TextboxNombreComponent } from './textbox-nombre.component';
 
-describe('NuevoEventoCerradoComponent', () => {
-  let component: NuevoEventoCerradoComponent;
-  let fixture: ComponentFixture<NuevoEventoCerradoComponent>;
+describe('TextboxNombreComponent', () => {
+  let component: TextboxNombreComponent;
+  let fixture: ComponentFixture<TextboxNombreComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NuevoEventoCerradoComponent ]
+      declarations: [ TextboxNombreComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NuevoEventoCerradoComponent);
+    fixture = TestBed.createComponent(TextboxNombreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
