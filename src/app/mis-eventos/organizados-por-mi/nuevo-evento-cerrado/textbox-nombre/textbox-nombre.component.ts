@@ -1,6 +1,10 @@
+//import * as console from 'console';
+import EventoAbierto from '../../../../domain/eventos/evento-abierto';
+import { EventoAbiertoService } from '../../../../servicios/evento-abierto.service';
 import {Component} from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+
 
 @Component({
   selector: 'app-textbox-nombre',
@@ -9,6 +13,15 @@ import {ErrorStateMatcher} from '@angular/material/core';
 })
 export class TextboxNombreComponent{
   
+  unEvento: EventoAbierto = new EventoAbierto
+  //EJEMPLO DE SERVICE
+  constructor(serviceEvento: EventoAbiertoService) {
+
+    console.log(serviceEvento.eventoAbierto.fechaHoraInicio);
+    this.unEvento.locacion = serviceEvento.eventoAbierto.locacion
+    
+  }
+
   nombreFormControl = new FormControl('', [
     Validators.required,
     Validators.pattern("[a-zA-Z\s]+$")

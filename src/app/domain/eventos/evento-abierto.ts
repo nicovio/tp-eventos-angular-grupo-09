@@ -5,7 +5,8 @@ export default class EventoAbierto extends Evento {
 
     precioDeEntrada : number
 
-    constructor(descripcion, fechaHoraInicio, fechaHoraFin, locacion, organizador, precioDeEntrada: number){
+    
+    constructor(descripcion?, fechaHoraInicio?, fechaHoraFin?, locacion?, organizador?, precioDeEntrada?: number){
         super(descripcion, fechaHoraInicio, fechaHoraFin, locacion, organizador)
         this.precioDeEntrada = precioDeEntrada
     }

@@ -1,0 +1,13 @@
+<mat-form-field>
+  <input matInput placeholder="Locacion" [formControl]="locacionFormControl" [errorStateMatcher]="matcher">
+  <mat-error *ngIf="locacionFormControl.hasError('pattern')">
+      La locación solo puede contener caracteres alfabéticos
+  </mat-error>
+  <mat-error *ngIf="locacionFormControl.hasError('required')">
+    <strong>
+      La locación no puede estar vacía
+    </strong>
+  </mat-error>
+</mat-form-field>
+
+
