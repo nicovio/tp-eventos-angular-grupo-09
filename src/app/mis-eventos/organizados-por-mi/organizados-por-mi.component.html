@@ -1,11 +1,9 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Organizados por mi</h1> <!-- AGREGAR BINDING PARA MOSTRAR AGENDA, ORGANIZADOS POR MI Y PENDIENTES DINAMICAMENTE-->
-    <h2 class="sub-header">Organizados por mi</h2>  <!-- AGREGAR BINDING PARA MOSTRAR AGENDA, ORGANIZADOS POR MI Y PENDIENTES DINAMICAMENTE-->
-  </div>
+<div class="contenedor-tabla">
+<mdb-card class="amigos-card">
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-responsive texto-centrado">
       <thead>
-        <tr>
+        <tr> 
           <th>Fecha</th>
           <th>Evento</th>
           <th>Lugar</th>
@@ -34,8 +32,80 @@
       </tbody>
     </table>
   </div>
+</mdb-card>
+</div>
   <div class="botones-nuevos-eventos">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nuevo evento abierto</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nuevo evento cerrado</button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="eventoAbierto.show()" mdbWavesEffect>Nuevo evento abierto</button>
+    <button type="button" mdbBtn color="warning" class="relative waves-light" (click)="eventoCerrado.show()" mdbWavesEffect>Nuevo evento cerrado</button>
   </div>
 
+<!-- CREACION EVENTO ABIERTO -->
+  <div mdbModal #eventoAbierto="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="eventoAbierto.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Nuevo Evento Abierto</h4>
+        </div>
+        <div class="modal-body container-fluid">
+          <div class="row" >
+            <div class="col-sm-6">
+              <div>
+                <app-textbox-nombre></app-textbox-nombre>
+              </div>
+              <br>
+              <div>
+                  Inicio:<br>
+                  <app-datepicker></app-datepicker>
+                  <input type="text">
+              </div>  
+            </div>            
+            <div class="col-sm-6">
+            <div>
+              Locacion:<br>
+              <input type="text">
+            </div>
+              <br>
+              <div>
+                  Fin:<br>
+                  <app-datepicker></app-datepicker>
+                  <input type="text">
+              </div>  
+            </div>
+          </div>
+          <div>
+              Fecha Máxima Confirmación:<br>
+              <input type="text">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Aceptar</button>
+          <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="eventoAbierto.hide()" mdbWavesEffect>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- CREACION EVENTO CERRADO -->
+  <div mdbModal #eventoCerrado="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="eventoCerrado.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100" id="myModalLabel">Nuevo Evento Cerrado</h4>
+          </div>
+          <div class="modal-body">
+            No implementado todavía
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Aceptar</button>
+            <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="eventoCerrado.hide()"  mdbWavesEffect>Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
