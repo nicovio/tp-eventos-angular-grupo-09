@@ -1,25 +1,29 @@
-.centrado{
+.centrado {
     text-align: center;
 }
 
-.espaciado-estetico{
+.espaciado-estetico {
     padding-top: 3em;
 }
 
-.colorear-rojo{
+.colorear-rojo {
     color: #DC143C;
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
 
-.colorear-verde{
+.colorear-verde {
     color: rgb(16, 189, 31);
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
 
-thead{
-    background-color: #00a1ff47
+thead {
+    background-color: #00a1ff47;
+}
+
+th {
+    font-weight: bold;
 }
