@@ -1,19 +1,61 @@
-<div class="modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h4 class="modal-title">Nuevo evento abierto</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+<div mdbModal #eventoAbierto="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="eventoAbierto.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Nuevo Evento Abierto</h4>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="row" >
+          <div class="col-sm-6">
+            <div>
+              <!-- TEXTBOX NOMBRE INICIO -->
+              <mat-form-field>
+                <input [(ngModel)]="unEvento.locacion.descripcion" matInput placeholder="Nombre" [formControl]="validacionFormControl" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="validacionFormControl.hasError('required')">
+                  <strong>
+                    El nombre no puede estar vacío
+                  </strong>
+                </mat-error>
+              </mat-form-field>
+              <!-- TEXTBOX NOMBRE FIN -->
+            </div>
+            <br>
+            <div>
+                Inicio:<br>
+                <app-datepicker></app-datepicker>
+            </div>  
+          </div>            
+          <div class="col-sm-6">
+          <div>
+            <!-- TEXTBOX LOCACION INICIO -->
+            <mat-form-field>
+              <input [(ngModel)]="unEvento.locacion.descripcion" matInput placeholder="Locacion" [formControl]="validacionFormControl" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="validacionFormControl.hasError('required')">
+                <strong>
+                  La locación no puede estar vacía
+                </strong>
+              </mat-error>
+            </mat-form-field>
+            <!-- TEXTBOX LOCACION FIN -->
+          </div>
+            <br>
+            <div>
+                Fin:<br>
+                <app-datepicker></app-datepicker>
+            </div>  
+          </div>
         </div>
-
-        <div class="modal-body">
-
+        <div>
+            Fecha Máxima Confirmación:<br>
+            <app-datepicker></app-datepicker>
         </div>
-
-        <div class="modal-footer">
-          <button type="button">Aceptar</button> <!-- AGREGAR LOGICA Y COSAS PARA HACERLO ACEPTAR-->
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+      <div class="modal-footer">
+          <button type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Aceptar</button>
+          <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="eventoAbierto.hide()" mdbWavesEffect>Cancelar</button>
         </div>
       </div>
     </div>

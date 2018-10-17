@@ -35,56 +35,10 @@
 </mdb-card>
 </div>
   <div class="botones-nuevos-eventos">
-    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="eventoAbierto.show()" mdbWavesEffect>Nuevo evento abierto</button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="nuevoEventoAbiertoActivo()" mdbWavesEffect>Nuevo evento abierto</button>
     <button type="button" mdbBtn color="warning" class="relative waves-light" (click)="eventoCerrado.show()" mdbWavesEffect>Nuevo evento cerrado</button>
   </div>
-
-<!-- CREACION EVENTO ABIERTO -->
-  <div mdbModal #eventoAbierto="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="eventoAbierto.hide()">
-            <span aria-hidden="true">×</span>
-          </button>
-          <h4 class="modal-title w-100" id="myModalLabel">Nuevo Evento Abierto</h4>
-        </div>
-        <div class="modal-body container-fluid">
-          <div class="row" >
-            <div class="col-sm-6">
-              <div>
-                <app-textbox-nombre></app-textbox-nombre>
-              </div>
-              <br>
-              <div>
-                  Inicio:<br>
-                  <app-datepicker></app-datepicker>
-              </div>  
-            </div>            
-            <div class="col-sm-6">
-            <div>
-              <app-textbox-locacion></app-textbox-locacion>
-            </div>
-              <br>
-              <div>
-                  Fin:<br>
-                  <app-datepicker></app-datepicker>
-              </div>  
-            </div>
-          </div>
-          <div>
-              Fecha Máxima Confirmación:<br>
-              <app-datepicker></app-datepicker>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Aceptar</button>
-          <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="eventoAbierto.hide()" mdbWavesEffect>Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<app-nuevo-evento-abierto *ngIf="estadoEventoAbierto"></app-nuevo-evento-abierto>
 
 <!-- CREACION EVENTO CERRADO -->
   <div mdbModal #eventoCerrado="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
