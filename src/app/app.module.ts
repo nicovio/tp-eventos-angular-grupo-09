@@ -17,11 +17,15 @@ import { OrganizadosPorMiComponent } from './mis-eventos/organizados-por-mi/orga
 import { InvitacionesPendientesComponent } from './mis-eventos/invitaciones-pendientes/invitaciones-pendientes.component';
 import { ListaDeEventosComponent } from './mis-eventos/agenda/lista-de-eventos/lista-de-eventos.component';
 import { NotFoundComponent } from './share/not-found/not-found.component';
-
-
+import { DatePickerComponent } from './share/datepicker/datepicker.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
+import { TextboxNombreComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/textbox-nombre/textbox-nombre.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { TextboxLocacionComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/textbox-locacion/textbox-locacion.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent, MisEventosComponent, SidebarEventosComponent, AgendaComponent, OrganizadosPorMiComponent, InvitacionesPendientesComponent, ListaDeEventosComponent, NotFoundComponent],
+  declarations: [AppComponent, routingComponents, PerfilComponent, NavbarComponent, UserImageComponent, AmigosComponent, MisEventosComponent, SidebarEventosComponent, AgendaComponent, OrganizadosPorMiComponent, InvitacionesPendientesComponent, ListaDeEventosComponent, NotFoundComponent, DatePickerComponent, TextboxNombreComponent, TextboxLocacionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +34,11 @@ import { NotFoundComponent } from './share/not-found/not-found.component';
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

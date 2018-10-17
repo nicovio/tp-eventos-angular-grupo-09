@@ -1,0 +1,11 @@
+<mat-form-field>
+    <input [(ngModel)]="unEvento.locacion.descripcion" matInput placeholder="Nombre" [formControl]="nombreFormControl" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="nombreFormControl.hasError('pattern')">
+        El nombre solo puede contener caracteres alfabéticos
+    </mat-error>
+    <mat-error *ngIf="nombreFormControl.hasError('required')">
+      <strong>
+        El nombre no puede estar vacío
+      </strong>
+    </mat-error>
+  </mat-form-field>
