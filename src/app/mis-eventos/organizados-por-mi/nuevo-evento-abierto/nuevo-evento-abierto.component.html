@@ -13,7 +13,7 @@
             <div>
               <!-- TEXTBOX NOMBRE INICIO -->
               <mat-form-field>
-                <input [(ngModel)]="unEvento.locacion.descripcion" matInput placeholder="Nombre" [formControl]="validacionFormControl" [errorStateMatcher]="matcher">
+                <input [(ngModel)]="nuevoEvento.locacion.descripcion" matInput placeholder="Nombre" [errorStateMatcher]="matcher">
                 <mat-error *ngIf="validacionFormControl.hasError('required')">
                   <strong>
                     El nombre no puede estar vacío
@@ -32,7 +32,7 @@
           <div>
             <!-- TEXTBOX LOCACION INICIO -->
             <mat-form-field>
-              <input [(ngModel)]="unEvento.locacion.descripcion" matInput placeholder="Locacion" [formControl]="validacionFormControl" [errorStateMatcher]="matcher">
+              <input [(ngModel)]="nuevoEvento.locacion.calle" matInput placeholder="Locacion" [errorStateMatcher]="matcher">
               <mat-error *ngIf="validacionFormControl.hasError('required')">
                 <strong>
                   La locación no puede estar vacía

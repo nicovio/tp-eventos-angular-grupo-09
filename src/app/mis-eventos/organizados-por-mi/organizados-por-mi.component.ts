@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./organizados-por-mi.component.scss']
 })
 export class OrganizadosPorMiComponent {
-  estadoEventoAbierto: boolean = false
+  estadoEventoAbierto: boolean = true
 
   nuevoEventoAbiertoActivo(){
-    this.estadoEventoAbierto = !this.estadoEventoAbierto
+    this.estadoEventoAbierto = true
   }
 }
 

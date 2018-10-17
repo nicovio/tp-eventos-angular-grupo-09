@@ -9,7 +9,7 @@ export default abstract class Evento {
     organizador: Usuario
     id: number 
 
-    constructor(descripcion, fechaHoraInicio, fechaHoraFin, locacion, organizador) {
+    constructor(descripcion?, fechaHoraInicio?, fechaHoraFin?, locacion?, organizador?) {
         this.descripcion = descripcion
         this.fechaHoraInicio = fechaHoraInicio
         this.fechaHoraFin = fechaHoraFin

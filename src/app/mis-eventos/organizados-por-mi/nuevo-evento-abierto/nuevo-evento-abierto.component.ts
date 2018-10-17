@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { EventoAbiertoService } from 'src/app/servicios/evento-abierto.service';
 
 @Component({
   selector: 'app-nuevo-evento-abierto',
@@ -9,13 +10,22 @@ import { ErrorStateMatcher } from '@angular/material';
   styleUrls: ['./nuevo-evento-abierto.component.scss']
 })
 export class NuevoEventoAbiertoComponent{
-  unEvento: EventoAbierto = new EventoAbierto
 
+  nuevoEvento: EventoAbierto = new EventoAbierto
 
+  constructor(serviceEvento: EventoAbiertoService) {
+    console.log(serviceEvento.eventoAbierto.fechaHoraInicio);
+    this.nuevoEvento.locacion = serviceEvento.eventoAbierto.locacion
+  }
   validacionFormControl = new FormControl('', [
     Validators.required,
     // Validators.pattern("[a-zA-Z\s]+$")
   ]);
+
+  abrirModal(){
+    this.modal.show()
+    //USAR @ViewChild?
+  }
 
   matcher = new MyErrorStateMatcher();
 }

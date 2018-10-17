@@ -35,10 +35,11 @@
 </mdb-card>
 </div>
   <div class="botones-nuevos-eventos">
-    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="nuevoEventoAbiertoActivo()" mdbWavesEffect>Nuevo evento abierto</button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="modalEventoAbierto.show()" mdbWavesEffect>Nuevo evento abierto</button>
     <button type="button" mdbBtn color="warning" class="relative waves-light" (click)="eventoCerrado.show()" mdbWavesEffect>Nuevo evento cerrado</button>
   </div>
-<app-nuevo-evento-abierto *ngIf="estadoEventoAbierto"></app-nuevo-evento-abierto>
+  
+<app-nuevo-evento-abierto #modalEventoAbierto ></app-nuevo-evento-abierto>
 
 <!-- CREACION EVENTO CERRADO -->
   <div mdbModal #eventoCerrado="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">

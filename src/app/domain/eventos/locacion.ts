@@ -7,7 +7,7 @@ export default class Locacion{
     provincia: string
     superficie: number
 
-    constructor(descripcion: string){
+    constructor(descripcion?: string){
         this.descripcion = descripcion
     }
 
