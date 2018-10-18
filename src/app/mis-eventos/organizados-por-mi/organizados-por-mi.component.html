@@ -36,28 +36,160 @@
 </div>
   <div class="botones-nuevos-eventos">
     <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="modalEventoAbierto.show()" mdbWavesEffect>Nuevo evento abierto</button>
-    <button type="button" mdbBtn color="warning" class="relative waves-light" (click)="eventoCerrado.show()" mdbWavesEffect>Nuevo evento cerrado</button>
+    <button type="button" mdbBtn color="warning" class="relative waves-light" (click)="modalEventoCerrado.show()" mdbWavesEffect>Nuevo evento cerrado</button>
   </div>
   
-<app-nuevo-evento-abierto #modalEventoAbierto ></app-nuevo-evento-abierto>
-
-<!-- CREACION EVENTO CERRADO -->
-  <div mdbModal #eventoCerrado="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close pull-right" aria-label="Close" (click)="eventoCerrado.hide()">
-              <span aria-hidden="true">×</span>
-            </button>
-            <h4 class="modal-title w-100" id="myModalLabel">Nuevo Evento Cerrado</h4>
+<!-- <app-nuevo-evento-abierto #modalEventoAbierto ></app-nuevo-evento-abierto> -->
+<div mdbModal #modalEventoAbierto="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalEventoAbierto.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Nuevo Evento Abierto</h4>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="row" >
+          <div class="col-sm-6">
+            <div>
+              <!-- TEXTBOX NOMBRE INICIO -->
+              <mat-form-field>
+                <input [(ngModel)]="nuevoEventoAbierto.locacion.descripcion" matInput placeholder="Nombre" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="!validar.hasError('required')">
+                  <strong>
+                    El nombre no puede estar vacío
+                  </strong>
+                </mat-error>
+              </mat-form-field>
+              <!-- TEXTBOX NOMBRE FIN -->
+            </div>
+            <br>
+            <div>
+                Inicio:<br>
+                <!-- DATEPICKER InicioDeEvento INICIO -->
+                <mat-form-field class="example-full-width datepicker">
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Elija una Fecha">
+                  <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerInicio></mat-datepicker>
+                </mat-form-field>
+                <!-- DATEPICKER InicioDeEvento FIN -->
+            </div>  
+          </div>            
+          <div class="col-sm-6">
+          <div>
+            <!-- TEXTBOX LOCACION INICIO -->
+            <mat-form-field>
+              <input [(ngModel)]="nuevoEventoAbierto.locacion.calle" matInput placeholder="Locacion" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="validacionLocacion.hasError('required')">
+                <strong>
+                  La locación no puede estar vacía
+                </strong>
+              </mat-error>
+            </mat-form-field>
+            <!-- TEXTBOX LOCACION FIN -->
           </div>
-          <div class="modal-body">
-            No implementado todavía
+            <br>
+            <div>
+                Fin:<br>
+                <!-- DATEPICKER FinDeEvento INICIO -->
+                <mat-form-field class="example-full-width datepicker">
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Elija una Fecha">
+                  <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerFin></mat-datepicker>
+                </mat-form-field>
+                <!-- DATEPICKER FinDeEvento FIN -->
+            </div>  
           </div>
-          <div class="modal-footer">
-            <button type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Aceptar</button>
-            <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="eventoCerrado.hide()"  mdbWavesEffect>Cancelar</button>
-          </div>
+        </div>
+        <div>
+            Fecha Máxima Confirmación:<br>
+            <!-- DATEPICKER Fecha Máxima Confirmación INICIO -->
+            <mat-form-field class="example-full-width datepicker">
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Elija una Fecha">
+              <mat-datepicker-toggle matSuffix [for]="pickerMaximaConfirmacion"></mat-datepicker-toggle>
+              <mat-datepicker #pickerMaximaConfirmacion></mat-datepicker>
+            </mat-form-field>
+            <!-- DATEPICKER Fecha Máxima Confirmación FIN -->
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Aceptar</button>
+          <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="modalEventoAbierto.hide()" mdbWavesEffect>Cancelar</button>
         </div>
       </div>
     </div>
+  </div>
+
+
+<!-- CREACION EVENTO CERRADO -->
+<div mdbModal #modalEventoCerrado="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalEventoCerrado.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Nuevo Evento Abierto</h4>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="row" >
+          <div class="col-sm-6">
+            <div>
+              <!-- TEXTBOX NOMBRE INICIO -->
+              <mat-form-field>
+                <input [(ngModel)]="nuevoEventoCerrado.locacion.descripcion" matInput placeholder="Nombre" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="!validar.hasError('required')">
+                  <strong>
+                    El nombre no puede estar vacío
+                  </strong>
+                </mat-error>
+              </mat-form-field>
+              <!-- TEXTBOX NOMBRE FIN -->
+            </div>
+            <br>
+            <div>
+                Inicio:<br>
+                <!-- DATEPICKER InicioDeEvento INICIO -->
+                <mat-form-field class="example-full-width datepicker">
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Elija una Fecha">
+                  <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerInicio></mat-datepicker>
+                </mat-form-field>
+                <!-- DATEPICKER InicioDeEvento FIN -->
+            </div>  
+          </div>            
+          <div class="col-sm-6">
+          <div>
+            <!-- TEXTBOX LOCACION INICIO -->
+            <mat-form-field>
+              <input [(ngModel)]="nuevoEventoCerrado.locacion.calle" matInput placeholder="Locacion" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="validacionLocacion.hasError('required')">
+                <strong>
+                  La locación no puede estar vacía
+                </strong>
+              </mat-error>
+            </mat-form-field>
+            <!-- TEXTBOX LOCACION FIN -->
+          </div>
+            <br>
+            <div>
+                Fin:<br>
+                <!-- DATEPICKER FinDeEvento INICIO -->
+                <mat-form-field class="example-full-width datepicker">
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Elija una Fecha">
+                  <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerFin></mat-datepicker>
+                </mat-form-field>
+                <!-- DATEPICKER FinDeEvento FIN -->
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Aceptar</button>
+          <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="modalEventoCerrado.hide()" mdbWavesEffect>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>

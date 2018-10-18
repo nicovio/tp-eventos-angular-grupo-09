@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
-import { EventoAbiertoService } from 'src/app/servicios/evento-abierto.service';
+import { EventoService } from 'src/app/servicios/evento-abierto.service';
 
 @Component({
   selector: 'app-nuevo-evento-abierto',
@@ -12,12 +12,12 @@ import { EventoAbiertoService } from 'src/app/servicios/evento-abierto.service';
 export class NuevoEventoAbiertoComponent{
   nuevoEvento: EventoAbierto = new EventoAbierto
 
-  constructor(serviceEvento: EventoAbiertoService) {
+  constructor(serviceEvento: EventoService) {
     console.log(serviceEvento.eventoAbierto.fechaHoraInicio);
     this.nuevoEvento.locacion = serviceEvento.eventoAbierto.locacion
   }
   validacionFormControl = new FormControl('', [
-    Validators.required,
+    Validators.required
     // Validators.pattern("[a-zA-Z\s]+$")
   ]);
 
