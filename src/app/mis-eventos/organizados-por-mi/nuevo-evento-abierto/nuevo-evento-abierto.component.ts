@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
@@ -10,7 +10,6 @@ import { EventoAbiertoService } from 'src/app/servicios/evento-abierto.service';
   styleUrls: ['./nuevo-evento-abierto.component.scss']
 })
 export class NuevoEventoAbiertoComponent{
-
   nuevoEvento: EventoAbierto = new EventoAbierto
 
   constructor(serviceEvento: EventoAbiertoService) {
@@ -23,12 +22,12 @@ export class NuevoEventoAbiertoComponent{
   ]);
 
   abrirModal(){
-    this.modal.show()
-    //USAR @ViewChild?
+    
   }
 
   matcher = new MyErrorStateMatcher();
 }
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
