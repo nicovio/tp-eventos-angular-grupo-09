@@ -1,6 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { NuevoEventoAbiertoComponent } from './nuevo-evento-abierto/nuevo-evento-abierto.component';
-import { EventoService } from 'src/app/servicios/evento-abierto.service';
+import { EventoAbiertoService } from 'src/app/servicios/evento-abierto.service';
 import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { ErrorStateMatcher } from '@angular/material';
 import { FormGroupDirective, NgForm, FormControl, Validators } from '@angular/forms';
@@ -9,18 +9,18 @@ import EventoCerrado from 'src/app/domain/eventos/evento-cerrado';
 @Component({
   selector: 'app-organizados-por-mi',
   templateUrl: './organizados-por-mi.component.html',
-  styleUrls: ['./organizados-por-mi.component.scss'],
+  styleUrls: ['./organizados-por-mi.component.scss']
 })
-export class OrganizadosPorMiComponent implements AfterViewInit{
-  @ViewChild(NuevoEventoAbiertoComponent)
-  eventoAbiertoCreado: NuevoEventoAbiertoComponent
-  nuevoEventoAbierto: EventoAbierto = new EventoAbierto
-  nuevoEventoCerrado: EventoCerrado = new EventoCerrado
+export class OrganizadosPorMiComponent implements AfterViewInit {
+  // @ViewChild(NuevoEventoAbiertoComponent)
+  // eventoAbiertoCreado: NuevoEventoAbiertoComponent
+  // nuevoEventoAbierto: EventoAbierto = new EventoAbierto
+  // nuevoEventoCerrado: EventoCerrado = new EventoCerrado
 
-  constructor(serviceEvento: EventoService) {
+  constructor(serviceEvento: EventoAbiertoService) {
     // console.log(serviceEvento.eventoAbierto.fechaHoraInicio);
-    this.nuevoEventoAbierto.locacion = serviceEvento.eventoAbierto.locacion
-    this.nuevoEventoCerrado.locacion = serviceEvento.eventoCerrado.locacion
+    // this.nuevoEventoAbierto.locacion = serviceEvento.eventoAbierto.locacion
+    // this.nuevoEventoCerrado.locacion = serviceEvento.eventoCerrado.locacion
   }
 
   validar = new FormControl('', [
@@ -32,9 +32,8 @@ export class OrganizadosPorMiComponent implements AfterViewInit{
     Validators.required
     // Validators.pattern("[a-zA-Z\s]+$")
   ]);
-  
-  ngAfterViewInit() {
-  }
+
+  ngAfterViewInit() {}
 
   matcher = new MyErrorStateMatcher();
 }

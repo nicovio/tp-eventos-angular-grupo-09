@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, ModalDirective, ModalModule } from 'angular-bootstrap-md';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AmigosComponent } from './perfil/amigos/amigos.component';
@@ -20,14 +20,33 @@ import { NotFoundComponent } from './share/not-found/not-found.component';
 import { DatePickerComponent } from './share/datepicker/datepicker.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
+import { TextboxNombreComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/textbox-nombre/textbox-nombre.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { TextboxLocacionComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/textbox-locacion/textbox-locacion.component';
 import { NuevoEventoAbiertoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-abierto/nuevo-evento-abierto.component';
+import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, PerfilComponent, 
-    NavbarComponent, UserImageComponent, AmigosComponent, MisEventosComponent, 
-    SidebarEventosComponent, AgendaComponent, OrganizadosPorMiComponent, InvitacionesPendientesComponent, 
-    ListaDeEventosComponent, NotFoundComponent, DatePickerComponent, NuevoEventoAbiertoComponent],
+  declarations: [
+    AppComponent,
+    routingComponents,
+    PerfilComponent,
+    NavbarComponent,
+    UserImageComponent,
+    AmigosComponent,
+    MisEventosComponent,
+    SidebarEventosComponent,
+    AgendaComponent,
+    OrganizadosPorMiComponent,
+    InvitacionesPendientesComponent,
+    ListaDeEventosComponent,
+    NotFoundComponent,
+    DatePickerComponent,
+    TextboxNombreComponent,
+    TextboxLocacionComponent,
+    NuevoEventoAbiertoComponent,
+    NuevoEventoCerradoComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,9 +59,10 @@ import { NuevoEventoAbiertoComponent } from './mis-eventos/organizados-por-mi/nu
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,38 +1,29 @@
-import { Component } from '@angular/core';
-import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
-import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
-import { EventoService } from 'src/app/servicios/evento-abierto.service';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { ModalModule, ModalDirective } from 'angular-bootstrap-md';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-evento-abierto',
   templateUrl: './nuevo-evento-abierto.component.html',
   styleUrls: ['./nuevo-evento-abierto.component.scss']
 })
-export class NuevoEventoAbiertoComponent{
-  nuevoEvento: EventoAbierto = new EventoAbierto
+export class NuevoEventoAbiertoComponent implements OnInit {
+  @ViewChild('eventoAbierto') modal: ModalDirective;
 
-  constructor(serviceEvento: EventoService) {
-    console.log(serviceEvento.eventoAbierto.fechaHoraInicio);
-    this.nuevoEvento.locacion = serviceEvento.eventoAbierto.locacion
-  }
-  validacionFormControl = new FormControl('', [
-    Validators.required
-    // Validators.pattern("[a-zA-Z\s]+$")
-  ]);
+  constructor(private router: Router) {}
 
-  abrirModal(){
-    
+  ngOnInit() {
   }
 
-  matcher = new MyErrorStateMatcher();
-}
+  ngAfterViewInit() {
+    this.modal.show();
+  }
 
+  cancelar(){
+    this.router.navigate(['/mis-eventos/organizados-por-mi']);
+  }
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  aceptar(){
+    this.router.navigate(['/mis-eventos/organizados-por-mi']);
   }
 }

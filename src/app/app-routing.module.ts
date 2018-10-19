@@ -7,6 +7,8 @@ import { AgendaComponent } from './mis-eventos/agenda/agenda.component';
 import { OrganizadosPorMiComponent } from './mis-eventos/organizados-por-mi/organizados-por-mi.component';
 import { InvitacionesPendientesComponent } from './mis-eventos/invitaciones-pendientes/invitaciones-pendientes.component';
 import { NotFoundComponent } from './share/not-found/not-found.component';
+import { NuevoEventoAbiertoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-abierto/nuevo-evento-abierto.component';
+import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
 
 
 export const routes: Routes = [
@@ -17,10 +19,15 @@ export const routes: Routes = [
     path: 'mis-eventos',  component: MisEventosComponent,
     children: [
       { path: 'agenda', component: AgendaComponent },
-      { path: 'organizados-por-mi', component: OrganizadosPorMiComponent },
+      { path: 'organizados-por-mi', component: OrganizadosPorMiComponent, 
+      children: [
+        { path: 'nuevo-evento-abierto', component: NuevoEventoAbiertoComponent },
+        { path: 'nuevo-evento-cerrado', component: NuevoEventoCerradoComponent }
+      ] },
       { path: 'pendientes', component: InvitacionesPendientesComponent }
     ]
   },
+
 
   { path: '**', component: NotFoundComponent}
 
