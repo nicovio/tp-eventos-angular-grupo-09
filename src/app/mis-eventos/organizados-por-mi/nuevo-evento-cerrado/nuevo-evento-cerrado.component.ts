@@ -1,57 +1,34 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ModalDirective } from 'angular-bootstrap-md';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IEventoService, EventoService } from 'src/app/servicios/evento.service';
-import { FormControl, Validators } from '@angular/forms';
 import Locacion from 'src/app/domain/eventos/locacion';
 import EventoCerrado from 'src/app/domain/eventos/evento-cerrado';
 import { toDate } from '@angular/common/src/i18n/format_date';
+import { NuevoEvento } from '../nuevo-evento';
 
 @Component({
   selector: 'app-nuevo-evento-cerrado',
   templateUrl: './nuevo-evento-cerrado.component.html',
   styleUrls: ['./nuevo-evento-cerrado.component.scss']
 })
-export class NuevoEventoCerradoComponent implements OnInit, AfterViewInit {
-  @ViewChild('modalEventoCerrado')
-  modal: ModalDirective;
-  minimaFechaInicio = new Date()
-  nuevoEventoCerrado: EventoCerrado = new EventoCerrado();
+export class NuevoEventoCerradoComponent extends NuevoEvento implements OnInit {
+  constructor(serviceEvento: EventoService, router: Router) {
+    super(serviceEvento, router);
 
-  nombreFormControl = new FormControl('', [
-    Validators.required
-    // Validators.pattern("[a-zA-Z\s]+$")
-  ]);
-
-  locacionFormControl = new FormControl('', [
-    Validators.required
-    // Validators.pattern("[a-zA-Z\s]+$")
-  ]);
-
-  constructor(private serviceEvento: EventoService, private router: Router) {
-    this.nuevoEventoCerrado.locacion = new Locacion();
-
+    this.nuevoEvento = new EventoCerrado();
+    this.nuevoEvento.locacion = new Locacion();
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  noPuedeCrearEvento() {
+    return (
+      super.noPuedeCrearEvento() || this.fechaMaximaDeConfirmacionIncorrecta()
+    );
   }
 
-  ngAfterViewInit() {
-    this.modal.show();
-  }
-
-  cancelar() {
-    this.volverAOrganizadosPorMi()
-  }
-
-  aceptar() {
-    //VALIDACION?
-    this.serviceEvento.crearEvento(this.nuevoEventoCerrado)
-    this.volverAOrganizadosPorMi()
-  }
-
-  volverAOrganizadosPorMi(){
-    this.router.navigate(['/mis-eventos/organizados-por-mi']);
+  fechaMaximaDeConfirmacionIncorrecta(){
+    return this.nuevoEvento.fechaMaximaConfirmacion >= this.nuevoEvento.fechaHoraInicio;
   }
 
   // filtroInicioDeEvento = (d: Date): boolean => {
@@ -60,18 +37,17 @@ export class NuevoEventoCerradoComponent implements OnInit, AfterViewInit {
   //   return day !== 0 && day !== 6;
   // }
 
-  filtroFinDeEvento = (fechaFinEvento: Date) : boolean => {
+  filtroFinDeEvento = (fechaFinEvento: Date): boolean => {
     const dia = fechaFinEvento.getDay();
     // Prevent Saturday and Sunday from being selected.
     return dia !== 0;
-  }
+  };
 
   // filtroConfirmacionDeEvento = (d: Date): boolean => {
   //   const day = d.getDay();
   //   // Prevent Saturday and Sunday from being selected.
   //   return day !== 0 && day !== 6;
   // }
-
 
   // minimaFechaInicio(){
   //   let minimaFechaInicio = this.fechaDeHoy();
