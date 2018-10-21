@@ -26,9 +26,9 @@
             </div>
             <br>
             <div>
-              Inicio:<br>
+              <div class="margen-fecha">Inicio:<br></div>
               <!-- DATEPICKER InicioDeEvento INICIO -->
-              <mat-form-field class="example-full-width datepicker">
+              <!-- <mat-form-field class="example-full-width datepicker">
                 <input matInput [(ngModel)]="nuevoEvento.fechaHoraInicio" [min]="minimaFecha" [max]="maxDate"
                   [matDatepicker]="pickerInicio" (change)="pickerInicio.open()" placeholder="Elija una Fecha"
                   [errorStateMatcher]="matcher" [formControl]="fechaInicioFormControl">
@@ -40,7 +40,17 @@
                   </strong>
                 </mat-error>
 
-              </mat-form-field>
+              </mat-form-field> -->
+
+              <input [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="fechaHoraInicio" placeholder="Fecha y hora de inicio"
+                (change)="fechaHoraInicio.open()" [formControl]="fechaInicioFormControl" [min]="hoy">
+              <span [owlDateTimeTrigger]="fechaHoraInicio"><i class="fa fa-calendar"></i></span>
+              <owl-date-time [pickerMode]="'dialog'" #fechaHoraInicio></owl-date-time>
+              <mat-error *ngIf="fechaInicioFormControl.hasError('required')">
+                <strong>
+                  La fecha y hora de inicio no puede estar vacía
+                </strong>
+              </mat-error>
 
 
               <!-- DATEPICKER InicioDeEvento FIN -->
@@ -62,9 +72,22 @@
             </div>
             <br>
             <div>
-              Fin:<br>
+
+
+              
+              <div class="margen-fecha">Fin:<br></div>
+              <input [(ngModel)]="nuevoEvento.fechaHoraFin" [owlDateTime]="fechaHoraFin" (change)="fechaHoraFin.open()" [formControl]="fechaFinFormControl"
+                placeholder="Fecha y hora de fin" [min]="hoy" [owlDateTimeFilter]="filtroFechaFin">
+              <span [owlDateTimeTrigger]="fechaHoraFin"><i class="fa fa-calendar"></i></span>
+              <owl-date-time [pickerMode]="'dialog'" #fechaHoraFin></owl-date-time>
+              <mat-error *ngIf="fechaFinFormControl.hasError('required')">
+                <strong>
+                  La fecha y hora de fin no puede estar vacía
+                </strong>
+              </mat-error>
+
               <!-- DATEPICKER FinDeEvento INICIO -->
-              <mat-form-field class="example-full-width datepicker">
+              <!-- <mat-form-field class="example-full-width datepicker">
                 <input matInput [(ngModel)]="nuevoEvento.fechaHoraFin" [min]="minimaFecha" [max]="maxDate"
                   [matDatepicker]="pickerFin" (change)="pickerFin.open()" placeholder="Elija una Fecha"
                   [errorStateMatcher]="matcher" [formControl]="fechaFinFormControl">
@@ -75,14 +98,15 @@
                     La fecha de fin no puede estar vacía
                   </strong>
                 </mat-error>
-              </mat-form-field>
+              </mat-form-field> -->
               <!-- DATEPICKER FinDeEvento FIN -->
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <div class="error-fechas" *ngIf="empiezaDespuesDeTerminar()">El evento debe finalizar en una fecha posterior a la de fecha de inicio</div>
+        <div class="error-fechas" *ngIf="empiezaDespuesDeTerminar()">El evento debe finalizar en una fecha posterior a
+          la de fecha de inicio</div>
         <button type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar()" [disabled]="noPuedeCrearEvento()"
           mdbWavesEffect>Aceptar</button>
         <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="cancelar()"

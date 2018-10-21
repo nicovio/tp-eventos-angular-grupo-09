@@ -9,6 +9,8 @@ export abstract class NuevoEvento implements AfterViewInit {
   @ViewChild('modalEvento')
   modal: ModalDirective;
 
+  public hoy = new Date();
+
   nuevoEvento: Evento;
 
   nombreFormControl = new FormControl('', [
@@ -92,4 +94,11 @@ export abstract class NuevoEvento implements AfterViewInit {
     );
   }
 
+  public filtroFechaFin = (fechaFin: Date): boolean => {
+    return fechaFin > this.nuevoEvento.fechaHoraInicio;
+  };
+
+  public filtroFechaConfirmacion = (fechaMaximaConfirmacion: Date): boolean => {
+    return fechaMaximaConfirmacion < this.nuevoEvento.fechaHoraInicio;
+  };
 }

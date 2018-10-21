@@ -19,5 +19,4 @@ export class NuevoEventoAbiertoComponent extends NuevoEvento implements OnInit {
   }
 
   ngOnInit() {}
-
 }

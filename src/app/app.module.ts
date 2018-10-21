@@ -22,7 +22,12 @@ import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } f
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NuevoEventoAbiertoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-abierto/nuevo-evento-abierto.component';
 import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import { OwlDateTimeModule, OwlNativeDateTimeModule, OwlDateTimeIntl } from 'ng-pick-datetime';
+import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { DefaultIntl } from './share/DefaultIntl';
+
 //En caso de que no importe las dates, instalar los paquetes: npm i @angular/material-moment-adapter
 
 @NgModule({
@@ -56,12 +61,21 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-mome
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    ModalModule
+    ModalModule,
+    NgxMaterialTimepickerModule.forRoot(),
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}
+    // { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: OWL_DATE_TIME_LOCALE, useValue: 'es-ES' },
+    { provide: OwlDateTimeIntl, useClass: DefaultIntl },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      // deps: [MAT_DATE_LOCALE]
+    },
+    // { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
   ],
   bootstrap: [AppComponent]
 })
