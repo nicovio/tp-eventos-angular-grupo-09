@@ -29,7 +29,7 @@
               Inicio:<br>
               <!-- DATEPICKER InicioDeEvento INICIO -->
               <mat-form-field class="example-full-width datepicker">
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerInicio" (change)="pickerInicio.open()" placeholder="Elija una Fecha">
+                <input matInput [min]="minimaFechaInicio" [max]="maxDate" [matDatepicker]="pickerInicio" (change)="pickerInicio.open()" placeholder="Elija una Fecha">
                 <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
                 <mat-datepicker #pickerInicio></mat-datepicker>
               </mat-form-field>
@@ -56,7 +56,7 @@
               Fin:<br>
               <!-- DATEPICKER FinDeEvento INICIO -->
               <mat-form-field class="example-full-width datepicker">
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerFin" (change)="pickerFin.open()" placeholder="Elija una Fecha">
+                <input matInput [min]="minimaFechaInicio" [max]="maxDate" [matDatepicker]="pickerFin" (change)="pickerFin.open()" placeholder="Elija una Fecha">
                 <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
                 <mat-datepicker #pickerFin></mat-datepicker>
               </mat-form-field>

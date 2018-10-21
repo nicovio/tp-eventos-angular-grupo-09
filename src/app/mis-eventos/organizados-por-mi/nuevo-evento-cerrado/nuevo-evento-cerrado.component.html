@@ -49,11 +49,10 @@
               Inicio:<br>
               <!-- DATEPICKER InicioDeEvento INICIO -->
               <mat-form-field class="example-full-width datepicker">
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerInicio" (change)="pickerInicio.open()" placeholder="Elija una Fecha">
+                <input [(ngModel)]="nuevoEventoCerrado.fechaHoraInicio" matInput [min]="minimaFechaInicio" [max]="maximaFechaInicio" [matDatepicker]="pickerInicio" (change)="pickerInicio.open()" placeholder="Elija una Fecha">
                 <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
                 <mat-datepicker #pickerInicio></mat-datepicker>
               </mat-form-field>
-              
               <!-- DATEPICKER InicioDeEvento FIN -->
             </div>
           </div>
@@ -75,8 +74,9 @@
             <div>
               Fin:<br>
               <!-- DATEPICKER FinDeEvento INICIO -->
-              <mat-form-field class="example-full-width datepicker">
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerFin" (change)="pickerFin.open()" placeholder="Elija una Fecha">
+              <mat-form-field class="example-full-width datepicker">  
+                  <!-- AGREGAR ESTO AL INPUT COMO FILTRO PARA VALIDACIONES [matDatepickerFilter]="filtroFinDeEvento" -->
+                <input [(ngModel)]="nuevoEventoCerrado.fechaHoraFin" matInput [min]="minimaFechaInicio" [max]="maximaFechaFin" [matDatepicker]="pickerFin" (change)="pickerFin.open()" placeholder="Elija una Fecha">
                 <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
                 <mat-datepicker #pickerFin></mat-datepicker>
               </mat-form-field>
@@ -88,7 +88,7 @@
         Fecha Máxima Confirmación:<br>
         <!-- DATEPICKER Fecha Máxima Confirmación INICIO -->
         <mat-form-field class="example-full-width datepicker">
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerMaximaConfirmacion" (change)="pickerMaximaConfirmacion.open()" placeholder="Elija una Fecha">
+            <input [(ngModel)]="nuevoEventoCerrado.fechaMaximaConfirmacion" matInput [min]="minimaFechaInicio" [max]="maximaFechaConfirmacion" [matDatepicker]="pickerMaximaConfirmacion" (change)="pickerMaximaConfirmacion.open()" placeholder="Elija una Fecha">
             <mat-datepicker-toggle matSuffix [for]="pickerMaximaConfirmacion"></mat-datepicker-toggle>
             <mat-datepicker #pickerMaximaConfirmacion></mat-datepicker>
           </mat-form-field>

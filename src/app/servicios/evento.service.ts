@@ -7,7 +7,7 @@ import Evento from '../domain/eventos/evento';
 
 
 export interface  IEventoService {
-
+  crearEvento(evento: Evento)
 }
 
 
@@ -45,9 +45,30 @@ export interface  IEventoService {
 
 
 export class MockEventoService implements IEventoService {
-  eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca',
-  new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), new Locacion('La bombonera'), null, 500);
+  eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca', new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), new Locacion('La bombonera'), null, 500);
+  
+  listaEventos: Array<Evento> = [this.eventoAbierto]
 
+  crearEvento(evento: Evento){
+    this.listaEventos.push(evento)
+  }
+  
+  constructor() {
+    // this.eventoAbierto.locacion =  new Locacion('HolaMundo')
+  }
+
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+
+
+export class EventoService implements IEventoService {
+  crearEvento(evento: Evento){
+    //ESTO LO MANDA AL SERVER CON UN POST
+  }
+  
   constructor() {
     // this.eventoAbierto.locacion =  new Locacion('HolaMundo')
   }

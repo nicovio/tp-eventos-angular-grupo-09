@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { Router } from '@angular/router';
-import { MockEventoService } from 'src/app/servicios/evento.service';
+import { MockEventoService, EventoService } from 'src/app/servicios/evento.service';
 import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { FormControl, Validators } from '@angular/forms';
 import Locacion from 'src/app/domain/eventos/locacion';
@@ -14,7 +14,7 @@ import Locacion from 'src/app/domain/eventos/locacion';
 export class NuevoEventoAbiertoComponent implements OnInit, AfterViewInit {
   @ViewChild('modalEventoAbierto')
   modal: ModalDirective;
-
+  minimaFechaInicio = new Date()
   nuevoEventoAbierto: EventoAbierto = new EventoAbierto();
 
   nombreFormControl = new FormControl('', [
@@ -27,7 +27,7 @@ export class NuevoEventoAbiertoComponent implements OnInit, AfterViewInit {
     // Validators.pattern("[a-zA-Z\s]+$")
   ]);
 
-  constructor(serviceEvento: MockEventoService, private router: Router) {
+  constructor(private serviceEvento: EventoService, private router: Router) {
     this.nuevoEventoAbierto.locacion = new Locacion();
   }
 
@@ -38,10 +38,16 @@ export class NuevoEventoAbiertoComponent implements OnInit, AfterViewInit {
   }
 
   cancelar() {
-    this.router.navigate(['/mis-eventos/organizados-por-mi']);
+    this.volverAOrganizadosPorMi()
   }
 
   aceptar() {
+    //VALIDACION?
+    this.serviceEvento.crearEvento(this.nuevoEventoAbierto)
+    this.volverAOrganizadosPorMi()
+  }
+
+  volverAOrganizadosPorMi(){
     this.router.navigate(['/mis-eventos/organizados-por-mi']);
   }
 }
