@@ -95,10 +95,10 @@ export abstract class NuevoEvento implements AfterViewInit {
   }
 
   public filtroFechaFin = (fechaFin: Date): boolean => {
-    return fechaFin > this.nuevoEvento.fechaHoraInicio;
+    return fechaFin >= this.nuevoEvento.fechaHoraInicio;
   };
 
   public filtroFechaConfirmacion = (fechaMaximaConfirmacion: Date): boolean => {
-    return fechaMaximaConfirmacion < this.nuevoEvento.fechaHoraInicio;
+    return fechaMaximaConfirmacion <= this.nuevoEvento.fechaHoraInicio;
   };
 }

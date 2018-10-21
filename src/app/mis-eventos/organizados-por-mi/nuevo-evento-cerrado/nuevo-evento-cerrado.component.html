@@ -61,19 +61,17 @@
                 </mat-error>
               </mat-form-field> -->
               <!-- DATEPICKER InicioDeEvento FIN -->
-
-
-              <input [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="fechaHoraInicio" placeholder="Fecha y hora de inicio"
+              <mat-form-field>
+              <input matInput [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="fechaHoraInicio" placeholder="Fecha y hora de inicio"
                 (change)="fechaHoraInicio.open()" [formControl]="fechaInicioFormControl" [min]="hoy">
-              <span [owlDateTimeTrigger]="fechaHoraInicio"><i class="fa fa-calendar"></i></span>
-              <owl-date-time [pickerMode]="'dialog'" #fechaHoraInicio></owl-date-time>
               <mat-error *ngIf="fechaInicioFormControl.hasError('required')">
                 <strong>
                   La fecha y hora de inicio no puede estar vacía
                 </strong>
               </mat-error>
-
-
+              </mat-form-field>
+              <span [owlDateTimeTrigger]="fechaHoraInicio"><i class="fa fa-calendar"></i></span>
+              <owl-date-time [pickerMode]="'dialog'" #fechaHoraInicio></owl-date-time>
             </div>
           </div>
           <div class="col-sm-6">
@@ -95,16 +93,17 @@
             <!-- <div class="margen-fecha">Fin:<br></div> -->
 
             <div class="margen-fecha">Fin:<br></div>
-            <input [(ngModel)]="nuevoEvento.fechaHoraFin" [owlDateTime]="fechaHoraFin" (change)="fechaHoraFin.open()" [formControl]="fechaFinFormControl"
+            <mat-form-field>
+            <input matInput [(ngModel)]="nuevoEvento.fechaHoraFin" [owlDateTime]="fechaHoraFin" (change)="fechaHoraFin.open()" [formControl]="fechaFinFormControl"
               placeholder="Fecha y hora de fin" [min]="hoy" [owlDateTimeFilter]="filtroFechaFin">
-            <span [owlDateTimeTrigger]="fechaHoraFin"><i class="fa fa-calendar"></i></span>
-            <owl-date-time [pickerMode]="'dialog'" #fechaHoraFin></owl-date-time>
             <mat-error *ngIf="fechaFinFormControl.hasError('required')">
               <strong>
                 La fecha y hora de fin no puede estar vacía
               </strong>
             </mat-error>
-
+            </mat-form-field>
+            <span [owlDateTimeTrigger]="fechaHoraFin"><i class="fa fa-calendar"></i></span>
+            <owl-date-time [pickerMode]="'dialog'" #fechaHoraFin></owl-date-time>
               <!-- DATEPICKER FinDeEvento INICIO -->
               <!-- <mat-form-field class="example-full-width datepicker">
                 AGREGAR ESTO AL INPUT COMO FILTRO PARA VALIDACIONES [matDatepickerFilter]="filtroFinDeEvento"
@@ -125,18 +124,17 @@
         </div>
         <div class="fecha-maxima">
           Fecha Máxima Confirmación:<br>
-
-          <div class="margen-fecha">Fin:<br></div>
-          <input [(ngModel)]="nuevoEvento.fechaMaximaConfirmacion" [owlDateTime]="fechaHoraConfirmacion" (change)="fechaHoraConfirmacion.open()" [formControl]="fechaMaximaFormControl"
+        <mat-form-field>
+          <input matInput [(ngModel)]="nuevoEvento.fechaMaximaConfirmacion" [owlDateTime]="fechaHoraConfirmacion" (change)="fechaHoraConfirmacion.open()" [formControl]="fechaMaximaFormControl"
             placeholder="Fecha y hora de fin" [min]="hoy" [owlDateTimeFilter]="filtroFechaConfirmacion">
-          <span [owlDateTimeTrigger]="fechaHoraConfirmacion"><i class="fa fa-calendar"></i></span>
-          <owl-date-time [pickerMode]="'dialog'" #fechaHoraConfirmacion></owl-date-time>
           <mat-error *ngIf="fechaMaximaFormControl.hasError('required')">
             <strong>
               La fecha y hora de fin no puede estar vacía
             </strong>
           </mat-error>
-
+        </mat-form-field>
+          <span [owlDateTimeTrigger]="fechaHoraConfirmacion"><i class="fa fa-calendar"></i></span>
+          <owl-date-time [pickerMode]="'dialog'" #fechaHoraConfirmacion></owl-date-time>
           <!-- DATEPICKER Fecha Máxima Confirmación INICIO -->
           <!-- <mat-form-field class="example-full-width datepicker">
             <input [(ngModel)]="nuevoEvento.fechaMaximaConfirmacion" matInput [min]="minimaFechaInicio" [max]="maximaFechaConfirmacion"
