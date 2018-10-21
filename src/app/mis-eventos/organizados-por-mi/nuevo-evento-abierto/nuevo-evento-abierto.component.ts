@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalModule, ModalDirective } from 'angular-bootstrap-md';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ModalDirective } from 'angular-bootstrap-md';
 import { Router } from '@angular/router';
-import { EventoService } from 'src/app/servicios/evento.service';
+import { MockEventoService } from 'src/app/servicios/evento.service';
 import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { FormControl, Validators } from '@angular/forms';
 import Locacion from 'src/app/domain/eventos/locacion';
@@ -11,7 +11,7 @@ import Locacion from 'src/app/domain/eventos/locacion';
   templateUrl: './nuevo-evento-abierto.component.html',
   styleUrls: ['./nuevo-evento-abierto.component.scss']
 })
-export class NuevoEventoAbiertoComponent implements OnInit {
+export class NuevoEventoAbiertoComponent implements OnInit, AfterViewInit {
   @ViewChild('modalEventoAbierto')
   modal: ModalDirective;
 
@@ -27,7 +27,7 @@ export class NuevoEventoAbiertoComponent implements OnInit {
     // Validators.pattern("[a-zA-Z\s]+$")
   ]);
 
-  constructor(serviceEvento: EventoService, private router: Router) {
+  constructor(serviceEvento: MockEventoService, private router: Router) {
     this.nuevoEventoAbierto.locacion = new Locacion();
   }
 

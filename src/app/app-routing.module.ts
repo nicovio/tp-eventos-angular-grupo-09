@@ -19,7 +19,7 @@ export const routes: Routes = [
     path: 'mis-eventos',  component: MisEventosComponent,
     children: [
       { path: 'agenda', component: AgendaComponent },
-      { path: 'organizados-por-mi', component: OrganizadosPorMiComponent, 
+      { path: 'organizados-por-mi', component: OrganizadosPorMiComponent,
       children: [
         { path: 'nuevo-evento-abierto', component: NuevoEventoAbiertoComponent },
         { path: 'nuevo-evento-cerrado', component: NuevoEventoCerradoComponent }

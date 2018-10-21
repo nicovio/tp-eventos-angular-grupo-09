@@ -18,10 +18,12 @@ import { InvitacionesPendientesComponent } from './mis-eventos/invitaciones-pend
 import { ListaDeEventosComponent } from './mis-eventos/agenda/lista-de-eventos/lista-de-eventos.component';
 import { NotFoundComponent } from './share/not-found/not-found.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NuevoEventoAbiertoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-abierto/nuevo-evento-abierto.component';
 import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +58,11 @@ import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nu
     MaterialModule,
     ModalModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

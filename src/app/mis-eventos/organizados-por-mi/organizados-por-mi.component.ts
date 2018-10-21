@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventoService } from 'src/app/servicios/evento.service';
+import { MockEventoService } from 'src/app/servicios/evento.service';
 
 @Component({
   selector: 'app-organizados-por-mi',
@@ -7,6 +7,6 @@ import { EventoService } from 'src/app/servicios/evento.service';
   styleUrls: ['./organizados-por-mi.component.scss']
 })
 export class OrganizadosPorMiComponent {
-  constructor(serviceEvento: EventoService) {}
+  constructor(serviceEvento: MockEventoService) {}
 
 }

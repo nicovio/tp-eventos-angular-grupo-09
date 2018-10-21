@@ -14,7 +14,7 @@
             <div>
               <!-- TEXTBOX NOMBRE INICIO -->
               <mat-form-field>
-                <input matInput placeholder="Nombre" [(ngModel)]="nuevoEventoAbierto.locacion.descripcion"
+                <input matInput placeholder="Nombre" [(ngModel)]="nuevoEventoAbierto.descripcion"
                   [formControl]="nombreFormControl" [errorStateMatcher]="matcher">
                 <mat-error *ngIf="nombreFormControl.hasError('required')">
                   <strong>
@@ -41,7 +41,7 @@
             <div>
               <!-- TEXTBOX LOCACION INICIO -->
               <mat-form-field>
-                <input [(ngModel)]="nuevoEventoAbierto.locacion.calle" matInput placeholder="Locacion"
+                <input [(ngModel)]="nuevoEventoAbierto.locacion.descripcion" matInput placeholder="Locacion"
                   [errorStateMatcher]="matcher" [formControl]="locacionFormControl">
                 <mat-error *ngIf="locacionFormControl.hasError('required')">
                   <strong>
