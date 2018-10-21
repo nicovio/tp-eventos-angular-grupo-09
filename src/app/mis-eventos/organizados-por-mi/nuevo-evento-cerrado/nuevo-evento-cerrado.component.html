@@ -62,7 +62,7 @@
               <!-- TEXTBOX LOCACION INICIO -->
               <mat-form-field>
                 <input [(ngModel)]="nuevoEventoCerrado.locacion.descripcion" matInput placeholder="Locacion"
-                  [errorStateMatcher]="matcher" [formControl]="locacionFormControl" >
+                  [errorStateMatcher]="matcher" [formControl]="locacionFormControl">
                 <mat-error *ngIf="locacionFormControl.hasError('required')">
                   <strong>
                     La locación no puede estar vacía

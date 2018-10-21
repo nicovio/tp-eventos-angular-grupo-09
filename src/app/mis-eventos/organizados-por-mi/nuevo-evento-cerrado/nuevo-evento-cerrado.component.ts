@@ -2,11 +2,9 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { Router } from '@angular/router';
 import { MockEventoService } from 'src/app/servicios/evento.service';
-import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { FormControl, Validators } from '@angular/forms';
 import Locacion from 'src/app/domain/eventos/locacion';
 import EventoCerrado from 'src/app/domain/eventos/evento-cerrado';
-import { DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'app-nuevo-evento-cerrado',
@@ -29,7 +27,7 @@ export class NuevoEventoCerradoComponent implements OnInit, AfterViewInit {
     // Validators.pattern("[a-zA-Z\s]+$")
   ]);
 
-  constructor(serviceEvento: MockEventoService, private router: Router, private adapter: DateAdapter<any>) {
+  constructor(serviceEvento: MockEventoService, private router: Router) {
     this.nuevoEventoCerrado.locacion = new Locacion();
   }
 
@@ -47,7 +45,4 @@ export class NuevoEventoCerradoComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/mis-eventos/organizados-por-mi']);
   }
 
-  espaniol() {
-    this.adapter.setLocale('es');
-  }
 }
