@@ -4,6 +4,8 @@ import Locacion from "src/app/domain/eventos/locacion";
 import { Http } from '@angular/http';
 // import { REST_SERVER_URL } from './configuration';
 import Evento from '../domain/eventos/evento';
+import Usuario from '../domain/usuarios/usuario';
+import EventoCerrado from '../domain/eventos/evento-cerrado';
 
 
 export interface  IEventoService {
@@ -57,6 +59,20 @@ export class MockEventoService implements IEventoService {
     // this.eventoAbierto.locacion =  new Locacion('HolaMundo')
   }
 
+  organizadosPorUsuario(usuario: Usuario){
+    return this.listaEventos.filter(evento => evento.organizador === usuario)
+  }
+
+  eventosOrganizadosCerrados(usuario: Usuario){
+    return this.organizadosPorUsuario(usuario).filter(evento => evento.constructor.name === EventoCerrado.name)
+  }
+
+  eventosOrganizadosAbiertos(usuario: Usuario){
+    return this.organizadosPorUsuario(usuario).filter(evento => evento.constructor.name === EventoAbierto.name)
+  }
+  // organizadosPorUsuario(ACA VA ID DE USUARIO){
+    
+  // }
 }
 
 @Injectable({

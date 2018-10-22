@@ -1,8 +1,9 @@
 <div class="contenedor-tabla">
 <mdb-card class="amigos-card">
-  <div class="table-responsive">
-    <table class="table table-responsive texto-centrado">
-      <thead>
+  <div class="table-responsive  texto-centrado">
+    <strong>Eventos Cerrados </strong>
+    <table class="table">
+      <thead class="colorear-celeste">
         <tr> 
           <th>Fecha</th>
           <th>Evento</th>
@@ -12,28 +13,45 @@
           <th>Rechazados</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let evento of serviceEvento.eventosOrganizadosCerrados(usuarioLogueado)">
         <tr>
-          <td>14/10/2018</td>
-          <td>Mi Cumpleaños</td>
-          <td>Mi Casa</td>
-          <td>50</td>
-          <td>50</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>20/12/2018</td>
-          <td>Despedida Julia</td>
-          <td>Av. Cabildo 456</td>
-          <td>32</td>
-          <td>25</td>
-          <td>2</td>
+          <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
+          <td>{{ evento.descripcion }}</td>
+          <td>{{ evento.locacion.descripcion }}</td>
+          <td>{{ evento.cantidadInvitados }}</td>
+          <td>{{ evento.confirmados.length }}</td>
+          <td>{{ evento.rechazados.length }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </mdb-card>
 </div>
+
+<div class="contenedor-tabla">
+  <mdb-card class="amigos-card">
+    <div class="table-responsive texto-centrado">
+      <strong>Eventos Abiertos</strong>
+    <table class="table">    
+      <thead class="rellenar">
+        <tr> 
+          <th>Fecha</th>
+          <th>Evento</th>
+          <th>Lugar</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let evento of serviceEvento.eventosOrganizadosAbiertos(usuarioLogueado)">
+        <tr>
+          <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
+          <td>{{ evento.descripcion }}</td>
+          <td>{{ evento.locacion.descripcion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mdb-card>
+</div>
+
   <div class="botones-nuevos-eventos">
     <button type="button" mdbBtn color="primary" class="relative waves-light" routerLink="nuevo-evento-abierto"  mdbWavesEffect>Nuevo evento abierto</button>
     <button type="button" mdbBtn color="warning" class="relative waves-light" routerLink="nuevo-evento-cerrado" mdbWavesEffect>Nuevo evento cerrado</button>

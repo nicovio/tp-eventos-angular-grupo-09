@@ -1,9 +1,10 @@
-import { EventoService } from 'src/app/servicios/evento.service';
+import { EventoService, MockEventoService } from 'src/app/servicios/evento.service';
 import { Router } from '@angular/router';
 import { ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { FormControl, Validators } from '@angular/forms';
 import Evento from 'src/app/domain/eventos/evento';
+import { MockUsuarioService } from 'src/app/servicios/usuario.service';
 
 export abstract class NuevoEvento implements AfterViewInit {
   @ViewChild('modalEvento')
@@ -40,7 +41,7 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   minimaFecha = new Date();
 
-  constructor(private serviceEvento: EventoService, private router: Router) {}
+  constructor(private serviceEvento: MockEventoService, private router: Router) {}
 
   ngAfterViewInit() {
     this.modal.show();
@@ -51,7 +52,6 @@ export abstract class NuevoEvento implements AfterViewInit {
   }
 
   aceptar() {
-    //VALIDACION?
     this.serviceEvento.crearEvento(this.nuevoEvento);
     this.volverAOrganizadosPorMi();
   }

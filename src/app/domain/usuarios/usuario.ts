@@ -6,6 +6,7 @@ import EventoCerrado from '../eventos/evento-cerrado';
 import { Entrada } from '../eventos/entrada';
 
 export default class Usuario {
+    id: number
     nombre: string
     apellido: string
     username: string
@@ -14,6 +15,7 @@ export default class Usuario {
     invitaciones: Array<Invitacion>
     amigos: Array<Usuario> = [];
     entradas: Array<Entrada> = [];
+    
 
     constructor(nombre, apellido, username) {
         this.nombre = nombre;
