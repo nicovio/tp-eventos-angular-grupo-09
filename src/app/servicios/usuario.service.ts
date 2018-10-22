@@ -34,22 +34,22 @@ export class MockUsuarioService implements UsuarioService {
     karaDanvers.tipoDeUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
     karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
-    // karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
-    // karaDanvers.agregarAmigo(new Usuario('Perry', 'White', '@whiteDP'));
-    // karaDanvers.agregarAmigo(new Usuario('James', 'Gordon', '@jimG'));
-    // karaDanvers.agregarAmigo(new Usuario('James', 'Olsen', '@jimmy_olsn'));
-    // karaDanvers.agregarAmigo(new Usuario('Katherine', 'Kane', '@kathyKane'));
-    // karaDanvers.agregarAmigo(new Usuario('Julia', 'Pennyworth', '@JuliiPen'));
-    // karaDanvers.agregarAmigo(new Usuario('Jackson', 'Hyde', '@JHyde'));
-    // karaDanvers.agregarAmigo(new Usuario('Maravilla', 'Martinez', '@SaliDeAhiMaravilla'));
-    // karaDanvers.agregarAmigo(new Usuario('Marcelo', 'Tinelli', '@marcelotinelli'));
-    // karaDanvers.agregarAmigo(new Usuario('Carolina', 'Ardohain ', '@pampitaoficial '));
-    // karaDanvers.agregarAmigo(new Usuario('Sean', 'Penn', '@elmachopenn'));
-    // karaDanvers.agregarAmigo(new Usuario('Jennifer', 'Lawrence', '@JSLawrence'));
-    // karaDanvers.agregarAmigo(new Usuario('Carlos', 'Gardel', '@carlitosgardel'));
-    // karaDanvers.agregarAmigo(new Usuario('Lady', 'Gaga', '@ladygaga'));
-    // karaDanvers.agregarAmigo(cristianMaggiorano);
-    // karaDanvers.agregarAmigo(fernandoDodino);
+    karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
+    karaDanvers.agregarAmigo(new Usuario('Perry', 'White', '@whiteDP'));
+    karaDanvers.agregarAmigo(new Usuario('James', 'Gordon', '@jimG'));
+    karaDanvers.agregarAmigo(new Usuario('James', 'Olsen', '@jimmy_olsn'));
+    karaDanvers.agregarAmigo(new Usuario('Katherine', 'Kane', '@kathyKane'));
+    karaDanvers.agregarAmigo(new Usuario('Julia', 'Pennyworth', '@JuliiPen'));
+    karaDanvers.agregarAmigo(new Usuario('Jackson', 'Hyde', '@JHyde'));
+    karaDanvers.agregarAmigo(new Usuario('Maravilla', 'Martinez', '@SaliDeAhiMaravilla'));
+    karaDanvers.agregarAmigo(new Usuario('Marcelo', 'Tinelli', '@marcelotinelli'));
+    karaDanvers.agregarAmigo(new Usuario('Carolina', 'Ardohain ', '@pampitaoficial '));
+    karaDanvers.agregarAmigo(new Usuario('Sean', 'Penn', '@elmachopenn'));
+    karaDanvers.agregarAmigo(new Usuario('Jennifer', 'Lawrence', '@JSLawrence'));
+    karaDanvers.agregarAmigo(new Usuario('Carlos', 'Gardel', '@carlitosgardel'));
+    karaDanvers.agregarAmigo(new Usuario('Lady', 'Gaga', '@ladygaga'));
+    karaDanvers.agregarAmigo(cristianMaggiorano);
+    karaDanvers.agregarAmigo(fernandoDodino);
     let cumpleKara = new EventoCerrado("Cumple Kara", new Date(), new Date('2019/10/19 07:00'), new Locacion("Mi Casa"), karaDanvers)
     let cumpleDodain = new EventoCerrado("Cumple Dodain", new Date('2020/10/11 23:59'), new Date('2020/10/15 22:00'), new Locacion("Lo de Dodino"), fernandoDodino)
     let salidaBoliche = new EventoCerrado("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano)
@@ -79,32 +79,5 @@ export class MockUsuarioService implements UsuarioService {
     })
   }
 
-
-  eventosDeHoy(): Array<Evento> {
-    var principioDelDia = new Date()
-    var finalDelDia = new Date()
-    principioDelDia.setHours(0, 0, 0, 0)
-    finalDelDia.setHours(23, 59, 59, 59)
-    return this.filtrarEventosPorFechas(this.usuarioLogueado.todosLosEventos(), principioDelDia, finalDelDia)
-  }
-
-  eventosDeEstaSemana(): Array<Evento> {
-    var today = new Date()
-    var mañana = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 0, 0, 0, 0)
-    var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
-
-    return this.filtrarEventosPorFechas(this.usuarioLogueado.todosLosEventos(), mañana, semanaQueViene)
-  }
-
-  eventosProximos(): Array<Evento> {
-    var today = new Date()
-    var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
-    return this.usuarioLogueado.todosLosEventos().filter(evento => evento.fechaHoraInicio > semanaQueViene)
-  }
-
-
-  filtrarEventosPorFechas(eventosAFiltrar: Array<Evento>, fechaDesde, fechaHasta) {
-    return eventosAFiltrar.filter(evento => (evento.fechaHoraInicio >= fechaDesde) && (evento.fechaHoraInicio <= fechaHasta))
-  }
 
 }

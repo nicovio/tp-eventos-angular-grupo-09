@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MockUsuarioService } from 'src/app/servicios/usuario.service';
+import { MockEventoService } from 'src/app/servicios/evento.service';
 
 @Component({
     selector: 'app-agenda',
@@ -8,23 +9,22 @@ import { MockUsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class AgendaComponent {
 
-    constructor(private usuarioService: MockUsuarioService) {
-        console.log("todos los eventos: ", this.usuarioService.usuarioLogueado.todosLosEventos())
-        console.log("eventos cerrados: ", this.usuarioService.usuarioLogueado.eventosCerrados())
-        console.log("eventos abiertos: ", this.usuarioService.usuarioLogueado.eventosAbiertos)
+    usuarioLogueado
 
+    constructor(private eventoService: MockEventoService, private usuarioService: MockUsuarioService) {
+        this.usuarioLogueado = usuarioService.usuarioLogueado;
     }
 
     eventosDeHoy() {
-        return this.usuarioService.eventosDeHoy()
+        return this.eventoService.eventosDeHoy(this.usuarioLogueado);
     }
 
     eventosDeEstaSemana() {
-        return this.usuarioService.eventosDeEstaSemana()
+        return this.eventoService.eventosDeEstaSemana(this.usuarioLogueado);
     }
 
     eventosProximos() {
-         return this.usuarioService.eventosProximos()
+        return this.eventoService.eventosProximos(this.usuarioLogueado);
 
     }
 

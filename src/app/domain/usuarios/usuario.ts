@@ -16,7 +16,6 @@ export default class Usuario {
     amigos: Array<Usuario> = [];
     entradas: Array<Entrada> = [];
     
-
     constructor(nombre, apellido, username) {
         this.nombre = nombre;
         this.apellido = apellido;

@@ -13,6 +13,23 @@ export interface  IEventoService {
 }
 
 
+@Injectable({
+  providedIn: 'root'
+})
+
+
+export class EventoService implements IEventoService {
+  crearEvento(evento: Evento) {
+    //ESTO LO MANDA AL SERVER CON UN POST
+  }
+
+  constructor() {
+    // this.eventoAbierto.locacion =  new Locacion('HolaMundo')
+  }
+
+}
+
+
 // @Injectable({
 //   providedIn: 'root'
 // })
@@ -73,20 +90,35 @@ export class MockEventoService implements IEventoService {
   // organizadosPorUsuario(ACA VA ID DE USUARIO){
     
   // }
-}
-
-@Injectable({
-  providedIn: 'root'
-})
 
 
-export class EventoService implements IEventoService {
-  crearEvento(evento: Evento){
-    //ESTO LO MANDA AL SERVER CON UN POST
+  eventosDeHoy(usuario: Usuario): Array<Evento> {
+    var principioDelDia = new Date()
+    var finalDelDia = new Date()
+    principioDelDia.setHours(0, 0, 0, 0)
+    finalDelDia.setHours(23, 59, 59, 59)
+    return this.filtrarEventosPorFechas(usuario.todosLosEventos(), principioDelDia, finalDelDia);
   }
-  
-  constructor() {
-    // this.eventoAbierto.locacion =  new Locacion('HolaMundo')
+
+  eventosDeEstaSemana(usuario: Usuario): Array<Evento> {
+    var today = new Date()
+    var mañana = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 0, 0, 0, 0)
+    var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
+
+    return this.filtrarEventosPorFechas(usuario.todosLosEventos(), mañana, semanaQueViene);
   }
+
+  eventosProximos(usuario: Usuario): Array<Evento> {
+    var today = new Date()
+    var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
+    return usuario.todosLosEventos().filter(evento => evento.fechaHoraInicio > semanaQueViene)
+  }
+
+
+  filtrarEventosPorFechas(eventosAFiltrar: Array<Evento>, fechaDesde, fechaHasta) {
+    return eventosAFiltrar.filter(evento => (evento.fechaHoraInicio >= fechaDesde) && (evento.fechaHoraInicio <= fechaHasta))
+  }
+
+
 
 }
