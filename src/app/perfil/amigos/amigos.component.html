@@ -14,14 +14,18 @@
           </div>
           <div class="col-user-name">{{amigo.username}}</div>
           <div class="col-eliminar">
-            <button type="button" class="fas fa-times waves-light" mdbTooltip="Eliminar Amigo"  placement="right" (click)="setUsuarioAEliminar(amigo)"
-              (click)="frame.show()" mdbWavesEffect></button>
+            <button type="button" class="fas fa-times waves-light" mdbTooltip="Eliminar Amigo" placement="right"
+              (click)="setUsuarioAEliminar(amigo)" (click)="frame.show()" mdbWavesEffect></button>
           </div>
         </div>
       </div>
     </table>
   </mdb-card>
+  <img *ngIf="usuarioAmigos.amigos.length === 0" class="img-fluid" alt="no friends" src="images/ea6.gif">
 </div>
+
+
+
 
 
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
