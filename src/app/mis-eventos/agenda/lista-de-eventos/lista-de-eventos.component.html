@@ -3,14 +3,16 @@
     {{titulo}}
   </div>
 </div>
+
 <table class="table" *ngFor='let evento of eventosAMostrar'>
   <div class="centrado">
     <tbody>
       <tr>
         <td class="fecha" mdbTooltip="Fecha" placement="left"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</td>
-        <td class="evento" mdbTooltip="Evento" placement="left">{{evento.descripcion}}</td>
-        <td class="lugar" mdbTooltip="Lugar" placement="left">{{evento.locacion.descripcion}}</td>
-        <td class="nombre-apellido" mdbTooltip="Organizador" placement="left">{{evento.organizador.nombre}} {{evento.organizador.apellido}}</td>
+        <td class="evento"><span mdbTooltip="Evento" placement="top"> {{evento.descripcion}}</span></td>
+        <td class="lugar"><span mdbTooltip="Lugar" placement="top"> {{evento.locacion.descripcion}}</span></td>
+        <td class="nombre-apellido"><span mdbTooltip="Organizador" placement="right"> {{evento.organizador.nombre}}
+            {{evento.organizador.apellido}}</span></td>
       </tr>
     </tbody>
   </div>

@@ -1,24 +1,25 @@
-.texto-centrado{
+.texto-centrado {
     text-align: center;
 }
 
-.botones-nuevos-eventos{
+.botones-nuevos-eventos {
     text-align: right;
 }
 
-.contenedor-tabla{
+.contenedor-tabla {
     padding-top: 3em;
+    margin-left: 5rem;
 }
 
-thead{
+thead {
     background-color: #00a1ff47;
 }
 
-th{
+th {
     font-weight: bold;
 }
 
-.rellenar{
-    max-width:100%;
-    white-space:nowrap;
+.rellenar {
+    max-width: 100%;
+    white-space: nowrap;
 }
