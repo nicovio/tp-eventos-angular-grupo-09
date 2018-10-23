@@ -12,6 +12,9 @@ import { UsuarioService, MockUsuarioService } from 'src/app/servicios/usuario.se
   styleUrls: ['./nuevo-evento-abierto.component.scss']
 })
 export class NuevoEventoAbiertoComponent extends NuevoEvento implements OnInit {
+
+  errors = []
+
   constructor(serviceEvento: MockEventoService, serviceUsuario: MockUsuarioService,router: Router) {
     super(serviceEvento, router);
 

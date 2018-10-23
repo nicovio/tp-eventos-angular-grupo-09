@@ -52,10 +52,10 @@ export class MockUsuarioService implements UsuarioService {
     karaDanvers.agregarAmigo(new Usuario('Lady', 'Gaga', '@ladygaga'));
     karaDanvers.agregarAmigo(cristianMaggiorano);
     karaDanvers.agregarAmigo(fernandoDodino);
-    let cumpleKara = new EventoCerrado("Cumple Kara", new Date(), new Date('2019/10/19 07:00'), new Locacion("Mi Casa"), karaDanvers)
+    let cumpleKara = new EventoCerrado("Cumple Kara", new Date(), new Date('2019/10/19 07:00'), new Locacion("Mi Casa"), cristianMaggiorano)
     let cumpleDodain = new EventoCerrado("Cumple Dodain", new Date('2020/10/11 23:59'), new Date('2020/10/15 22:00'), new Locacion("Lo de Dodino"), fernandoDodino)
     let salidaBoliche = new EventoCerrado("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano)
-    let racingBoca = new EventoAbierto("Racing vs Boca", new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), new Locacion("La bombonera"), karaDanvers, 500)
+    let racingBoca = new EventoAbierto("Recital Abel Pintos", new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), new Locacion("Luna Park"), fernandoDodino, 500)
     let casamientoMarley = new EventoAbierto("Casamiento Marley", new Date('2018/10/20'), new Date('2020/3/2 21:00'), new Locacion("Uganda"), cristianMaggiorano, 250000)
     let invitacionCumpleKara = new Invitacion(cumpleKara, 2)
     karaDanvers.invitaciones = [invitacionCumpleKara, new Invitacion(cumpleDodain, 5), new Invitacion(salidaBoliche, 10)]
