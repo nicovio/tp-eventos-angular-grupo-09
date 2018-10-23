@@ -19,7 +19,7 @@ import { ListaDeEventosComponent } from './mis-eventos/agenda/lista-de-eventos/l
 import { NotFoundComponent } from './share/not-found/not-found.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NuevoEventoAbiertoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-abierto/nuevo-evento-abierto.component';
 import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
 // import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -27,6 +27,7 @@ import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nu
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OwlDateTimeIntl } from 'ng-pick-datetime';
 import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { DefaultIntl } from './share/DefaultIntl';
+import { HttpModule } from '@angular/http';
 
 //En caso de que no importe las dates, instalar los paquetes: npm i @angular/material-moment-adapter
 
@@ -62,21 +63,14 @@ import { DefaultIntl } from './share/DefaultIntl';
     ReactiveFormsModule,
     MaterialModule,
     ModalModule,
-    // NgxMaterialTimepickerModule.forRoot(),
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    HttpModule
   ],
   providers: [
-    // { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
     { provide: OWL_DATE_TIME_LOCALE, useValue: 'es-ES' },
-    { provide: OwlDateTimeIntl, useClass: DefaultIntl },
-    // {
-    //   provide: DateAdapter,
-    //   useClass: MomentDateAdapter,
-    //   deps: [MAT_DATE_LOCALE]
-    // },
-    // { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+    { provide: OwlDateTimeIntl, useClass: DefaultIntl }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

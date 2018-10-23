@@ -6,6 +6,8 @@ import Evento from '../domain/eventos/evento';
 import Locacion from '../domain/eventos/locacion';
 import { Profesional } from '../domain/usuarios/profesional';
 import { Invitacion } from '../domain/eventos/invitacion';
+import { Http } from '@angular/http';
+import { REST_SERVER_URL } from './configuration';
 
 export interface UsuarioService {
 

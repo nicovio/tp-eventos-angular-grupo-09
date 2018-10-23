@@ -13,7 +13,7 @@
           <th>Rechazados</th>
         </tr>
       </thead>
-      <tbody *ngFor="let evento of serviceEvento.eventosOrganizadosCerrados(usuarioLogueado)">
+      <tbody *ngFor="let evento of eventosOrganizadosCerrados">
         <tr>
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
           <td>{{ evento.descripcion }}</td>
@@ -40,7 +40,7 @@
           <th>Lugar</th>
         </tr>
       </thead>
-      <tbody *ngFor="let evento of serviceEvento.eventosOrganizadosAbiertos(usuarioLogueado)">
+      <tbody *ngFor="let evento of eventosOrganizadosAbiertos">
         <tr>
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
           <td>{{ evento.descripcion }}</td>

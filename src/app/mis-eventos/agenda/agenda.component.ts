@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { MockUsuarioService } from 'src/app/servicios/usuario.service';
-import { MockEventoService } from 'src/app/servicios/evento.service';
+import { MockEventoService, EventoService } from 'src/app/servicios/evento.service';
+import { Router } from '@angular/router';
+import Evento from 'src/app/domain/eventos/evento';
+
 
 @Component({
     selector: 'app-agenda',
@@ -10,22 +13,33 @@ import { MockEventoService } from 'src/app/servicios/evento.service';
 export class AgendaComponent {
 
     usuarioLogueado
+    errors = []
 
-    constructor(private eventoService: MockEventoService, private usuarioService: MockUsuarioService) {
+    constructor(private eventosService: EventoService, private mockEventoService: MockEventoService, private usuarioService: MockUsuarioService, private router: Router) {
         this.usuarioLogueado = usuarioService.usuarioLogueado;
     }
 
     eventosDeHoy() {
-        return this.eventoService.eventosDeHoy(this.usuarioLogueado);
+        return this.mockEventoService.eventosDeHoy(this.usuarioLogueado);
     }
 
     eventosDeEstaSemana() {
-        return this.eventoService.eventosDeEstaSemana(this.usuarioLogueado);
+        return this.mockEventoService.eventosDeEstaSemana(this.usuarioLogueado);
     }
 
     eventosProximos() {
-        return this.eventoService.eventosProximos(this.usuarioLogueado);
+        return this.mockEventoService.eventosProximos(this.usuarioLogueado);
 
     }
+
+    // async ngOnInit() {
+    //     try {
+    //         // Truco para que refresque la pantalla 
+    //         this.router.routeReuseStrategy.shouldReuseRoute = () => false
+    //         this.organizadosPorMi = await this.eventosService.organizadosPorUsuario('karaDanvers')
+    //     } catch (error) {
+    //         mostrarError(this, error)
+    //     }
+    // }
 
 }
