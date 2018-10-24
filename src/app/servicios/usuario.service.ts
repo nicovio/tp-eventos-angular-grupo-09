@@ -9,20 +9,14 @@ import { Invitacion } from '../domain/eventos/invitacion';
 import { Http } from '@angular/http';
 import { REST_SERVER_URL } from './configuration';
 
-export interface UsuarioService {
-
-  crearUsuario(nombre, apellido, username)
-
-  agregarUsuario(usuario)
-
-  getUsuarioByUsername(username)
+export interface IUsuarioService {
 
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class MockUsuarioService implements UsuarioService {
+export class MockUsuarioService implements IUsuarioService {
 
   usuarios: Array<Usuario> = []
 
@@ -35,23 +29,23 @@ export class MockUsuarioService implements UsuarioService {
     let cristianMaggiorano = new Usuario('Cristian', 'Maggiorano', '@crismagg');
     karaDanvers.tipoDeUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
-    karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
-    karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
-    karaDanvers.agregarAmigo(new Usuario('Perry', 'White', '@whiteDP'));
-    karaDanvers.agregarAmigo(new Usuario('James', 'Gordon', '@jimG'));
-    karaDanvers.agregarAmigo(new Usuario('James', 'Olsen', '@jimmy_olsn'));
-    karaDanvers.agregarAmigo(new Usuario('Katherine', 'Kane', '@kathyKane'));
-    karaDanvers.agregarAmigo(new Usuario('Julia', 'Pennyworth', '@JuliiPen'));
-    karaDanvers.agregarAmigo(new Usuario('Jackson', 'Hyde', '@JHyde'));
-    karaDanvers.agregarAmigo(new Usuario('Maravilla', 'Martinez', '@SaliDeAhiMaravilla'));
-    karaDanvers.agregarAmigo(new Usuario('Marcelo', 'Tinelli', '@marcelotinelli'));
-    karaDanvers.agregarAmigo(new Usuario('Carolina', 'Ardohain ', '@pampitaoficial '));
-    karaDanvers.agregarAmigo(new Usuario('Sean', 'Penn', '@elmachopenn'));
-    karaDanvers.agregarAmigo(new Usuario('Jennifer', 'Lawrence', '@JSLawrence'));
-    karaDanvers.agregarAmigo(new Usuario('Carlos', 'Gardel', '@carlitosgardel'));
-    karaDanvers.agregarAmigo(new Usuario('Lady', 'Gaga', '@ladygaga'));
-    karaDanvers.agregarAmigo(cristianMaggiorano);
-    karaDanvers.agregarAmigo(fernandoDodino);
+    // karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
+    // karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
+    // karaDanvers.agregarAmigo(new Usuario('Perry', 'White', '@whiteDP'));
+    // karaDanvers.agregarAmigo(new Usuario('James', 'Gordon', '@jimG'));
+    // karaDanvers.agregarAmigo(new Usuario('James', 'Olsen', '@jimmy_olsn'));
+    // karaDanvers.agregarAmigo(new Usuario('Katherine', 'Kane', '@kathyKane'));
+    // karaDanvers.agregarAmigo(new Usuario('Julia', 'Pennyworth', '@JuliiPen'));
+    // karaDanvers.agregarAmigo(new Usuario('Jackson', 'Hyde', '@JHyde'));
+    // karaDanvers.agregarAmigo(new Usuario('Maravilla', 'Martinez', '@SaliDeAhiMaravilla'));
+    // karaDanvers.agregarAmigo(new Usuario('Marcelo', 'Tinelli', '@marcelotinelli'));
+    // karaDanvers.agregarAmigo(new Usuario('Carolina', 'Ardohain ', '@pampitaoficial '));
+    // karaDanvers.agregarAmigo(new Usuario('Sean', 'Penn', '@elmachopenn'));
+    // karaDanvers.agregarAmigo(new Usuario('Jennifer', 'Lawrence', '@JSLawrence'));
+    // karaDanvers.agregarAmigo(new Usuario('Carlos', 'Gardel', '@carlitosgardel'));
+    // karaDanvers.agregarAmigo(new Usuario('Lady', 'Gaga', '@ladygaga'));
+    // karaDanvers.agregarAmigo(cristianMaggiorano);
+    // karaDanvers.agregarAmigo(fernandoDodino);
     let cumpleKara = new EventoCerrado("Cumple Kara", new Date(), new Date('2019/10/19 07:00'), new Locacion("Mi Casa"), cristianMaggiorano)
     let cumpleDodain = new EventoCerrado("Cumple Dodain", new Date('2020/10/11 23:59'), new Date('2020/10/15 22:00'), new Locacion("Lo de Dodino"), fernandoDodino)
     let salidaBoliche = new EventoCerrado("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano)
@@ -66,11 +60,6 @@ export class MockUsuarioService implements UsuarioService {
     this.usuarioLogueado = karaDanvers
   }
 
-  crearUsuario(nombre, apellido, username) {
-    let usuario = new Usuario(nombre, apellido, username)
-    return usuario
-  }
-
   agregarUsuario(usuario) {
     this.usuarios.push(usuario)
   }
@@ -82,4 +71,17 @@ export class MockUsuarioService implements UsuarioService {
   }
 
 
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioService implements IUsuarioService {
+
+  constructor(private http: Http) {}
+
+  async getAmigosEnServidor(username: String) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuarios/amigos/' + username).toPromise()
+    return res.json().map(EventoAbierto.fromJson)
+  }
 }

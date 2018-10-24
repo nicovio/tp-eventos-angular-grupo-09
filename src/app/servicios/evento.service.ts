@@ -28,12 +28,12 @@ export class EventoService implements IEventoService {
   }
 
   async abiertosOrganizadosPorUsuario(username: String) {
-    const res = await this.http.get(REST_SERVER_URL + '/organizados-abiertos/' + username).toPromise()
+    const res = await this.http.get(REST_SERVER_URL + '/organizadosAbiertosById/' + 0).toPromise()
     return res.json().map(EventoAbierto.fromJson)
   }
 
   async cerradosOrganizadosPorUsuario(username: String) {
-    const res = await this.http.get(REST_SERVER_URL + '/organizados-cerrados/' + username).toPromise()
+    const res = await this.http.get(REST_SERVER_URL + '/organizados-cerrados/' + 0).toPromise()
     return res.json().map(EventoCerrado.fromJson)
   }
 
