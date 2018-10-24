@@ -1,5 +1,11 @@
-export interface TipoUsuario {
-	
+export class TipoUsuario {
+
+descripcion
+
+constructor(descripcion: String){
+    this.descripcion = descripcion
+}
+
 // descripcion()
 // tieneMaximoEventosMensuales()
 // tieneMaximoEventosSimultaneos()

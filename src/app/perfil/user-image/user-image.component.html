@@ -5,28 +5,28 @@
     <div class="centrado">
       <ul>
         <li class="contenedor-nombre-apellido">
-          <span class="nombre-apellido">{{usuarioImage.nombre}}&nbsp;{{usuarioImage.apellido}} </span>
+          <span class="nombre-apellido" *ngIf="usuarioLogueado"> {{usuarioLogueado.nombre}}&nbsp;{{usuarioLogueado.apellido}} </span>
         </li>
 
         <li class="contenedor-username">
-          <span class="username">{{usuarioImage.username}}</span>
+          <span class="username" *ngIf="usuarioLogueado">{{usuarioLogueado.username}}</span>
         </li>
       </ul>
 
       <ul>
         <li>
           <span class="material-icons">stars</span>
-          <span class="datos-usuario">{{usuarioImage.tipoDeUsuario.descripcion()}}</span>
+          <span class="datos-usuario" *ngIf="usuarioLogueado">{{usuarioLogueado.tipoUsuario.descripcion}}</span>
         </li>
 
         <li>
           <span class="material-icons">email</span>
-          <span class="datos-usuario">{{usuarioImage.email}}</span>
+          <span class="datos-usuario" *ngIf="usuarioLogueado">{{usuarioLogueado.email}}</span>
         </li>
 
         <li>
           <span class="material-icons md-light">person_pin</span>
-          <span class="datos-usuario">{{usuarioImage.amigos.length}}</span>
+          <span class="datos-usuario" *ngIf="usuarioLogueado">{{usuarioLogueado.amigos.length}}</span>
         </li>
 
       </ul>

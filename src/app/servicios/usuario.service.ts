@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core'
+import { Injectable } from '@angular/core'
 import Usuario from 'src/app/domain/usuarios/usuario';
 import EventoAbierto from '../domain/eventos/evento-abierto';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
@@ -25,9 +25,9 @@ export class MockUsuarioService implements IUsuarioService {
     let karaDanvers = new Usuario('Kara', 'Danvers', '@kara95');
     let fernandoDodino = new Usuario('Fernando', 'Dodino', '@dodain');
     let cristianMaggiorano = new Usuario('Cristian', 'Maggiorano', '@crismagg');
-    karaDanvers.tipoDeUsuario = new Profesional
+    karaDanvers.tipoUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
-    karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
+    // karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
     // karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
     // karaDanvers.agregarAmigo(new Usuario('Perry', 'White', '@whiteDP'));
     // karaDanvers.agregarAmigo(new Usuario('James', 'Gordon', '@jimG'));
@@ -76,11 +76,15 @@ export class UsuarioService implements IUsuarioService {
     return res.json().map(Usuario.fromJSON)
   }
 
+  async getUsuarioById(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/' + userID).toPromise()
+    return Usuario.fromJSON(res.json())
+  }
+
   async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
     const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
 
     return this.http.put(REST_SERVER_URL + "/amigos/" + idLogueado, jsonEliminado).toPromise()
   }
-
 
 }

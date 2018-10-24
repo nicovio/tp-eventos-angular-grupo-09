@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
-function mostrarError(component, error) {
+
+export function mostrarError(component, error) {
   console.log("error", error)
   component.errors.push(error._body)
 }
@@ -35,7 +36,6 @@ export class AmigosComponent implements OnInit {
 
 
   async ngOnInit() {
-    // this.router.routeReuseStrategy.shouldReuseRoute = () => false
   }
 
   async eliminarAmigo() {

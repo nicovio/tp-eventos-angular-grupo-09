@@ -3,12 +3,8 @@ import { EventoService } from 'src/app/servicios/evento.service';
 import Usuario from 'src/app/domain/usuarios/usuario';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 
-
-function mostrarError(component, error) {
-  console.log("error", error)
-  component.errors.push(error._body)
-}
 
 @Component({
   selector: 'app-organizados-por-mi',

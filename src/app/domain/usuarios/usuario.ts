@@ -10,16 +10,17 @@ export default class Usuario {
   nombre: string;
   apellido: string;
   userName: string;
-  tipoDeUsuario: TipoUsuario;
+  tipoUsuario: TipoUsuario;
   email: string;
   invitaciones: Array<Invitacion>;
   amigos: Array<Usuario> = [];
   entradas: Array<Entrada> = [];
 
-  constructor(nombre?, apellido?, userName?) {
+  constructor(nombre?, apellido?, userName?, email?) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.userName = userName;
+    this.email = email;
   }
 
   todosLosEventos(): Array<Evento> {
@@ -92,11 +93,6 @@ export default class Usuario {
     return result;
   }
 
-  // static fromJson(usuarioJSON) {
-  //   const result: Usuario = Object.assign(new Usuario(), usuarioJSON);
-  //   return result;
-  // }
-
   static crearUsuario(nombre: String, apellido: String): Usuario {
     if (!nombre || !apellido) return null
     return new Usuario(nombre, apellido)
@@ -104,8 +100,17 @@ export default class Usuario {
 
   static fromJSON(usuarioJSON) {
     const result: Usuario = Object.assign(new Usuario(), usuarioJSON);
+    if (usuarioJSON.tipoUsuario){
+      result.tipoUsuario = this.crearTipoDeUsuario(usuarioJSON.tipoUsuario)
+    }
+  
     return result;
   }
+
+  static crearTipoDeUsuario(tipoUsuario: String){
+    return new TipoUsuario(tipoUsuario)
+  }
+
 
   //   /*return new Usuario(usuarioJSON.nombre, usuarioJSON.apellido, usuarioJSON.usuerName)
   // }
