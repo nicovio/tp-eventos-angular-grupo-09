@@ -26,7 +26,7 @@ export default class EventoAbierto extends Evento {
 
   static fromJson(eventoJSON) {
     const result: EventoAbierto = Object.assign(new EventoAbierto(), eventoJSON);
-    result.organizador = Usuario.fromJSON(eventoJSON.organizadorEvento);
+    result.organizador = Usuario.crearUsuario(eventoJSON.nombreOrganizador, eventoJSON.apellidoOrganizador);
     result.fechaHoraInicio = new Date(eventoJSON.fecha);
     return result;
   }

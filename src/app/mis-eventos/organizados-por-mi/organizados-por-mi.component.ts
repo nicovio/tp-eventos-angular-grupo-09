@@ -13,7 +13,9 @@ function mostrarError(component, error) {
 @Component({
   selector: 'app-organizados-por-mi',
   templateUrl: './organizados-por-mi.component.html',
-  styleUrls: ['./organizados-por-mi.component.scss']
+  styleUrls: ['./organizados-por-mi.component.scss'],
+  providers: [UsuarioService, EventoService]
+  
 })
 export class OrganizadosPorMiComponent implements OnInit {
   IDUsuarioLogueado: Number
@@ -35,7 +37,6 @@ export class OrganizadosPorMiComponent implements OnInit {
       this.errors.push(error._body)
     }
 
-    // this.router.routeReuseStrategy.shouldReuseRoute = () => false
   }
 
 

@@ -28,6 +28,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule, OwlDateTimeIntl } from 'ng-
 import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { DefaultIntl } from './share/DefaultIntl';
 import { HttpModule } from '@angular/http';
+import { RefrescarPantallaComponent } from './share/refrescar-pantalla/refrescar-pantalla.component';
 
 //En caso de que no importe las dates, instalar los paquetes: npm i @angular/material-moment-adapter
 
@@ -47,7 +48,8 @@ import { HttpModule } from '@angular/http';
     ListaDeEventosComponent,
     NotFoundComponent,
     NuevoEventoAbiertoComponent,
-    NuevoEventoCerradoComponent
+    NuevoEventoCerradoComponent,
+    RefrescarPantallaComponent
   ],
   imports: [
     BrowserModule,

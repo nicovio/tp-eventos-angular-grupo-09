@@ -72,7 +72,15 @@ export class UsuarioService implements IUsuarioService {
   }
 
   async getAmigosEnServidor(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/usuario/amigos/' + userID).toPromise()
-    return res.json().map(EventoAbierto.fromJson)
+    const res = await this.http.get(REST_SERVER_URL + '/amigos/' + userID).toPromise()
+    return res.json().map(Usuario.fromJSON)
   }
+
+  async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
+    const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
+
+    return this.http.put(REST_SERVER_URL + "/amigos/" + idLogueado, jsonEliminado).toPromise()
+  }
+
+
 }

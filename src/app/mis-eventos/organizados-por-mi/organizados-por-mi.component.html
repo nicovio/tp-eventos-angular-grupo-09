@@ -18,9 +18,9 @@
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
           <td>{{ evento.descripcion }}</td>
           <td>{{ evento.locacion.descripcion }}</td>
-          <td>{{ evento.cantidadInvitados }}</td>
-          <td>{{ evento.confirmados.length }}</td>
-          <td>{{ evento.rechazados.length }}</td>
+          <td>{{ evento.totalPersonasInvitadas }}</td>
+          <td>{{ evento.totalPersonasConfirmadas }}</td>
+          <td>{{ evento.totalPersonasRechazadas }}</td>
         </tr>
       </tbody>
     </table>

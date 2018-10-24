@@ -9,17 +9,17 @@ export default class Usuario {
   id: number;
   nombre: string;
   apellido: string;
-  username: string;
+  userName: string;
   tipoDeUsuario: TipoUsuario;
   email: string;
   invitaciones: Array<Invitacion>;
   amigos: Array<Usuario> = [];
   entradas: Array<Entrada> = [];
 
-  constructor(nombre?, apellido?, username?) {
+  constructor(nombre?, apellido?, userName?) {
     this.nombre = nombre;
     this.apellido = apellido;
-    this.username = username;
+    this.userName = userName;
   }
 
   todosLosEventos(): Array<Evento> {
@@ -97,10 +97,16 @@ export default class Usuario {
   //   return result;
   // }
 
-  static fromJSON(nombre: string): Usuario {
-    if (!nombre) return null
-    return new Usuario(nombre)
+  static crearUsuario(nombre: String, apellido: String): Usuario {
+    if (!nombre || !apellido) return null
+    return new Usuario(nombre, apellido)
   }
+
+  static fromJSON(usuarioJSON) {
+    const result: Usuario = Object.assign(new Usuario(), usuarioJSON);
+    return result;
+  }
+
   //   /*return new Usuario(usuarioJSON.nombre, usuarioJSON.apellido, usuarioJSON.usuerName)
   // }
 }

@@ -3,7 +3,7 @@ import Locacion from "./locacion";
 import { Body } from '@angular/http/src/body';
 import EventoAbierto from './evento-abierto';
 
-export default abstract class Evento {
+export default class Evento {
   descripcion: string
   fechaHoraInicio: Date
   fechaHoraFin: Date

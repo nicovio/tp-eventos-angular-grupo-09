@@ -9,12 +9,14 @@ import { InvitacionesPendientesComponent } from './mis-eventos/invitaciones-pend
 import { NotFoundComponent } from './share/not-found/not-found.component';
 import { NuevoEventoAbiertoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-abierto/nuevo-evento-abierto.component';
 import { NuevoEventoCerradoComponent } from './mis-eventos/organizados-por-mi/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
+import { RefrescarPantallaComponent } from './share/refrescar-pantalla/refrescar-pantalla.component';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'mis-eventos/agenda', pathMatch: 'full' },
 
   { path: 'perfil', component: PerfilComponent },
+  { path: 'refrescar-pantalla', component: RefrescarPantallaComponent },
   {
     path: 'mis-eventos',  component: MisEventosComponent,
     children: [
