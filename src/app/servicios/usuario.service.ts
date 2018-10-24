@@ -18,8 +18,6 @@ export interface IUsuarioService {
 })
 export class MockUsuarioService implements IUsuarioService {
 
-  usuarios: Array<Usuario> = []
-
   usuarioLogueado: Usuario
 
 
@@ -56,18 +54,7 @@ export class MockUsuarioService implements IUsuarioService {
     karaDanvers.aceptarInvitacion(invitacionCumpleKara)
     karaDanvers.comprarEntrada(racingBoca)
     karaDanvers.comprarEntrada(casamientoMarley)
-    this.agregarUsuario(karaDanvers)
     this.usuarioLogueado = karaDanvers
-  }
-
-  agregarUsuario(usuario) {
-    this.usuarios.push(usuario)
-  }
-
-  getUsuarioByUsername(username) {
-    return this.usuarios.find((usuario) => {
-      return usuario.username == username;
-    })
   }
 
 
