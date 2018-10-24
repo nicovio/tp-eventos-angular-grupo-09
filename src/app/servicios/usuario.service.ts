@@ -16,6 +16,34 @@ export interface IUsuarioService {
 @Injectable({
   providedIn: 'root'
 })
+export class UsuarioService implements IUsuarioService {
+  IDUsuarioLogueado: Number
+
+  constructor(private http: Http) {
+    const IDKaraDanvers = 0   //SE LO DEBERIA PEDIR AL SERVER POR LOGIN
+    this.IDUsuarioLogueado = IDKaraDanvers
+  }
+
+  // async usuarioLogueado() {
+  //   const res = await this.http.get(REST_SERVER_URL + '/usuario/' + this.IDUsuarioLogueado).toPromise()
+  //   return res.json().map(Usuario.fromJSON)
+  // }
+
+  async getAmigosEnServidor(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/amigos/' + userID).toPromise()
+    return res.json().map(Usuario.fromJSON)
+  }
+
+  async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
+    const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
+
+    return this.http.put(REST_SERVER_URL + "/usuario/amigos/" + idLogueado, jsonEliminado).toPromise()
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
 export class MockUsuarioService implements IUsuarioService {
 
   usuarioLogueado: Usuario
@@ -60,27 +88,4 @@ export class MockUsuarioService implements IUsuarioService {
 
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UsuarioService implements IUsuarioService {
-  IDUsuarioLogueado: Number
 
-  constructor(private http: Http) {
-    const IDKaraDanvers = 0   //SE LO DEBERIA PEDIR AL SERVER POR LOGIN
-    this.IDUsuarioLogueado = IDKaraDanvers
-  }
-
-  async getAmigosEnServidor(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/amigos/' + userID).toPromise()
-    return res.json().map(Usuario.fromJSON)
-  }
-
-  async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
-    const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
-
-    return this.http.put(REST_SERVER_URL + "/amigos/" + idLogueado, jsonEliminado).toPromise()
-  }
-
-
-}

@@ -103,8 +103,17 @@ export default class Usuario {
   }
 
   static fromJSON(usuarioJSON) {
-    const result: Usuario = Object.assign(new Usuario(), usuarioJSON);
-    return result;
+    // id: number;
+    // nombre: string;
+    // apellido: string;
+    // userName: string;
+    // tipoDeUsuario: TipoUsuario;
+    // email: string;
+    // invitaciones: Array<Invitacion>;
+    // amigos: Array<Usuario> = [];
+    // entradas: Array<Entrada> = [];
+    const usuarioCreadoPorJSONRecibido: Usuario = Object.assign(new Usuario(usuarioJSON.nombre, usuarioJSON.apellido, usuarioJSON.userName), usuarioJSON);
+    return usuarioCreadoPorJSONRecibido;
   }
 
   //   /*return new Usuario(usuarioJSON.nombre, usuarioJSON.apellido, usuarioJSON.usuerName)

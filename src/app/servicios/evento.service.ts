@@ -29,12 +29,12 @@ export class EventoService implements IEventoService {
   }
 
   async abiertosOrganizadosPorUsuario(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/organizados/abiertos/' + userID).toPromise()
+    const res = await this.http.get(REST_SERVER_URL + '/eventos/abiertos/' + userID).toPromise()
     return res.json().map(EventoAbierto.fromJson)
   }
 
   async cerradosOrganizadosPorUsuario(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/organizados/cerrados/' + userID).toPromise()
+    const res = await this.http.get(REST_SERVER_URL + '/eventos/cerrados/' + userID).toPromise()
     return res.json().map(EventoCerrado.fromJson)
   }
 

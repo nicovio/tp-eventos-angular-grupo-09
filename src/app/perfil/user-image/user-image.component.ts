@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MockUsuarioService } from 'src/app/servicios/usuario.service';
+import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-user-image',
@@ -8,8 +8,9 @@ import { MockUsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class UserImageComponent {
   usuarioImage
-
-  constructor(private usuarioService: MockUsuarioService) {
+  // loggedUser
+  constructor(private usuarioService: MockUsuarioService, private usuarioServicio: UsuarioService) {
     this.usuarioImage = usuarioService.usuarioLogueado
+    // this.loggedUser = usuarioServicio.usuarioLogueado
   }
 }
