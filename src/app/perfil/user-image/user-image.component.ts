@@ -13,7 +13,6 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 })
 export class UserImageComponent {
-
   IdUsuarioLogueado: Number
   usuarioLogueado: Usuario
 

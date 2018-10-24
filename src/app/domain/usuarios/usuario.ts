@@ -1,6 +1,5 @@
 import Evento from 'src/app/domain/eventos/evento';
 import EventoAbierto from '../eventos/evento-abierto';
-import { TipoUsuario } from './tipo-de-usuario';
 import { Invitacion } from '../eventos/invitacion';
 import EventoCerrado from '../eventos/evento-cerrado';
 import { Entrada } from '../eventos/entrada';
@@ -10,11 +9,12 @@ export default class Usuario {
   nombre: string;
   apellido: string;
   userName: string;
-  tipoUsuario: TipoUsuario;
+  tipoUsuario: string;
   email: string;
   invitaciones: Array<Invitacion>;
   amigos: Array<Usuario> = [];
   entradas: Array<Entrada> = [];
+  cantidadAmigos: string
 
   constructor(nombre?, apellido?, userName?, email?) {
     this.nombre = nombre;
@@ -101,14 +101,9 @@ export default class Usuario {
   static fromJSON(usuarioJSON) {
     const result: Usuario = Object.assign(new Usuario(), usuarioJSON);
     if (usuarioJSON.tipoUsuario){
-      result.tipoUsuario = this.crearTipoDeUsuario(usuarioJSON.tipoUsuario)
+      result.tipoUsuario = usuarioJSON.tipoUsuario
     }
-  
     return result;
-  }
-
-  static crearTipoDeUsuario(tipoUsuario: String){
-    return new TipoUsuario(tipoUsuario)
   }
 
 

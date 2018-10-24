@@ -5,7 +5,7 @@
     <div class="centrado">
       <ul>
         <li class="contenedor-nombre-apellido">
-          <span class="nombre-apellido" *ngIf="usuarioLogueado"> {{usuarioLogueado.nombre}}&nbsp;{{usuarioLogueado.apellido}} </span>
+          <span class="nombre-apellido" *ngIf="usuarioLogueado !== undefined"> {{usuarioLogueado.nombre}}&nbsp;{{usuarioLogueado.apellido}} </span>
         </li>
 
         <li class="contenedor-username">
@@ -16,7 +16,7 @@
       <ul>
         <li>
           <span class="material-icons">stars</span>
-          <span class="datos-usuario" *ngIf="usuarioLogueado">{{usuarioLogueado.tipoUsuario.descripcion}}</span>
+          <span class="datos-usuario" *ngIf="usuarioLogueado">{{usuarioLogueado.tipoUsuario}}</span>
         </li>
 
         <li>
@@ -26,7 +26,7 @@
 
         <li>
           <span class="material-icons md-light">person_pin</span>
-          <span class="datos-usuario" *ngIf="usuarioLogueado">{{usuarioLogueado.amigos.length}}</span>
+          <span class="datos-usuario" *ngIf="usuarioLogueado">{{usuarioLogueado.cantidadAmigos}}</span>
         </li>
 
       </ul>

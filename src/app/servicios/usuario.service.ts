@@ -4,12 +4,46 @@ import EventoAbierto from '../domain/eventos/evento-abierto';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
 import Evento from '../domain/eventos/evento';
 import Locacion from '../domain/eventos/locacion';
-import { Profesional } from '../domain/usuarios/profesional';
 import { Invitacion } from '../domain/eventos/invitacion';
 import { Http } from '@angular/http';
 import { REST_SERVER_URL } from './configuration';
 
 export interface IUsuarioService {
+
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioService implements IUsuarioService {
+  IDUsuarioLogueado: Number
+  
+
+  constructor(private http: Http) {
+    const IDKaraDanvers = 0   //SE LO DEBERIA PEDIR AL SERVER POR LOGIN
+    this.IDUsuarioLogueado = IDKaraDanvers
+  }
+
+  async getAmigosEnServidor(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/amigos/' + userID).toPromise()
+    return res.json().map(Usuario.fromJSON)
+  }
+
+  async getUsuarioById(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/' + userID).toPromise()
+    return Usuario.fromJSON(res.json())
+  }
+
+  async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
+    const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
+
+    return this.http.put(REST_SERVER_URL + "/usuario/amigos/" + idLogueado, jsonEliminado).toPromise()
+  }
+
+  // async usuarioLogueado() {
+  //   const res = await this.http.get(REST_SERVER_URL + '/usuario/' + this.IDUsuarioLogueado).toPromise()
+  //   return res.json().map(Usuario.fromJSON)
+  // }
 
 }
 
@@ -25,7 +59,7 @@ export class MockUsuarioService implements IUsuarioService {
     let karaDanvers = new Usuario('Kara', 'Danvers', '@kara95');
     let fernandoDodino = new Usuario('Fernando', 'Dodino', '@dodain');
     let cristianMaggiorano = new Usuario('Cristian', 'Maggiorano', '@crismagg');
-    karaDanvers.tipoUsuario = new Profesional
+    karaDanvers.tipoUsuario = "Profesional"
     karaDanvers.email = 'kara@catco.com';
     // karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
     // karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
@@ -57,34 +91,5 @@ export class MockUsuarioService implements IUsuarioService {
     this.usuarioLogueado = karaDanvers
   }
 
-
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UsuarioService implements IUsuarioService {
-  IDUsuarioLogueado: Number
-
-  constructor(private http: Http) {
-    const IDKaraDanvers = 0   //SE LO DEBERIA PEDIR AL SERVER POR LOGIN
-    this.IDUsuarioLogueado = IDKaraDanvers
-  }
-
-  async getAmigosEnServidor(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/amigos/' + userID).toPromise()
-    return res.json().map(Usuario.fromJSON)
-  }
-
-  async getUsuarioById(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/usuario/' + userID).toPromise()
-    return Usuario.fromJSON(res.json())
-  }
-
-  async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
-    const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
-
-    return this.http.put(REST_SERVER_URL + "/amigos/" + idLogueado, jsonEliminado).toPromise()
-  }
 
 }
