@@ -29,7 +29,7 @@ export class MockUsuarioService implements IUsuarioService {
     let cristianMaggiorano = new Usuario('Cristian', 'Maggiorano', '@crismagg');
     karaDanvers.tipoDeUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
-    // karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
+    karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
     // karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
     // karaDanvers.agregarAmigo(new Usuario('Perry', 'White', '@whiteDP'));
     // karaDanvers.agregarAmigo(new Usuario('James', 'Gordon', '@jimG'));
@@ -77,11 +77,15 @@ export class MockUsuarioService implements IUsuarioService {
   providedIn: 'root'
 })
 export class UsuarioService implements IUsuarioService {
+  IDUsuarioLogueado: Number
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    const IDKaraDanvers = 0   //SE LO DEBERIA PEDIR AL SERVER POR LOGIN
+    this.IDUsuarioLogueado = IDKaraDanvers
+  }
 
-  async getAmigosEnServidor(username: String) {
-    const res = await this.http.get(REST_SERVER_URL + '/usuarios/amigos/' + username).toPromise()
+  async getAmigosEnServidor(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/amigos/' + userID).toPromise()
     return res.json().map(EventoAbierto.fromJson)
   }
 }

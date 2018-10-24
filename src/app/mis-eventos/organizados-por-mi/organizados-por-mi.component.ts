@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from 'src/app/servicios/evento.service';
 import Usuario from 'src/app/domain/usuarios/usuario';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 
 function mostrarError(component, error) {
@@ -15,7 +16,7 @@ function mostrarError(component, error) {
   styleUrls: ['./organizados-por-mi.component.scss']
 })
 export class OrganizadosPorMiComponent implements OnInit {
-  usuarioLogueado: Usuario;
+  IDUsuarioLogueado: Number
   eventosOrganizadosAbiertos
   eventosOrganizadosCerrados
   errors = []
@@ -26,7 +27,8 @@ export class OrganizadosPorMiComponent implements OnInit {
   // CON LO CUAL ESTARIAS PEGANDOLE AL SERVER TODO EL TIEMPO. ESTO LO PODIAMOS VER CADA VEZ QUE
   // ABRIAMOS EL MODAL Y EN NgOnInit LE PEDIAMOS UN CONSOLE LOG NEW DATE()
 
-  constructor(private serviceEvento: EventoService, private router: Router) {
+  constructor(private serviceEvento: EventoService, private router: Router, private usuarioService: UsuarioService) {
+    this.IDUsuarioLogueado = usuarioService.IDUsuarioLogueado
     try {
       this.initialize()
     } catch (error) {
@@ -41,8 +43,8 @@ export class OrganizadosPorMiComponent implements OnInit {
 
   async initialize() {
     try {
-      this.eventosOrganizadosAbiertos = await this.serviceEvento.abiertosOrganizadosPorUsuario('karaDanvers')
-      this.eventosOrganizadosCerrados = await this.serviceEvento.cerradosOrganizadosPorUsuario('karaDanvers')
+      this.eventosOrganizadosAbiertos = await this.serviceEvento.abiertosOrganizadosPorUsuario(this.IDUsuarioLogueado)
+      this.eventosOrganizadosCerrados = await this.serviceEvento.cerradosOrganizadosPorUsuario(this.IDUsuarioLogueado)
     } catch (error) {
       mostrarError(this, error)
     }

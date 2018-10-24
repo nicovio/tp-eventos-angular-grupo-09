@@ -19,21 +19,22 @@ export interface IEventoService {
 
 
 export class EventoService implements IEventoService {
+  
+
   crearEvento(evento: Evento) {
     //ESTO LO MANDA AL SERVER CON UN POST
   }
 
   constructor(private http: Http) {
-    // this.eventoAbierto.locacion =  new Locacion('HolaMundo')
   }
 
-  async abiertosOrganizadosPorUsuario(username: String) {
-    const res = await this.http.get(REST_SERVER_URL + '/organizadosAbiertosById/' + 0).toPromise()
+  async abiertosOrganizadosPorUsuario(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/organizados/abiertos/' + userID).toPromise()
     return res.json().map(EventoAbierto.fromJson)
   }
 
-  async cerradosOrganizadosPorUsuario(username: String) {
-    const res = await this.http.get(REST_SERVER_URL + '/organizados-cerrados/' + 0).toPromise()
+  async cerradosOrganizadosPorUsuario(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/organizados/cerrados/' + userID).toPromise()
     return res.json().map(EventoCerrado.fromJson)
   }
 
