@@ -1,33 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { Invitacion } from 'src/app/domain/eventos/invitacion';
-import { MockUsuarioService } from 'src/app/servicios/usuario.service';
+import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
 import Usuario from 'src/app/domain/usuarios/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invitaciones-pendientes',
   templateUrl: './invitaciones-pendientes.component.html',
   styleUrls: ['./invitaciones-pendientes.component.scss']
 })
-export class InvitacionesPendientesComponent{
+export class InvitacionesPendientesComponent {
   invitacionSeleccionada: Invitacion
-  usuarioLogueado: Usuario
+  IdUsuarioLogueado: Number
+  IdInvitacionSeleccionada: Number
+  invitacionesPendientes
+  errors = []
 
-  constructor(private usuarioService: MockUsuarioService) { 
-    this.usuarioLogueado = usuarioService.usuarioLogueado
+  constructor(private usuarioService: UsuarioService, private router: Router) {
+    this.IdUsuarioLogueado = usuarioService.IDUsuarioLogueado
+
+    try {
+      this.initialize()
+
+    } catch (error) {
+      this.errors.push(error._body)
+    }
+
   }
 
-  setInvitacionSeleccionada(invitacion: Invitacion){
-    this.invitacionSeleccionada = invitacion
+
+  async initialize() {
+    this.invitacionesPendientes = await this.usuarioService.getInvitacionesPendientes(this.IdUsuarioLogueado)
   }
 
-  aceptarInvitacion(){
-    this.invitacionSeleccionada.serAceptada
-    this.usuarioLogueado.aceptarInvitacion(this.invitacionSeleccionada)
+  setInvitacionSeleccionada(invitacion: Invitacion) {
+    this.IdInvitacionSeleccionada = invitacion.id
   }
 
-  rechazarInvitacion(){
-    this.invitacionSeleccionada.rechazar
-    this.usuarioLogueado.rechazarInvitacion(this.invitacionSeleccionada)
+  async aceptarInvitacion() {
+      try {
+        await this.usuarioService.aceptarInvitacion(this.IdUsuarioLogueado, this.IdInvitacionSeleccionada)
+      } catch (e) {
+        this.errors.push(e._body)
+      }
+      this.resfrescarPantalla()
+    }
+
+
+  // rechazarInvitacion() {
+    // this.invitacionSeleccionada.rechazar
+    // this.usuarioLogueado.rechazarInvitacion(this.invitacionSeleccionada)
+  // }
+
+  resfrescarPantalla() {
+    this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
+      this.router.navigate(["/mis-eventos/pendientes"]));
   }
 
 }

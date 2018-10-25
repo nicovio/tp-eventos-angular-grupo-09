@@ -35,13 +35,18 @@ export class EventoService implements IEventoService {
 
   async cerradosOrganizadosPorUsuario(userID: Number) {
     const res = await this.http.get(REST_SERVER_URL + '/eventos/cerrados/' + userID).toPromise()
-    return res.json().map(EventoCerrado.fromJson)
+    return res.json().map(EventoCerrado.fromJSON)
   }
 
   async actualizarEvento(evento: Evento) {
     return this.http.put(REST_SERVER_URL + "/eventos/" + evento.id, evento.toJSON()).toPromise()
   }
   
+  async rechazarInvitacion(idLogueado: Number, idAEliminar: Number) {
+    const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
+
+    return this.http.put(REST_SERVER_URL + "/usuario/amigos/" + idLogueado, jsonEliminado).toPromise()
+  }
 }
 
 

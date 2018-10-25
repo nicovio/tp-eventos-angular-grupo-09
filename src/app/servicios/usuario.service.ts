@@ -24,14 +24,14 @@ export class UsuarioService implements IUsuarioService {
     this.IDUsuarioLogueado = IDKaraDanvers
   }
 
-  async getAmigosEnServidor(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/usuario/amigos/' + userID).toPromise()
-    return res.json().map(Usuario.fromJSON)
-  }
-
   async getUsuarioById(userID: Number) {
     const res = await this.http.get(REST_SERVER_URL + '/usuario/' + userID).toPromise()
     return Usuario.fromJSON(res.json())
+  }
+
+  async getAmigosEnServidor(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/amigos/' + userID).toPromise()
+    return res.json().map(Usuario.fromJSON)
   }
 
   async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
@@ -40,6 +40,22 @@ export class UsuarioService implements IUsuarioService {
     return this.http.put(REST_SERVER_URL + "/usuario/amigos/" + idLogueado, jsonEliminado).toPromise()
   }
 
+  async getInvitacionesPendientes(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/invitaciones/' + userID).toPromise()
+    return res.json().map(Invitacion.fromJSON)
+  }
+
+  async aceptarInvitacion(idLogueado: Number, idPorAceptar: Number) {
+    const jsonAceptarInvitacion = JSON.parse('{ "idPorAceptar": ' + String(idPorAceptar) + ' }');
+
+    return this.http.put(REST_SERVER_URL + "/usuario/invitaciones/aceptar/" + idLogueado, jsonAceptarInvitacion).toPromise()
+  }
+
+  async rechazarInvitacion(idLogueado: Number, idPorRechazar: Number) {
+    const jsonRechazarInvitacion = JSON.parse('{ "idPorRechazar": ' + String(idPorRechazar) + ' }');
+
+    return this.http.put(REST_SERVER_URL + "/usuario/invitaciones/rechazar/" + idLogueado, jsonRechazarInvitacion).toPromise()
+  }
   // async usuarioLogueado() {
   //   const res = await this.http.get(REST_SERVER_URL + '/usuario/' + this.IDUsuarioLogueado).toPromise()
   //   return res.json().map(Usuario.fromJSON)

@@ -13,12 +13,12 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody *ngFor="let invitacion of usuarioLogueado.invitacionesPendientes()">
+      <tbody *ngFor="let invitacion of invitacionesPendientes">
         <td > {{ invitacion.evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
         <td > {{ invitacion.evento.descripcion }} </td>
         <td > {{ invitacion.evento.locacion.descripcion }} </td>
         <td > {{ invitacion.evento.organizador.nombre }} {{ invitacion.evento.organizador.apellido }}</td>
-        <td > {{ invitacion.cantidadAcompaniantes }} </td>
+        <td > {{ invitacion.cantidadAcompaniantesInvitacion }} </td>
         <td >   
           <i class="material-icons">
             <button type="button" class ="colorear-verde" mdbTooltip="Aceptar Invitacion" placement="left" (click)="setInvitacionSeleccionada(invitacion)" (click)="aceptar.show()">check</button>

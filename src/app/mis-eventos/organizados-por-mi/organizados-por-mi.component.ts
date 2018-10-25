@@ -39,12 +39,8 @@ export class OrganizadosPorMiComponent implements OnInit {
   ngOnInit() { }
 
   async initialize() {
-    try {
       this.eventosOrganizadosAbiertos = await this.serviceEvento.abiertosOrganizadosPorUsuario(this.IDUsuarioLogueado)
       this.eventosOrganizadosCerrados = await this.serviceEvento.cerradosOrganizadosPorUsuario(this.IDUsuarioLogueado)
-    } catch (error) {
-      mostrarError(this, error)
-    }
   }
 
 }

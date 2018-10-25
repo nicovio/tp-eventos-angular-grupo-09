@@ -18,7 +18,7 @@ export class UserImageComponent {
 
   errors = []
 
-  constructor(private usuarioService: UsuarioService, private router: Router, private route: ActivatedRoute) {
+  constructor(private usuarioService: UsuarioService, private router: Router) {
     this.IdUsuarioLogueado = usuarioService.IDUsuarioLogueado
     try {
       this.initialize()

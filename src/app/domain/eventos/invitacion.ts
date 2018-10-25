@@ -1,15 +1,17 @@
 import EventoCerrado from "./evento-cerrado";
 import Usuario from "../usuarios/usuario";
+import Evento from "./evento";
 
 export class Invitacion {
+    id: Number
     evento: EventoCerrado
-    cantidadAcompaniantes: number
+    cantidadAcompaniantesInvitacion: number
     pendiente: boolean = true
     aceptada: boolean = false
 
-    constructor(evento: EventoCerrado, cantidadAcompaniantes: number) {
+    constructor(evento?: EventoCerrado, cantidadAcompaniantes?: number) {
         this.evento = evento
-        this.cantidadAcompaniantes = cantidadAcompaniantes
+        this.cantidadAcompaniantesInvitacion = cantidadAcompaniantes
     }
 
     getEvento(): EventoCerrado {
@@ -22,33 +24,6 @@ export class Invitacion {
 
     rechazar() {
         this.pendiente = false
-        // evento.rechazarInvitacion(usuario, this)
-    }
-
-    //     aceptar(usuario: Usuario, cantidadAcompañantes: number) throws Exception{
-    //     try {
-    //         verificaAcompañantesDeclarados(cantidadAcompañantes, cantidadAcompañantesInvitacion)
-    //         pendiente = false
-    //         aceptada = true
-    //         evento.confirmarInvitacion(usuario, cantidadAcompañantes)
-    //     }
-    //     catch (ExceptionSuperaCantidadAcompaniantesPermitidos e) {
-    //         throw new Exception("La cantidad acompañiantes declarados supera la permitida por la invitacion")
-    //     }
-    // 		catch (ExceptionExcedidaLaFechaDeConfirmacion e) {
-    //         throw new Exception("No se puede aceptar la invitacion al evento " + evento.descripcion +
-    //             " debido a que ya ha pasado la fecha limite de confirmacion")
-    //     }
-    // }
-
-    verificaAcompañantesDeclarados(cantidadAcompañantes: number, cantidadAcompañantesInvitacion: number) {
-        // if (cantidadAcompañantes > cantidadAcompañantesInvitacion)
-        //     throw new ExceptionSuperaCantidadAcompaniantesPermitidos
-    }
-
-    validaFechaEsAntesDeFechaLimite(invitacion: Invitacion) {
-        // if (!invitacion.evento.noSeAlcanzoFechaLimite)
-        //     throw new ExceptionExcedidaLaFechaDeConfirmacion
     }
 
     validarInvitado(invitado: Usuario) {
@@ -58,6 +33,12 @@ export class Invitacion {
     serAceptada() {
         this.pendiente = false
         this.aceptada = true
+    }
+
+    static fromJSON(invitacionJSON) {
+        const result: Invitacion = Object.assign(new Invitacion(), invitacionJSON)
+        result.evento = EventoCerrado.fromJSON(invitacionJSON.evento)
+        return result
     }
 
 }

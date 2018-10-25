@@ -7,7 +7,7 @@ export default class EventoCerrado extends Evento {
   totalPersonasConfirmadas: number = 0
   totalPersonasRechazadas: number = 0
 
-  static fromJson(eventoJSON) {
+  static fromJSON(eventoJSON) {
     const result: EventoCerrado = Object.assign(new EventoCerrado(), eventoJSON);
     result.organizador = Usuario.crearUsuario(eventoJSON.nombreOrganizador, eventoJSON.apellidoOrganizador);
     result.fechaHoraInicio = new Date(eventoJSON.fecha);
