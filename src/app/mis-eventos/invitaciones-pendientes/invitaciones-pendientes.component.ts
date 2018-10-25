@@ -38,19 +38,23 @@ export class InvitacionesPendientesComponent {
   }
 
   async aceptarInvitacion() {
-      try {
-        await this.usuarioService.aceptarInvitacion(this.IdUsuarioLogueado, this.IdInvitacionSeleccionada)
-      } catch (e) {
-        this.errors.push(e._body)
-      }
-      this.resfrescarPantalla()
+    try {
+      await this.usuarioService.aceptarInvitacion(this.IdUsuarioLogueado, this.IdInvitacionSeleccionada)
+    } catch (e) {
+      this.errors.push(e._body)
     }
+    this.resfrescarPantalla()
+  }
 
 
-  // rechazarInvitacion() {
-    // this.invitacionSeleccionada.rechazar
-    // this.usuarioLogueado.rechazarInvitacion(this.invitacionSeleccionada)
-  // }
+  async rechazarInvitacion() {
+    try {
+      await this.usuarioService.rechazarInvitacion(this.IdUsuarioLogueado, this.IdInvitacionSeleccionada)
+    } catch (e) {
+      this.errors.push(e._body)
+    }
+    this.resfrescarPantalla()
+  }
 
   resfrescarPantalla() {
     this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>

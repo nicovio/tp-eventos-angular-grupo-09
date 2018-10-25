@@ -42,11 +42,6 @@ export class EventoService implements IEventoService {
     return this.http.put(REST_SERVER_URL + "/eventos/" + evento.id, evento.toJSON()).toPromise()
   }
   
-  async rechazarInvitacion(idLogueado: Number, idAEliminar: Number) {
-    const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
-
-    return this.http.put(REST_SERVER_URL + "/usuario/amigos/" + idLogueado, jsonEliminado).toPromise()
-  }
 }
 
 
