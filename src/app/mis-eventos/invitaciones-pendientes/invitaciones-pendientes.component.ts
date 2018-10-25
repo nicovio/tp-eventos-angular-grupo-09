@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Invitacion } from 'src/app/domain/eventos/invitacion';
-import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
-import Usuario from 'src/app/domain/usuarios/usuario';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Router } from '@angular/router';
 
 @Component({

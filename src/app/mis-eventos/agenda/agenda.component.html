@@ -1,11 +1,11 @@
 <div class="componente-container">
   <mdb-card class="amigos-card">
 
-    <lista-de-eventos [eventosAMostrar] = "eventosDeHoy()" [titulo] = "'Hoy'"> </lista-de-eventos>
+    <lista-de-eventos *ngIf= "eventosDeHoy" [eventosAMostrar] = "eventosDeHoy" [titulo] = "'Hoy'"> </lista-de-eventos>
 
-    <lista-de-eventos [eventosAMostrar] = "eventosDeEstaSemana()" [titulo] = "'Esta Semana'"> </lista-de-eventos>
+    <lista-de-eventos [eventosAMostrar] = "eventosDeEstaSemana" [titulo] = "'Esta Semana'"> </lista-de-eventos>
 
-    <lista-de-eventos [eventosAMostrar] = "eventosProximos()" [titulo] = "'Próximos'">  </lista-de-eventos>
+    <lista-de-eventos [eventosAMostrar] = "eventosProximos" [titulo] = "'Próximos'">  </lista-de-eventos>
 
   </mdb-card>
   

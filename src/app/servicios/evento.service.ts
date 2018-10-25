@@ -38,6 +38,21 @@ export class EventoService implements IEventoService {
     return res.json().map(EventoCerrado.fromJSON)
   }
 
+  async eventosDeHoy(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/eventos/hoy/' + userID).toPromise()
+    return res.json().map(Evento.fromJSON)
+  }
+
+  async eventosDeEstaSemana(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/eventos/estaSemana/' + userID).toPromise()
+    return res.json().map(Evento.fromJSON)
+  }
+
+  async eventosProximos(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/eventos/proximos/' + userID).toPromise()
+    return res.json().map(Evento.fromJSON)
+  }
+
   async actualizarEvento(evento: Evento) {
     return this.http.put(REST_SERVER_URL + "/eventos/" + evento.id, evento.toJSON()).toPromise()
   }

@@ -26,5 +26,12 @@ export default class Evento {
     const result: any = Object.assign({}, this);
     return result;
   }
+
+  static fromJSON(eventoJSON) {
+    const result: Evento = Object.assign(new Evento(), eventoJSON);
+    result.organizador = Usuario.crearUsuario(eventoJSON.nombreOrganizador, eventoJSON.apellidoOrganizador);
+    result.fechaHoraInicio = new Date(eventoJSON.fecha);
+    return result;
+  }
 }
 

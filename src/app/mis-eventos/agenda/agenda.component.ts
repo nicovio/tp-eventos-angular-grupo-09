@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MockUsuarioService } from 'src/app/servicios/usuario.service';
+import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
 import { MockEventoService, EventoService } from 'src/app/servicios/evento.service';
 import { Router } from '@angular/router';
 import Evento from 'src/app/domain/eventos/evento';
@@ -11,35 +11,25 @@ import Evento from 'src/app/domain/eventos/evento';
     styleUrls: ['./agenda.component.scss']
 })
 export class AgendaComponent {
-
-    usuarioLogueado
+    eventosDeHoy
+    eventosDeEstaSemana
+    eventosProximos
+    IdUsuarioLogueado
     errors = []
 
-    constructor(private eventosService: EventoService, private mockEventoService: MockEventoService, private usuarioService: MockUsuarioService, private router: Router) {
-        this.usuarioLogueado = usuarioService.usuarioLogueado;
+    constructor(private eventosService: EventoService, private usuarioService: UsuarioService, private router: Router) {
+        this.IdUsuarioLogueado = usuarioService.IDUsuarioLogueado
+        try {
+            this.initialize()
+
+        } catch (error) {
+            this.errors.push(error._body)
+        }
     }
 
-    eventosDeHoy() {
-        return this.mockEventoService.eventosDeHoy(this.usuarioLogueado);
+    async initialize() {
+        this.eventosDeHoy = await this.eventosService.eventosDeHoy(this.IdUsuarioLogueado)
+        this.eventosDeEstaSemana = await this.eventosService.eventosDeEstaSemana(this.IdUsuarioLogueado)
+        this.eventosProximos = await this.eventosService.eventosProximos(this.IdUsuarioLogueado)
     }
-
-    eventosDeEstaSemana() {
-        return this.mockEventoService.eventosDeEstaSemana(this.usuarioLogueado);
-    }
-
-    eventosProximos() {
-        return this.mockEventoService.eventosProximos(this.usuarioLogueado);
-
-    }
-
-    // async ngOnInit() {
-    //     try {
-    //         // Truco para que refresque la pantalla 
-    //         this.router.routeReuseStrategy.shouldReuseRoute = () => false
-    //         this.organizadosPorMi = await this.eventosService.organizadosPorUsuario('karaDanvers')
-    //     } catch (error) {
-    //         mostrarError(this, error)
-    //     }
-    // }
-
 }
