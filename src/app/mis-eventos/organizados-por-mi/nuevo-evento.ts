@@ -5,10 +5,13 @@ import { ModalDirective } from 'angular-bootstrap-md';
 import { FormControl, Validators } from '@angular/forms';
 import Evento from 'src/app/domain/eventos/evento';
 import { MockUsuarioService } from 'src/app/servicios/usuario.service';
+import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 
 export abstract class NuevoEvento implements AfterViewInit {
   @ViewChild('modalEvento')
   modal: ModalDirective;
+
+  errors = []
 
   public hoy = new Date();
 
@@ -41,7 +44,7 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   minimaFecha = new Date();
 
-  constructor(private serviceEvento: MockEventoService, private router: Router) {}
+  constructor(private serviceEvento: EventoService, private router: Router) { }
 
   ngAfterViewInit() {
     this.modal.show();
@@ -51,13 +54,23 @@ export abstract class NuevoEvento implements AfterViewInit {
     this.volverAOrganizadosPorMi();
   }
 
-  aceptar() {
-    this.serviceEvento.crearEvento(this.nuevoEvento);
-    this.volverAOrganizadosPorMi();
+  async aceptar(idUsuarioLogueado: number) {
+    try {
+      await this.serviceEvento.crearEventoAbierto(idUsuarioLogueado, this.nuevoEvento);
+    } catch (error) {
+      mostrarError(this, error)
+    }
+    this.resfrescarPantalla();
   }
+
 
   volverAOrganizadosPorMi() {
     this.router.navigate(['/mis-eventos/organizados-por-mi']);
+  }
+
+  resfrescarPantalla() {
+    this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
+      this.volverAOrganizadosPorMi())
   }
 
   noPuedeCrearEvento() {
@@ -82,8 +95,8 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   noPusoLocacion() {
     return (
-      this.nuevoEvento.locacion.descripcion === '' ||
-      this.nuevoEvento.locacion.descripcion === undefined
+      this.nuevoEvento.locacion === '' ||
+      this.nuevoEvento.locacion === undefined
     );
   }
 

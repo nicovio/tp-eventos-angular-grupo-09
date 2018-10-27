@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IEventoService, EventoService, MockEventoService } from 'src/app/servicios/evento.service';
-import Locacion from 'src/app/domain/eventos/locacion';
+import { EventoService, MockEventoService } from 'src/app/servicios/evento.service';
 import EventoCerrado from 'src/app/domain/eventos/evento-cerrado';
-import { toDate } from '@angular/common/src/i18n/format_date';
 import { NuevoEvento } from '../nuevo-evento';
-import { MockUsuarioService } from 'src/app/servicios/usuario.service';
+import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
+import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 
 @Component({
   selector: 'app-nuevo-evento-cerrado',
@@ -13,12 +12,15 @@ import { MockUsuarioService } from 'src/app/servicios/usuario.service';
   styleUrls: ['./nuevo-evento-cerrado.component.scss']
 })
 export class NuevoEventoCerradoComponent extends NuevoEvento implements OnInit {
-  constructor(serviceEvento: MockEventoService, serviceUsuario: MockUsuarioService, router: Router) {
-    super(serviceEvento, router);
 
+  IDUsuarioLogueado: Number
+  eventoService
+
+  constructor(serviceEvento: EventoService, private serviceUsuario: UsuarioService, router: Router) {
+    super(serviceEvento, router);
+    this.eventoService = serviceEvento
+    this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     this.nuevoEvento = new EventoCerrado();
-    this.nuevoEvento.locacion = new Locacion();
-    this.nuevoEvento.organizador = serviceUsuario.usuarioLogueado
   }
 
   ngOnInit() {}
@@ -31,6 +33,15 @@ export class NuevoEventoCerradoComponent extends NuevoEvento implements OnInit {
 
   fechaMaximaDeConfirmacionIncorrecta(){
     return this.nuevoEvento.fechaMaximaConfirmacion >= this.nuevoEvento.fechaHoraInicio;
+  }
+
+  async aceptar(idUsuarioLogueado: number) {
+    try {
+      await this.eventoService.crearEventoCerrado(idUsuarioLogueado, this.nuevoEvento);
+    } catch (error) {
+      mostrarError(this, error)
+    }
+    super.resfrescarPantalla();
   }
 
 

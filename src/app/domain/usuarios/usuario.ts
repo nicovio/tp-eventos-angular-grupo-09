@@ -53,28 +53,19 @@ export default class Usuario {
     this.amigos.push(usuario);
   }
 
-  comprarEntrada(evento: EventoAbierto) {
-    evento.venderEntrada(this);
-  }
-
-  pagarEntrada(precio: number) { }
 
   agregarEntrada(entrada: Entrada) {
     this.entradas.push(entrada);
   }
 
-  invitar(usuarioInvitado: Usuario, invitacion: Invitacion) {
-    invitacion.validarInvitado(usuarioInvitado);
-    usuarioInvitado.agregarInvitacion(invitacion);
+  comprarEntrada(evento: EventoAbierto) {
+    evento.venderEntrada(this);
   }
 
   agregarInvitacion(invitacion: Invitacion) {
     this.invitaciones.push(invitacion);
   }
 
-  aceptarInvitacion(invitacion: Invitacion) {
-    invitacion.serAceptada();
-  }
 
   aceptacionMasiva() {
     this.invitaciones.forEach(invitacion => invitacion.serAceptada());
@@ -105,8 +96,4 @@ export default class Usuario {
     }
     return result;
   }
-
-
-  //   /*return new Usuario(usuarioJSON.nombre, usuarioJSON.apellido, usuarioJSON.usuerName)
-  // }
 }

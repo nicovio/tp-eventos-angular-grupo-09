@@ -1,15 +1,20 @@
 import EventoAbierto from '../domain/eventos/evento-abierto';
 import { Injectable } from '@angular/core';
-import Locacion from "src/app/domain/eventos/locacion";
 import { Http } from '@angular/http';
 import { REST_SERVER_URL } from './configuration';
 import Evento from '../domain/eventos/evento';
 import Usuario from '../domain/usuarios/usuario';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
-
+import { MockUsuarioService } from './usuario.service';
 
 export interface IEventoService {
-  crearEvento(evento: Evento)
+  abiertosOrganizadosPorUsuario(userID: Number)
+  cerradosOrganizadosPorUsuario(userID: Number)
+  eventosDeHoy(userID: Number)
+  eventosDeEstaSemana(userID: Number)
+  eventosProximos(userID: Number)
+  crearEventoAbierto(userID: Number, evento: Evento)
+  crearEventoCerrado(userID: Number, evento: Evento)
 }
 
 
@@ -19,18 +24,14 @@ export interface IEventoService {
 
 
 export class EventoService implements IEventoService {
-  
 
-  crearEvento(evento: Evento) {
-    //ESTO LO MANDA AL SERVER CON UN POST
-  }
 
   constructor(private http: Http) {
   }
 
   async abiertosOrganizadosPorUsuario(userID: Number) {
     const res = await this.http.get(REST_SERVER_URL + '/eventos/abiertos/' + userID).toPromise()
-    return res.json().map(EventoAbierto.fromJson)
+    return res.json().map(EventoAbierto.fromJSON)
   }
 
   async cerradosOrganizadosPorUsuario(userID: Number) {
@@ -53,10 +54,15 @@ export class EventoService implements IEventoService {
     return res.json().map(Evento.fromJSON)
   }
 
-  async actualizarEvento(evento: Evento) {
-    return this.http.put(REST_SERVER_URL + "/eventos/" + evento.id, evento.toJSON()).toPromise()
+  async crearEventoAbierto(userID: Number, evento: Evento) {
+    const json = JSON.parse(JSON.stringify(evento))
+    return this.http.put(REST_SERVER_URL + '/usuario/eventos/crearAbierto/' + userID, json).toPromise()
   }
-  
+
+  async crearEventoCerrado(userID: Number, evento: Evento) {
+    const json = JSON.parse(JSON.stringify(evento))
+    return this.http.put(REST_SERVER_URL + '/usuario/eventos/crearCerrado/' + userID, json).toPromise()
+  }
 }
 
 
@@ -66,59 +72,57 @@ export class EventoService implements IEventoService {
 
 
 export class MockEventoService implements IEventoService {
-  eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca', new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), new Locacion('La bombonera'), null, 500);
-
+  eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca', new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), 'La bombonera', null, 500);
   listaEventos: Array<Evento> = [this.eventoAbierto]
+  usuarioLogueado: Usuario
 
-  crearEvento(evento: Evento) {
-    this.listaEventos.push(evento)
+  constructor(private usuarioService: MockUsuarioService) {
+    this.usuarioLogueado = usuarioService.usuarioLogueado
   }
 
-  constructor() {
-    // this.eventoAbierto.locacion =  new Locacion('HolaMundo')
+
+  organizadosPorUsuario() {
+    return this.listaEventos.filter(evento => evento.organizador === this.usuarioLogueado)
   }
 
-  organizadosPorUsuario(usuario: Usuario) {
-    return this.listaEventos.filter(evento => evento.organizador === usuario)
+  cerradosOrganizadosPorUsuario() {
+    return this.organizadosPorUsuario().filter(evento => evento.constructor.name === EventoCerrado.name)
   }
 
-  eventosOrganizadosCerrados(usuario: Usuario) {
-    return this.organizadosPorUsuario(usuario).filter(evento => evento.constructor.name === EventoCerrado.name)
+  abiertosOrganizadosPorUsuario() {
+    return this.organizadosPorUsuario().filter(evento => evento.constructor.name === EventoAbierto.name)
   }
 
-  eventosOrganizadosAbiertos(usuario: Usuario) {
-    return this.organizadosPorUsuario(usuario).filter(evento => evento.constructor.name === EventoAbierto.name)
-  }
-  // organizadosPorUsuario(ACA VA ID DE USUARIO){
 
-  // }
-
-
-  eventosDeHoy(usuario: Usuario): Array<Evento> {
+  eventosDeHoy() {
     var principioDelDia = new Date()
     var finalDelDia = new Date()
     principioDelDia.setHours(0, 0, 0, 0)
     finalDelDia.setHours(23, 59, 59, 59)
-    return this.filtrarEventosPorFechas(usuario.todosLosEventos(), principioDelDia, finalDelDia);
+    return this.filtrarEventosPorFechas(this.usuarioLogueado.todosLosEventos(), principioDelDia, finalDelDia);
   }
 
-  eventosDeEstaSemana(usuario: Usuario): Array<Evento> {
+  eventosDeEstaSemana(): Array<Evento> {
     var today = new Date()
     var mañana = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 0, 0, 0, 0)
     var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
 
-    return this.filtrarEventosPorFechas(usuario.todosLosEventos(), mañana, semanaQueViene);
+    return this.filtrarEventosPorFechas(this.usuarioLogueado.todosLosEventos(), mañana, semanaQueViene);
   }
 
-  eventosProximos(usuario: Usuario): Array<Evento> {
+  eventosProximos(): Array<Evento> {
     var today = new Date()
     var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
-    return usuario.todosLosEventos().filter(evento => evento.fechaHoraInicio > semanaQueViene)
+    return this.usuarioLogueado.todosLosEventos().filter(evento => evento.fechaHoraInicio > semanaQueViene)
   }
 
 
   filtrarEventosPorFechas(eventosAFiltrar: Array<Evento>, fechaDesde, fechaHasta) {
     return eventosAFiltrar.filter(evento => (evento.fechaHoraInicio >= fechaDesde) && (evento.fechaHoraInicio <= fechaHasta))
   }
+
+  crearEventoAbierto() { }
+
+  crearEventoCerrado() { }
 
 }

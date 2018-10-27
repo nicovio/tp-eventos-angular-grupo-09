@@ -1,13 +1,12 @@
 import Usuario from 'src/app/domain/usuarios/usuario';
-import Locacion from "./locacion";
-import { Body } from '@angular/http/src/body';
-import EventoAbierto from './evento-abierto';
+import * as moment from 'moment';
+
 
 export default class Evento {
   descripcion: string
   fechaHoraInicio: Date
   fechaHoraFin: Date
-  locacion: Locacion
+  locacion: string
   organizador: Usuario
   fechaMaximaConfirmacion: Date
   id: number
@@ -24,6 +23,11 @@ export default class Evento {
 
   toJSON(): any {
     const result: any = Object.assign({}, this);
+    result.fechaHoraInicio = moment().format("YYYY/MM/DD HH:mm")
+    result.fechaHoraFin = moment().format("YYYY/MM/DD HH:mm")
+    if (this.fechaMaximaConfirmacion) {
+    result.fechaMaximaConfirmacion = moment().format("YYYY/MM/DD HH:mm")
+    }
     return result;
   }
 

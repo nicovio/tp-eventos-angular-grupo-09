@@ -16,7 +16,7 @@
       <tbody *ngFor="let invitacion of invitacionesPendientes">
         <td > {{ invitacion.evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
         <td > {{ invitacion.evento.descripcion }} </td>
-        <td > {{ invitacion.evento.locacion.descripcion }} </td>
+        <td > {{ invitacion.evento.locacion }} </td>
         <td > {{ invitacion.evento.organizador.nombre }} {{ invitacion.evento.organizador.apellido }}</td>
         <td > {{ invitacion.cantidadAcompaniantesInvitacion }} </td>
         <td >   

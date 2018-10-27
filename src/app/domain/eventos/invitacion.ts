@@ -4,17 +4,17 @@ import Evento from "./evento";
 
 export class Invitacion {
     id: Number
-    evento: EventoCerrado
+    evento: Evento
     cantidadAcompaniantesInvitacion: number
     pendiente: boolean = true
     aceptada: boolean = false
 
-    constructor(evento?: EventoCerrado, cantidadAcompaniantes?: number) {
+    constructor(evento?: Evento, cantidadAcompaniantes?: number) {
         this.evento = evento
         this.cantidadAcompaniantesInvitacion = cantidadAcompaniantes
     }
 
-    getEvento(): EventoCerrado {
+    getEvento(): Evento {
         return this.evento
     }
 
@@ -26,10 +26,6 @@ export class Invitacion {
         this.pendiente = false
     }
 
-    validarInvitado(invitado: Usuario) {
-        return true;
-    }
-
     serAceptada() {
         this.pendiente = false
         this.aceptada = true
@@ -37,7 +33,7 @@ export class Invitacion {
 
     static fromJSON(invitacionJSON) {
         const result: Invitacion = Object.assign(new Invitacion(), invitacionJSON)
-        result.evento = EventoCerrado.fromJSON(invitacionJSON.evento)
+        result.evento = Evento.fromJSON(invitacionJSON.evento)
         return result
     }
 

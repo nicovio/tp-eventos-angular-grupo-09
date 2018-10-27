@@ -59,7 +59,7 @@
             <div>
               <!-- TEXTBOX LOCACION INICIO -->
               <mat-form-field>
-                <input [(ngModel)]="nuevoEvento.locacion.descripcion" matInput placeholder="Locacion"
+                <input [(ngModel)]="nuevoEvento.locacion" matInput placeholder="Locacion"
                   [errorStateMatcher]="matcher" [formControl]="locacionFormControl">
                 <mat-error *ngIf="locacionFormControl.hasError('required')">
                   <strong>
@@ -107,7 +107,7 @@
       <div class="modal-footer">
         <div class="error-fechas" *ngIf="empiezaDespuesDeTerminar()">El evento debe finalizar en una fecha posterior a
           la de fecha de inicio</div>
-        <button type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar()" [disabled]="noPuedeCrearEvento()"
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar(IDUsuarioLogueado)" [disabled]="noPuedeCrearEvento()"
           mdbWavesEffect>Aceptar</button>
         <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="cancelar()"
           mdbWavesEffect>Cancelar</button>
