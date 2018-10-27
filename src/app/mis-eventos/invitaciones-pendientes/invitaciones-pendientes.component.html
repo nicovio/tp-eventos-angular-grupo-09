@@ -18,7 +18,7 @@
         <td > {{ invitacion.evento.descripcion }} </td>
         <td > {{ invitacion.evento.locacion }} </td>
         <td > {{ invitacion.evento.organizador.nombre }} {{ invitacion.evento.organizador.apellido }}</td>
-        <td > {{ invitacion.cantidadAcompaniantesInvitacion }} </td>
+        <td ><input class="acompaniantes" type="text" placeholder=" {{invitacion.cantidadAcompaniantesInvitacion }} "> de {{invitacion.cantidadAcompaniantesInvitacion }}</td>
         <td >   
           <i class="material-icons">
             <button type="button" class ="colorear-verde" mdbTooltip="Aceptar Invitacion" placement="left" (click)="setInvitacionSeleccionada(invitacion)" (click)="aceptar.show()">check</button>
