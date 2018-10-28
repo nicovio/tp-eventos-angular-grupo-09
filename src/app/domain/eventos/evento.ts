@@ -20,17 +20,6 @@ export default class Evento {
     this.fechaMaximaConfirmacion = fechaMaximaConfirmacion
   }
 
-
-  toJSON(): any {
-    const result: any = Object.assign({}, this);
-    result.fechaHoraInicio = moment().format("YYYY/MM/DD HH:mm")
-    result.fechaHoraFin = moment().format("YYYY/MM/DD HH:mm")
-    if (this.fechaMaximaConfirmacion) {
-    result.fechaMaximaConfirmacion = moment().format("YYYY/MM/DD HH:mm")
-    }
-    return result;
-  }
-
   static fromJSON(eventoJSON) {
     const result: Evento = Object.assign(new Evento(), eventoJSON);
     result.organizador = Usuario.crearUsuario(eventoJSON.nombreOrganizador, eventoJSON.apellidoOrganizador);

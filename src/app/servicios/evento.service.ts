@@ -6,6 +6,7 @@ import Evento from '../domain/eventos/evento';
 import Usuario from '../domain/usuarios/usuario';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
 import { MockUsuarioService } from './usuario.service';
+import * as moment from 'moment';
 
 export interface IEventoService {
   abiertosOrganizadosPorUsuario(userID: Number)
@@ -27,6 +28,7 @@ export class EventoService implements IEventoService {
 
 
   constructor(private http: Http) {
+
   }
 
   async abiertosOrganizadosPorUsuario(userID: Number) {
@@ -56,12 +58,23 @@ export class EventoService implements IEventoService {
 
   async crearEventoAbierto(userID: Number, evento: Evento) {
     const json = JSON.parse(JSON.stringify(evento))
+    json.fechaHoraInicio = this.formatearFechaJson(evento.fechaHoraInicio.toString())
+    json.fechaHoraFin = this.formatearFechaJson(evento.fechaHoraFin.toString())
+
     return this.http.put(REST_SERVER_URL + '/usuario/eventos/crearAbierto/' + userID, json).toPromise()
   }
 
   async crearEventoCerrado(userID: Number, evento: Evento) {
     const json = JSON.parse(JSON.stringify(evento))
+    json.fechaHoraInicio = this.formatearFechaJson(evento.fechaHoraInicio.toString())
+    json.fechaHoraFin = this.formatearFechaJson(evento.fechaHoraFin.toString())
+    json.fechaMaximaConfirmacion = this.formatearFechaJson(evento.fechaMaximaConfirmacion.toString())
+
     return this.http.put(REST_SERVER_URL + '/usuario/eventos/crearCerrado/' + userID, json).toPromise()
+  }
+
+  formatearFechaJson(fechaAFormatear: string) {
+    return moment(fechaAFormatear).format("YYYY/MM/DD HH:mm")
   }
 }
 

@@ -44,7 +44,8 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   minimaFecha = new Date();
 
-  constructor(private serviceEvento: EventoService, private router: Router) { }
+  constructor(private serviceEvento: EventoService, private router: Router) { 
+  }
 
   ngAfterViewInit() {
     this.modal.show();

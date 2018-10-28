@@ -42,7 +42,7 @@
 
               </mat-form-field> -->
               <mat-form-field>
-              <input matInput [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="fechaHoraInicio" placeholder="Fecha y hora de inicio"
+              <input matInput [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="dt2" placeholder="Fecha y hora de inicio"
                 (change)="fechaHoraInicio.open()" [formControl]="fechaInicioFormControl" [min]="hoy">
               <mat-error *ngIf="fechaInicioFormControl.hasError('required')">
                 <strong>
@@ -50,8 +50,8 @@
                 </strong>
               </mat-error>
               </mat-form-field>
-              <span [owlDateTimeTrigger]="fechaHoraInicio"><i class="fa fa-calendar"></i></span>
-              <owl-date-time [pickerMode]="'dialog'" #fechaHoraInicio></owl-date-time>
+              <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>
+              <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
               <!-- DATEPICKER InicioDeEvento FIN -->
             </div>
           </div>
