@@ -43,8 +43,8 @@ export class UsuarioService implements IUsuarioService {
     return res.json().map(Invitacion.fromJSON)
   }
 
-  async aceptarInvitacion(idLogueado: Number, idPorAceptar: Number) {
-    const jsonAceptarInvitacion = JSON.parse('{ "idPorAceptar": ' + String(idPorAceptar) + ' }');
+  async aceptarInvitacion(idLogueado: Number, idPorAceptar: Number, cantidadAcompañantes: Number) {
+    const jsonAceptarInvitacion = JSON.parse('{ "idPorAceptar": ' + String(idPorAceptar) + ', "cantidadAcompañantes": ' + String(cantidadAcompañantes) + ' }');
 
     return this.http.put(REST_SERVER_URL + "/usuario/invitaciones/aceptar/" + idLogueado, jsonAceptarInvitacion).toPromise()
   }

@@ -19,3 +19,8 @@ body::-webkit-scrollbar-thumb {
     background-image: -webkit-linear-gradient(330deg, #2858b1 0%, #20b7b7 100%);
     background-image: linear-gradient(120deg, #2858b1 0%, #20b7b7 100%);
 }
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding-top: 0rem;
+    border-top: none;
+}

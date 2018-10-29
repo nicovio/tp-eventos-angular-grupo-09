@@ -32,6 +32,18 @@ th {
     margin-left: 5rem;
 }
 
-.acompaniantes{
-    max-width: 2.5em;
+.acompaniantes {
+    max-width: 3.5em;
+    margin-right: 0.6rem;
+    text-align: center;
+    border-style: groove;
+    height: 1.4rem;
+}
+
+.acompaniantes-field {
+    max-width: 8rem;
+}
+
+button:disabled {
+    color: grey;
 }

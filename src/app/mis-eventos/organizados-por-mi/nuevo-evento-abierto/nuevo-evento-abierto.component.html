@@ -14,7 +14,7 @@
             <div>
               <!-- TEXTBOX NOMBRE INICIO -->
               <mat-form-field>
-                <input matInput [(ngModel)]="nuevoEvento.descripcion" placeholder="Nombre" [formControl]="nombreFormControl"
+                <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.descripcion" placeholder="Nombre" [formControl]="nombreFormControl"
                   [errorStateMatcher]="matcher">
                 <mat-error *ngIf="nombreFormControl.hasError('required')">
                   <strong>
@@ -42,7 +42,7 @@
 
               </mat-form-field> -->
               <mat-form-field>
-              <input matInput [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="dt2" placeholder="Fecha y hora de inicio"
+              <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="dt2" placeholder="Fecha y hora de inicio"
                 (change)="fechaHoraInicio.open()" [formControl]="fechaInicioFormControl" [min]="hoy">
               <mat-error *ngIf="fechaInicioFormControl.hasError('required')">
                 <strong>
@@ -59,7 +59,7 @@
             <div>
               <!-- TEXTBOX LOCACION INICIO -->
               <mat-form-field>
-                <input [(ngModel)]="nuevoEvento.locacion" matInput placeholder="Locacion"
+                <input class="margen-holder" [(ngModel)]="nuevoEvento.locacion" matInput placeholder="Locacion"
                   [errorStateMatcher]="matcher" [formControl]="locacionFormControl">
                 <mat-error *ngIf="locacionFormControl.hasError('required')">
                   <strong>
@@ -72,11 +72,9 @@
             <br>
             <div>
 
-
-              
               <div class="margen-fecha">Fin:<br></div>
             <mat-form-field>
-              <input matInput [(ngModel)]="nuevoEvento.fechaHoraFin" [owlDateTime]="fechaHoraFin" (change)="fechaHoraFin.open()" [formControl]="fechaFinFormControl"
+              <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaHoraFin" [owlDateTime]="fechaHoraFin" (change)="fechaHoraFin.open()" [formControl]="fechaFinFormControl"
                 placeholder="Fecha y hora de fin" [min]="hoy" [owlDateTimeFilter]="filtroFechaFin">
               <mat-error *ngIf="fechaFinFormControl.hasError('required')">
                 <strong>

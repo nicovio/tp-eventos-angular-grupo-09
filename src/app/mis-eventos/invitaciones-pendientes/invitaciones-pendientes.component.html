@@ -1,39 +1,56 @@
 <div class="espaciado-estetico">
-<mdb-card class="amigos-card">
-<div class="table-responsive">
-    <table class="table table-striped">
-      <div class="centrado">
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Evento</th>
-          <th>Lugar</th>
-          <th>Organizador</th>
-          <th>Acompañantes</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let invitacion of invitacionesPendientes">
-        <td > {{ invitacion.evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
-        <td > {{ invitacion.evento.descripcion }} </td>
-        <td > {{ invitacion.evento.locacion }} </td>
-        <td > {{ invitacion.evento.organizador.nombre }} {{ invitacion.evento.organizador.apellido }}</td>
-        <td ><input class="acompaniantes" type="text" placeholder=" {{invitacion.cantidadAcompaniantesInvitacion }} "> de {{invitacion.cantidadAcompaniantesInvitacion }}</td>
-        <td >   
-          <i class="material-icons">
-            <button type="button" class ="colorear-verde" mdbTooltip="Aceptar Invitacion" placement="left" (click)="setInvitacionSeleccionada(invitacion)" (click)="aceptar.show()">check</button>
-          </i>
-          <i class="material-icons">
-              <button type="button" class ="colorear-rojo" mdbTooltip="Rechazar Invitacion"  placement="right" (click)="setInvitacionSeleccionada(invitacion)" (click)="rechazar.show()" >clear</button>
-          </i>
-        </td>
-        <tr>
-        </tr>
-      </tbody>
-      </div>
-    </table>
-  </div>
-</mdb-card>
+  <mdb-card class="amigos-card">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <div class="centrado">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Evento</th>
+              <th>Lugar</th>
+              <th>Organizador</th>
+              <th>Acompañantes</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let invitacion of invitacionesPendientes">
+            <td> {{ invitacion.evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
+            <td> {{ invitacion.evento.descripcion }} </td>
+            <td> {{ invitacion.evento.locacion }} </td>
+            <td> {{ invitacion.evento.organizador.nombre }} {{ invitacion.evento.organizador.apellido }}</td>
+            <td>
+              <mat-form-field class="acompaniantes-field">
+                <input matInput class="acompaniantes" type="number" [(ngModel)]= cantidadAcompaniantes min="1" max="{{ invitacion.cantidadAcompaniantesInvitacion }}"
+                  [formControl]="cantidadAcompaniantesFormControl" ><i> de {{ invitacion.cantidadAcompaniantesInvitacion }}</i>
+                <mat-error *ngIf="cantidadAcompaniantesFormControl.hasError('max')">
+                  <strong>
+                    La cantidad de acompañantes no puede ser mayor a {{ invitacion.cantidadAcompaniantesInvitacion }}
+                  </strong>
+                </mat-error>
+              </mat-form-field>
+            </td>
+            <!-- <td ><input class="acompaniantes" type="number" [(ngModel)]= cantidadAcompaniantes min="1" max="{{invitacion.cantidadAcompaniantesInvitacion}}" > de {{invitacion.cantidadAcompaniantesInvitacion }}</td> -->
+            <td>
+              <i class="material-icons">
+                <button type="button" class="colorear-verde" [disabled]="noPuedeAceptar(invitacion.cantidadAcompaniantesInvitacion)" mdbTooltip="Aceptar Invitacion" placement="bottom" (click)="setInvitacionSeleccionada(invitacion)"
+                  (click)="aceptar.show()">check</button>
+              </i>
+              <i class="material-icons">
+                <button type="button" class="colorear-rojo" mdbTooltip="Rechazar Invitacion" placement="right" (click)="setInvitacionSeleccionada(invitacion)"
+                  (click)="rechazar.show()">clear</button>
+              </i>
+            </td>
+            <tr>
+            </tr>
+            <!-- <div class="errorAcompaniantes" *ngIf="cantidadAcompaniantes > invitacion.cantidadAcompaniantesInvitacion || cantidadAcompaniantes < 0 ">
+            La cantidad de acompaniantes no puede ser mayor a {{invitacion.cantidadAcompaniantesInvitacion }}
+          </div> -->
+          </tbody>
+        </div>
+      </table>
+    </div>
+  </mdb-card>
+
 </div>
 
 <!-- MODAL ACEPTAR INVITACION -->
@@ -54,8 +71,8 @@
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a mdbBtn color="success" outline="true" class="waves-effect" (click)="aceptarInvitacion()"
-          (click)="aceptar.hide()" mdbWavesEffect>Si</a>
+        <a mdbBtn color="success" outline="true" class="waves-effect" (click)="aceptarInvitacion()" (click)="aceptar.hide()"
+          mdbWavesEffect>Si</a>
         <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="aceptar.hide()">No</a>
       </div>
     </div>
@@ -64,8 +81,8 @@
 </div>
 
 <!-- MODAL RECHAZAR INVITACION -->
-<div mdbModal #rechazar="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
+<div mdbModal #rechazar="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
     <!--Content-->
     <div class="modal-content text-center">
@@ -81,8 +98,8 @@
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="rechazarInvitacion()"
-          (click)="rechazar.hide()" mdbWavesEffect>Si</a>
+        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="rechazarInvitacion()" (click)="rechazar.hide()"
+          mdbWavesEffect>Si</a>
         <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="rechazar.hide()">No</a>
       </div>
     </div>
