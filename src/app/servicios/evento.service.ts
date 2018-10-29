@@ -7,6 +7,8 @@ import Usuario from '../domain/usuarios/usuario';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
 import { MockUsuarioService } from './usuario.service';
 import * as moment from 'moment';
+import { parse, stringify } from 'flatted/esm';
+
 
 export interface IEventoService {
   abiertosOrganizadosPorUsuario(userID: Number)
@@ -58,6 +60,7 @@ export class EventoService implements IEventoService {
 
   async crearEventoAbierto(userID: Number, evento: Evento) {
     const json = JSON.parse(JSON.stringify(evento))
+    json.locacion = JSON.parse(JSON.stringify(evento.locacion.descripcion))
     json.fechaHoraInicio = this.formatearFechaJson(evento.fechaHoraInicio.toString())
     json.fechaHoraFin = this.formatearFechaJson(evento.fechaHoraFin.toString())
 

@@ -4,6 +4,7 @@ import { EventoService } from 'src/app/servicios/evento.service';
 import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { NuevoEvento } from '../nuevo-evento';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { LocacionService } from 'src/app/servicios/locacion.service';
 
 @Component({
   selector: 'app-nuevo-evento-abierto',
@@ -12,11 +13,14 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class NuevoEventoAbiertoComponent extends NuevoEvento {
   IDUsuarioLogueado: Number
+  errors = []
 
-  constructor(serviceEvento: EventoService, router: Router, private usuarioService: UsuarioService) {
-    super(serviceEvento, router);
+  constructor(serviceEvento: EventoService, router: Router, private usuarioService: UsuarioService, locacionService: LocacionService) {
+    super(serviceEvento, router, locacionService);
     this.IDUsuarioLogueado = usuarioService.IDUsuarioLogueado
     this.nuevoEvento = new EventoAbierto();
+
   }
+
 
 }

@@ -5,6 +5,7 @@ import EventoCerrado from 'src/app/domain/eventos/evento-cerrado';
 import { NuevoEvento } from '../nuevo-evento';
 import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
 import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
+import { LocacionService } from 'src/app/servicios/locacion.service';
 
 @Component({
   selector: 'app-nuevo-evento-cerrado',
@@ -16,8 +17,8 @@ export class NuevoEventoCerradoComponent extends NuevoEvento implements OnInit {
   IDUsuarioLogueado: Number
   eventoService
 
-  constructor(serviceEvento: EventoService, private serviceUsuario: UsuarioService, router: Router) {
-    super(serviceEvento, router);
+  constructor(serviceEvento: EventoService, private serviceUsuario: UsuarioService, router: Router, locacionService: LocacionService) {
+    super(serviceEvento, router, locacionService);
     this.eventoService = serviceEvento
     this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     this.nuevoEvento = new EventoCerrado();

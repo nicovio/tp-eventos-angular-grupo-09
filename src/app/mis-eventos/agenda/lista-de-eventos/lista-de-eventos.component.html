@@ -10,7 +10,7 @@
       <tr>
         <td class="fecha" mdbTooltip="Fecha" placement="left"> {{evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a'}}</td>
         <td class="evento"><span mdbTooltip="Evento" placement="top"> {{evento.descripcion}}</span></td>
-        <td class="lugar"><span mdbTooltip="Lugar" placement="top"> {{evento.locacion}}</span></td>
+        <td class="lugar"><span mdbTooltip="Lugar" placement="top"> {{evento.locacion.descripcion}}</span></td>
         <td class="nombre-apellido"><span mdbTooltip="Organizador" placement="right"> {{evento.organizador.nombre}}
             {{evento.organizador.apellido}}</span></td>
       </tr>

@@ -1,12 +1,13 @@
 import Usuario from 'src/app/domain/usuarios/usuario';
 import * as moment from 'moment';
+import Locacion from './locacion';
 
 
 export default class Evento {
   descripcion: string
   fechaHoraInicio: Date
   fechaHoraFin: Date
-  locacion: string
+  locacion: Locacion
   organizador: Usuario
   fechaMaximaConfirmacion: Date
   id: number
@@ -24,6 +25,7 @@ export default class Evento {
     const result: Evento = Object.assign(new Evento(), eventoJSON);
     result.organizador = Usuario.crearUsuario(eventoJSON.nombreOrganizador, eventoJSON.apellidoOrganizador);
     result.fechaHoraInicio = new Date(eventoJSON.fecha);
+    result.locacion = Locacion.fromJSON(eventoJSON.locacion)
     return result;
   }
 }

@@ -17,7 +17,7 @@
         <tr>
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
           <td>{{ evento.descripcion }}</td>
-          <td>{{ evento.locacion }}</td>
+          <td>{{ evento.locacion.descripcion }}</td>
           <td>{{ evento.totalPersonasInvitadas }}</td>
           <td>{{ evento.totalPersonasConfirmadas }}</td>
           <td>{{ evento.totalPersonasRechazadas }}</td>
@@ -44,7 +44,7 @@
         <tr>
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
           <td>{{ evento.descripcion }}</td>
-          <td>{{ evento.locacion }}</td>
+          <td>{{ evento.locacion.descripcion }}</td>
         </tr>
       </tbody>
     </table>

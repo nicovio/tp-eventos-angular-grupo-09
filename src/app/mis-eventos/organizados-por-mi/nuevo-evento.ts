@@ -6,11 +6,13 @@ import { FormControl, Validators } from '@angular/forms';
 import Evento from 'src/app/domain/eventos/evento';
 import { MockUsuarioService } from 'src/app/servicios/usuario.service';
 import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
+import Locacion from 'src/app/domain/eventos/locacion';
+import { LocacionService } from 'src/app/servicios/locacion.service';
 
 export abstract class NuevoEvento implements AfterViewInit {
   @ViewChild('modalEvento')
   modal: ModalDirective;
-
+  locaciones: Array<Locacion>
   errors = []
 
   public hoy = new Date();
@@ -44,11 +46,20 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   minimaFecha = new Date();
 
-  constructor(private serviceEvento: EventoService, private router: Router) { 
+  constructor(private serviceEvento: EventoService, private router: Router, private locacionService: LocacionService) { 
+    try {
+      this.initialize()
+    } catch (error) {
+      this.errors.push(error._body)
+    }
   }
 
   ngAfterViewInit() {
     this.modal.show();
+  }
+
+  async initialize() {
+    this.locaciones = await this.locacionService.locaciones()
   }
 
   cancelar() {
@@ -96,7 +107,6 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   noPusoLocacion() {
     return (
-      this.nuevoEvento.locacion === '' ||
       this.nuevoEvento.locacion === undefined
     );
   }
