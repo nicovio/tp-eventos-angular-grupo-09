@@ -125,10 +125,12 @@ export abstract class NuevoEvento extends OrganizadosPorMiComponent implements A
   }
 
   public filtroFechaFin = (fechaFin: Date): boolean => {
-    return fechaFin >= this.nuevoEvento.fechaHoraInicio;
+    return true
+    // return fechaFin >= this.nuevoEvento.fechaHoraInicio;
   };
 
   public filtroFechaConfirmacion = (fechaMaximaConfirmacion: Date): boolean => {
-    return fechaMaximaConfirmacion <= this.nuevoEvento.fechaHoraInicio;
+    return true
+    // return fechaMaximaConfirmacion <= this.nuevoEvento.fechaHoraInicio;
   };
 }

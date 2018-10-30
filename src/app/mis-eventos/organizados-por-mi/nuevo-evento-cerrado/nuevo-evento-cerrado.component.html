@@ -39,7 +39,7 @@
                 </mat-error>
               </mat-form-field>
               <span [owlDateTimeTrigger]="fechaHoraInicio"><i class="fa fa-calendar"></i></span>
-              <owl-date-time [pickerMode]="'dialog'" #fechaHoraInicio></owl-date-time>
+              <owl-date-time  #fechaHoraInicio></owl-date-time>
             </div>
           </div>
           <div class="col-sm-6">
@@ -71,7 +71,7 @@
                 </mat-error>
               </mat-form-field>
               <span [owlDateTimeTrigger]="fechaHoraFin"><i class="fa fa-calendar"></i></span>
-              <owl-date-time [pickerMode]="'dialog'" #fechaHoraFin></owl-date-time>
+              <owl-date-time  #fechaHoraFin></owl-date-time>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@
             </mat-error>
           </mat-form-field>
           <span [owlDateTimeTrigger]="fechaHoraConfirmacion"><i class="fa fa-calendar"></i></span>
-          <owl-date-time [pickerMode]="'dialog'" #fechaHoraConfirmacion></owl-date-time>
+          <owl-date-time  #fechaHoraConfirmacion></owl-date-time>
         <div class="error-fechas" *ngIf="fechaMaximaDeConfirmacionIncorrecta()">La fecha maxima de confirmación debe
           ser anterior a la fecha de inicio</div>
       </div>
