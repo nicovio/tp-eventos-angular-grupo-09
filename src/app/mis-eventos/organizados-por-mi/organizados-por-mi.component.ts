@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from 'src/app/servicios/evento.service';
-import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import TipoUsuario from 'src/app/domain/usuarios/tipo-de-usuario';
-import Locacion from 'src/app/domain/eventos/locacion';
-import { LocacionService } from 'src/app/servicios/locacion.service';
-import Evento from 'src/app/domain/eventos/evento';
 
 
 @Component({
@@ -20,10 +15,9 @@ export class OrganizadosPorMiComponent implements OnInit {
   IDUsuarioLogueado: Number
   eventosOrganizadosAbiertos
   eventosOrganizadosCerrados
+  tipoUsuario
   errors = []
-  locaciones: Array<Locacion>
-  todosLosEventos: Array<Evento>
-  tipoUsuario: TipoUsuario
+
 
 
   // QUE TAL LA IDEA DE TENER UNA LISTA LOCAL DE EVENTOS QUE SEA POBLADA EN ESTE CONSTRUCTOR?
@@ -31,7 +25,7 @@ export class OrganizadosPorMiComponent implements OnInit {
   // CON LO CUAL ESTARIAS PEGANDOLE AL SERVER TODO EL TIEMPO. ESTO LO PODIAMOS VER CADA VEZ QUE
   // ABRIAMOS EL MODAL Y EN NgOnInit LE PEDIAMOS UN CONSOLE LOG NEW DATE()
 
-  constructor(private serviceEvento: EventoService, private router: Router, private serviceUsuario: UsuarioService, private locacionService: LocacionService) {
+  constructor(private serviceEvento: EventoService, private serviceUsuario: UsuarioService) {
     this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     try {
       this.initialize()
@@ -48,8 +42,6 @@ export class OrganizadosPorMiComponent implements OnInit {
     this.tipoUsuario = await this.serviceUsuario.getTipoDeUsuario(this.IDUsuarioLogueado)
     this.eventosOrganizadosAbiertos = await this.serviceEvento.abiertosOrganizadosPorUsuario(this.IDUsuarioLogueado)
     this.eventosOrganizadosCerrados = await this.serviceEvento.cerradosOrganizadosPorUsuario(this.IDUsuarioLogueado)
-    this.locaciones = await this.locacionService.locaciones()
-    this.todosLosEventos = this.eventosOrganizadosAbiertos.concat(this.eventosOrganizadosCerrados)
   }
 
 }

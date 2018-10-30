@@ -8,18 +8,20 @@ import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.se
 import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 import Locacion from 'src/app/domain/eventos/locacion';
 import { LocacionService } from 'src/app/servicios/locacion.service';
-import { OrganizadosPorMiComponent } from './organizados-por-mi.component';
+import TipoUsuario from 'src/app/domain/usuarios/tipo-de-usuario';
 
-export abstract class NuevoEvento extends OrganizadosPorMiComponent implements AfterViewInit {
+export abstract class NuevoEvento  implements AfterViewInit {
   @ViewChild('modalEvento')
   modal: ModalDirective;
   errors = []
-  routerNuevoEvento
-  servicioUsuario
-
-  public hoy = new Date();
-
+  eventosOrganizadosAbiertos
+  eventosOrganizadosCerrados
+  locaciones: Array<Locacion>
+  todosLosEventos: Array<Evento>
+  tipoUsuario: TipoUsuario
   nuevoEvento: Evento;
+  IDUsuarioLogueado: Number
+  hoy = new Date();
 
   nombreFormControl = new FormControl('', [
     Validators.required
@@ -49,15 +51,21 @@ export abstract class NuevoEvento extends OrganizadosPorMiComponent implements A
   minimaFecha = new Date();
 
 
-  constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
-    super(serviceEvento, router, serviceUsuario, locacionService)
-    this.servicioUsuario = serviceUsuario
-    this.routerNuevoEvento = router
+  constructor(private serviceEvento: EventoService, private router: Router, private serviceUsuario: UsuarioService, private locacionService: LocacionService) {
+    this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     try {
       this.initialize()
     } catch (error) {
       this.errors.push(error._body)
     }
+  }
+
+  async initialize(){
+    this.eventosOrganizadosAbiertos = await this.serviceEvento.abiertosOrganizadosPorUsuario(this.IDUsuarioLogueado)
+    this.eventosOrganizadosCerrados = await this.serviceEvento.cerradosOrganizadosPorUsuario(this.IDUsuarioLogueado)
+    this.tipoUsuario = await this.serviceUsuario.getTipoDeUsuario(this.IDUsuarioLogueado)
+    this.locaciones = await this.locacionService.locaciones()
+    this.todosLosEventos = this.eventosOrganizadosAbiertos.concat(this.eventosOrganizadosCerrados)
   }
 
   ngAfterViewInit() {
@@ -71,11 +79,11 @@ export abstract class NuevoEvento extends OrganizadosPorMiComponent implements A
 
 
   volverAOrganizadosPorMi() {
-    this.routerNuevoEvento.navigate(['/mis-eventos/organizados-por-mi']);
+    this.router.navigate(['/mis-eventos/organizados-por-mi']);
   }
 
   resfrescarPantalla() {
-    this.routerNuevoEvento.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
+    this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
       this.volverAOrganizadosPorMi())
   }
 

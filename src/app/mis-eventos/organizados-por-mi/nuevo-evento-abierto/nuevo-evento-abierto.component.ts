@@ -15,9 +15,11 @@ import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 export class NuevoEventoAbiertoComponent extends NuevoEvento {
   IDUsuarioLogueado: Number
   errors = []
+  servicioUsuario
 
   constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
     super(serviceEvento, router, serviceUsuario, locacionService);
+    this.servicioUsuario = serviceUsuario
     this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     this.nuevoEvento = new EventoAbierto();
 
