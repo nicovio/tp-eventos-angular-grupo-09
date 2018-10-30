@@ -16,8 +16,10 @@ export class InvitacionesPendientesComponent {
   cantidadAcompaniantes: Number
   invitacionesPendientes
   errors = []
+  maximoAcompaniantes
+  
   cantidadAcompaniantesFormControl = new FormControl('', [
-    Validators.max(100)
+    Validators.max(this.maximoAcompaniantes)
   ]);
   
   constructor(private usuarioService: UsuarioService, private router: Router) {
@@ -64,7 +66,7 @@ export class InvitacionesPendientesComponent {
   }
 
   noPuedeAceptar(maximo: Number){
-    return this.cantidadAcompaniantes > maximo || !this.cantidadAcompaniantes
+    return this.cantidadAcompaniantes > maximo || !this.cantidadAcompaniantes || this.cantidadAcompaniantes < 0
 
   }
 

@@ -24,12 +24,11 @@
                   [formControl]="cantidadAcompaniantesFormControl" ><i> de {{ invitacion.cantidadAcompaniantesInvitacion }}</i>
                 <mat-error *ngIf="cantidadAcompaniantesFormControl.hasError('max')">
                   <strong>
-                    La cantidad de acompañantes no puede ser mayor a {{ invitacion.cantidadAcompaniantesInvitacion }}
+                    La cantidad de acompañantes debe estar entre 0 y {{ invitacion.cantidadAcompaniantesInvitacion }}
                   </strong>
                 </mat-error>
               </mat-form-field>
             </td>
-            <!-- <td ><input class="acompaniantes" type="number" [(ngModel)]= cantidadAcompaniantes min="1" max="{{invitacion.cantidadAcompaniantesInvitacion}}" > de {{invitacion.cantidadAcompaniantesInvitacion }}</td> -->
             <td>
               <i class="material-icons">
                 <button type="button" class="colorear-verde" [disabled]="noPuedeAceptar(invitacion.cantidadAcompaniantesInvitacion)" mdbTooltip="Aceptar Invitacion" placement="bottom" (click)="setInvitacionSeleccionada(invitacion)"
@@ -42,9 +41,6 @@
             </td>
             <tr>
             </tr>
-            <!-- <div class="errorAcompaniantes" *ngIf="cantidadAcompaniantes > invitacion.cantidadAcompaniantesInvitacion || cantidadAcompaniantes < 0 ">
-            La cantidad de acompaniantes no puede ser mayor a {{invitacion.cantidadAcompaniantesInvitacion }}
-          </div> -->
           </tbody>
         </div>
       </table>
