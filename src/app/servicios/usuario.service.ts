@@ -5,8 +5,14 @@ import EventoCerrado from '../domain/eventos/evento-cerrado';
 import { Invitacion } from '../domain/eventos/invitacion';
 import { Http } from '@angular/http';
 import { REST_SERVER_URL } from './configuration';
+import TipoUsuario, { getTipoUsuarioInstance } from '../domain/usuarios/tipo-de-usuario';
+import Profesional from '../domain/usuarios/profesional';
+import Evento from '../domain/eventos/evento';
+import * as moment from 'moment';
 
 export interface IUsuarioService {
+  crearEventoAbierto(userID: Number, evento: Evento)
+  crearEventoCerrado(userID: Number, evento: Evento)
 
 }
 
@@ -55,6 +61,35 @@ export class UsuarioService implements IUsuarioService {
     return this.http.put(REST_SERVER_URL + "/usuario/invitaciones/rechazar/" + idLogueado, jsonRechazarInvitacion).toPromise()
   }
 
+  async getTipoDeUsuario(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/usuario/tipoUsuario/' + userID).toPromise()
+    return getTipoUsuarioInstance(res.json())
+  }
+
+  async crearEventoAbierto(userID: Number, evento: Evento) {
+    const json = JSON.parse(JSON.stringify(evento))
+    json.locacion = JSON.parse(JSON.stringify(String(evento.locacion.id)))
+    json.fechaHoraInicio = this.formatearFechaJson(evento.fechaHoraInicio.toString())
+    json.fechaHoraFin = this.formatearFechaJson(evento.fechaHoraFin.toString())
+
+    return this.http.put(REST_SERVER_URL + '/usuario/eventos/crearAbierto/' + userID, json).toPromise()
+  }
+
+  async crearEventoCerrado(userID: Number, evento: Evento) {
+    const json = JSON.parse(JSON.stringify(evento))
+    json.locacion = JSON.parse(JSON.stringify(String(evento.locacion.id)))
+    json.fechaHoraInicio = this.formatearFechaJson(evento.fechaHoraInicio.toString())
+    json.fechaHoraFin = this.formatearFechaJson(evento.fechaHoraFin.toString())
+    json.fechaMaximaConfirmacion = this.formatearFechaJson(evento.fechaMaximaConfirmacion.toString())
+
+    return this.http.put(REST_SERVER_URL + '/usuario/eventos/crearCerrado/' + userID, json).toPromise()
+  }
+
+  formatearFechaJson(fechaAFormatear: string) {
+    return moment(fechaAFormatear).format("YYYY/MM/DD HH:mm")
+  }
+  
+
 }
 
 @Injectable({
@@ -69,7 +104,7 @@ export class MockUsuarioService implements IUsuarioService {
     let karaDanvers = new Usuario('Kara', 'Danvers', '@kara95');
     let fernandoDodino = new Usuario('Fernando', 'Dodino', '@dodain');
     let cristianMaggiorano = new Usuario('Cristian', 'Maggiorano', '@crismagg');
-    karaDanvers.tipoUsuario = "Profesional"
+    karaDanvers.tipoUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
     karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
     karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
@@ -99,5 +134,11 @@ export class MockUsuarioService implements IUsuarioService {
     karaDanvers.comprarEntrada(racingBoca)
     karaDanvers.comprarEntrada(casamientoMarley)
     this.usuarioLogueado = karaDanvers
+  }
+
+  crearEventoAbierto(){}
+
+  crearEventoCerrado(){
+    
   }
 }

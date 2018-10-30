@@ -30,7 +30,6 @@ export class AmigosComponent implements OnInit {
   }
 
   setUsuarioAEliminar(idUsuario: Number) {
-    console.log("id: ", idUsuario)
     this.IdUsuarioAEliminar = idUsuario;
   }
 

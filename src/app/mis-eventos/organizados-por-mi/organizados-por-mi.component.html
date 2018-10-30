@@ -52,8 +52,8 @@
 </mdb-card>
 </div>
 
-  <div class="botones-nuevos-eventos">
-    <button type="button" mdbBtn color="primary" class="relative waves-light" routerLink="nuevo-evento-abierto"  mdbWavesEffect>Nuevo evento abierto</button>
+  <div class="botones-nuevos-eventos"  >
+    <button  *ngIf= "tipoUsuario" type="button" mdbBtn color="primary" class="relative waves-light" routerLink="nuevo-evento-abierto" [disabled]="!tipoUsuario.puedeHacerEventosAbiertos()" mdbWavesEffect>Nuevo evento abierto</button>
     <button type="button" mdbBtn color="warning" class="relative waves-light" routerLink="nuevo-evento-cerrado" mdbWavesEffect>Nuevo evento cerrado</button>
   </div>
 

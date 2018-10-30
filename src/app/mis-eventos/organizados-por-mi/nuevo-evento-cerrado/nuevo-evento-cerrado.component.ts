@@ -6,6 +6,8 @@ import { NuevoEvento } from '../nuevo-evento';
 import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
 import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 import { LocacionService } from 'src/app/servicios/locacion.service';
+import TipoUsuario from 'src/app/domain/usuarios/tipo-de-usuario';
+import Evento from 'src/app/domain/eventos/evento';
 
 @Component({
   selector: 'app-nuevo-evento-cerrado',
@@ -15,34 +17,33 @@ import { LocacionService } from 'src/app/servicios/locacion.service';
 export class NuevoEventoCerradoComponent extends NuevoEvento implements OnInit {
 
   IDUsuarioLogueado: Number
-  eventoService
+  usuarioService
 
-  constructor(serviceEvento: EventoService, private serviceUsuario: UsuarioService, router: Router, locacionService: LocacionService) {
-    super(serviceEvento, router, locacionService);
-    this.eventoService = serviceEvento
+
+  constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
+    super(serviceEvento, router, serviceUsuario, locacionService);
     this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     this.nuevoEvento = new EventoCerrado();
+    this.usuarioService = serviceUsuario
+
   }
 
-  ngOnInit() {}
-
-  noPuedeCrearEvento() {
-    return (
-      super.noPuedeCrearEvento() || this.fechaMaximaDeConfirmacionIncorrecta()
-    );
-  }
-
-  fechaMaximaDeConfirmacionIncorrecta(){
-    return this.nuevoEvento.fechaMaximaConfirmacion >= this.nuevoEvento.fechaHoraInicio;
-  }
 
   async aceptar(idUsuarioLogueado: number) {
     try {
-      await this.eventoService.crearEventoCerrado(idUsuarioLogueado, this.nuevoEvento);
+      await this.servicioUsuario.crearEventoCerrado(idUsuarioLogueado, this.nuevoEvento);
     } catch (error) {
       mostrarError(this, error)
     }
-    super.resfrescarPantalla();
+    this.resfrescarPantalla();
+  }
+
+  noPuedeCrearEventoCerrado() {
+    return super.noPuedeCrearEvento() || this.fechaMaximaDeConfirmacionIncorrecta()
+  }
+
+  fechaMaximaDeConfirmacionIncorrecta() {
+    return this.nuevoEvento.fechaMaximaConfirmacion >= this.nuevoEvento.fechaHoraInicio;
   }
 
 

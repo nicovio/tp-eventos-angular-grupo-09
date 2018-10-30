@@ -94,8 +94,8 @@
       <div class="modal-footer">
         <div class="error-fechas" *ngIf="empiezaDespuesDeTerminar()">El evento debe finalizar en una fecha posterior a
           la de fecha de inicio</div>
-        <button type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar(IDUsuarioLogueado)"
-          [disabled]="noPuedeCrearEvento()" mdbWavesEffect>Aceptar</button>
+        <button *ngIf= "tipoUsuario && todosLosEventos" type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar(IDUsuarioLogueado)"
+          [disabled]="noPuedeCrearEventoCerrado()" mdbWavesEffect>Aceptar</button>
         <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="cancelar()"
           mdbWavesEffect>Cancelar</button>
       </div>

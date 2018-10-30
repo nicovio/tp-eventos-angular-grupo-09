@@ -4,16 +4,18 @@ import { ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { FormControl, Validators } from '@angular/forms';
 import Evento from 'src/app/domain/eventos/evento';
-import { MockUsuarioService } from 'src/app/servicios/usuario.service';
+import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
 import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 import Locacion from 'src/app/domain/eventos/locacion';
 import { LocacionService } from 'src/app/servicios/locacion.service';
+import { OrganizadosPorMiComponent } from './organizados-por-mi.component';
 
-export abstract class NuevoEvento implements AfterViewInit {
+export abstract class NuevoEvento extends OrganizadosPorMiComponent implements AfterViewInit {
   @ViewChild('modalEvento')
   modal: ModalDirective;
-  locaciones: Array<Locacion>
   errors = []
+  routerNuevoEvento
+  servicioUsuario
 
   public hoy = new Date();
 
@@ -46,7 +48,11 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   minimaFecha = new Date();
 
-  constructor(private serviceEvento: EventoService, private router: Router, private locacionService: LocacionService) { 
+
+  constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
+    super(serviceEvento, router, serviceUsuario, locacionService)
+    this.servicioUsuario = serviceUsuario
+    this.routerNuevoEvento = router
     try {
       this.initialize()
     } catch (error) {
@@ -58,30 +64,18 @@ export abstract class NuevoEvento implements AfterViewInit {
     this.modal.show();
   }
 
-  async initialize() {
-    this.locaciones = await this.locacionService.locaciones()
-  }
 
   cancelar() {
     this.volverAOrganizadosPorMi();
   }
 
-  async aceptar(idUsuarioLogueado: number) {
-    try {
-      await this.serviceEvento.crearEventoAbierto(idUsuarioLogueado, this.nuevoEvento);
-    } catch (error) {
-      mostrarError(this, error)
-    }
-    this.resfrescarPantalla();
-  }
-
 
   volverAOrganizadosPorMi() {
-    this.router.navigate(['/mis-eventos/organizados-por-mi']);
+    this.routerNuevoEvento.navigate(['/mis-eventos/organizados-por-mi']);
   }
 
   resfrescarPantalla() {
-    this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
+    this.routerNuevoEvento.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
       this.volverAOrganizadosPorMi())
   }
 
@@ -90,9 +84,21 @@ export abstract class NuevoEvento implements AfterViewInit {
       this.empiezaDespuesDeTerminar() ||
       this.noPusoNombre() ||
       this.noPusoLocacion() ||
-      this.noPusoFechas()
+      this.noPusoFechas() ||
+      this.superaEventosSimultaneos() ||
+      this.superaEventosMensuales()
     );
   }
+
+
+  superaEventosSimultaneos() {
+    return this.tipoUsuario.superaMaximoDeEventosSimultaneos(this.nuevoEvento, this.todosLosEventos)
+  }
+
+  superaEventosMensuales() {
+    return this.tipoUsuario.superaMaximoDeEventosMensuales(this.nuevoEvento, this.todosLosEventos)
+  }
+
 
   empiezaDespuesDeTerminar() {
     return this.nuevoEvento.fechaHoraInicio >= this.nuevoEvento.fechaHoraFin;

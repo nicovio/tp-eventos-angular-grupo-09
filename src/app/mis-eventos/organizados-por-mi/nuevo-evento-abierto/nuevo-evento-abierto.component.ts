@@ -5,6 +5,7 @@ import EventoAbierto from 'src/app/domain/eventos/evento-abierto';
 import { NuevoEvento } from '../nuevo-evento';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { LocacionService } from 'src/app/servicios/locacion.service';
+import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 
 @Component({
   selector: 'app-nuevo-evento-abierto',
@@ -15,11 +16,21 @@ export class NuevoEventoAbiertoComponent extends NuevoEvento {
   IDUsuarioLogueado: Number
   errors = []
 
-  constructor(serviceEvento: EventoService, router: Router, private usuarioService: UsuarioService, locacionService: LocacionService) {
-    super(serviceEvento, router, locacionService);
-    this.IDUsuarioLogueado = usuarioService.IDUsuarioLogueado
+  constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
+    super(serviceEvento, router, serviceUsuario, locacionService);
+    this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     this.nuevoEvento = new EventoAbierto();
 
+  }
+
+
+  async aceptar(idUsuarioLogueado: number) {
+    try {
+      await this.servicioUsuario.crearEventoAbierto(idUsuarioLogueado, this.nuevoEvento);
+    } catch (error) {
+      mostrarError(this, error)
+    }
+    this.resfrescarPantalla();
   }
 
 
