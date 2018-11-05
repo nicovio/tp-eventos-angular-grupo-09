@@ -9,6 +9,7 @@ import TipoUsuario, { getTipoUsuarioInstance } from '../domain/usuarios/tipo-de-
 import Profesional from '../domain/usuarios/profesional';
 import Evento from '../domain/eventos/evento';
 import * as moment from 'moment';
+import Locacion from '../domain/eventos/locacion';
 
 export interface IUsuarioService {
   getUsuarioById(userID?: Number)
@@ -111,13 +112,13 @@ export class StubUsuarioService implements IUsuarioService {
 
   constructor() {
     this.IDUsuarioLogueado = 0
-    let karaDanvers = new Usuario(0, 'Kara', 'Danvers', '@kara95');
-    let fernandoDodino = new Usuario(1, 'Fernando', 'Dodino', '@dodain');
-    let cristianMaggiorano = new Usuario(2, 'Cristian', 'Maggiorano', '@crismagg');
-    let timothyDrake = new Usuario(3, 'Timothy', 'Drake', '@theRedOne')
-    let catherineGrant = new Usuario(4, 'Catherine', 'Grant', '@catGrant')
-    let perryWhite = new Usuario(5, 'Perry', 'White', '@whiteDP')
-    let jamesGordon = new Usuario(6, 'James', 'Gordon', '@jimG')
+    let karaDanvers = new Usuario('Kara','Danvers',0,'@kara95');
+    let fernandoDodino = new Usuario('Fernando','Dodino',1,'@dodain');
+    let cristianMaggiorano = new Usuario('Cristian','Maggiorano',2,'@crismagg');
+    let timothyDrake = new Usuario('Timothy','Drake',3,'@theRedOne')
+    let catherineGrant = new Usuario('Catherine','Grant', 4, '@catGrant')
+    let perryWhite = new Usuario('Perry', 'White',5,'@whiteDP')
+    let jamesGordon = new Usuario('James', 'Gordon',6,'@jimG')
     karaDanvers.tipoUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
     karaDanvers.agregarAmigo(timothyDrake);
@@ -126,11 +127,11 @@ export class StubUsuarioService implements IUsuarioService {
     karaDanvers.agregarAmigo(jamesGordon);
     karaDanvers.agregarAmigo(cristianMaggiorano);
     karaDanvers.agregarAmigo(fernandoDodino);
-    let cumpleKara = new EventoCerrado("Cumple Kara", new Date(), new Date('2019/10/19 07:00'), "Mi Casa", cristianMaggiorano)
-    let cumpleDodain = new EventoCerrado("Cumple Dodain", new Date('2020/10/11 23:59'), new Date('2020/10/15 22:00'), "Lo de Dodino", fernandoDodino)
-    let salidaBoliche = new EventoCerrado("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), "Soul Train", cristianMaggiorano)
-    let racingBoca = new EventoAbierto("Recital Abel Pintos", new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), "Luna Park", fernandoDodino, 500)
-    let casamientoMarley = new EventoAbierto("Casamiento Marley", new Date('2018/10/20'), new Date('2020/3/2 21:00'), "Uganda", cristianMaggiorano, 250000)
+    let cumpleKara = new EventoCerrado("Cumple Kara", new Date(), new Date('2019/10/19 07:00'), new Locacion("Mi Casa"), cristianMaggiorano)
+    let cumpleDodain = new EventoCerrado("Cumple Dodain", new Date('2020/10/11 23:59'), new Date('2020/10/15 22:00'), new Locacion("Lo de Dodino"), fernandoDodino)
+    let salidaBoliche = new EventoCerrado("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), new Locacion("Soul Train"), cristianMaggiorano)
+    let racingBoca = new EventoAbierto("Recital Abel Pintos", new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), new Locacion("Luna Park"), fernandoDodino, 500)
+    let casamientoMarley = new EventoAbierto("Casamiento Marley", new Date('2018/10/20'), new Date('2020/3/2 21:00'), new Locacion("Uganda"), cristianMaggiorano, 250000)
     let invitacionCumpleKara = new Invitacion(0, cumpleKara, 2)
     let invitacionCumpleDodain = new Invitacion(1, cumpleDodain, 5)
     let invitacionSalidaBoliche = new Invitacion(2, salidaBoliche, 10)
@@ -155,7 +156,7 @@ export class StubUsuarioService implements IUsuarioService {
     return this.usuarioLogueado.invitaciones.find((invitacion) => invitacion.id === idInvitacion)
   }
 
-  async getUsuarioById(userID: Number) {
+  async getUsuarioById(userID: Number){
     return this.usuarios.find((usuario) => usuario.id === userID)
   }
 
@@ -194,7 +195,6 @@ export class StubUsuarioService implements IUsuarioService {
 
   async crearEventoAbierto(userID: Number, evento: Evento) {
     this.usuarioLogueado.eventosPorOrganizar.push(evento)
-
   }
 
   async crearEventoCerrado(userID: Number, evento: Evento) {

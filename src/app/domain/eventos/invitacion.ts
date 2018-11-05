@@ -3,15 +3,17 @@ import Usuario from "../usuarios/usuario";
 import Evento from "./evento";
 
 export class Invitacion {
-    id: Number
+    id: number
     evento: Evento
     cantidadAcompaniantesInvitacion: number
     pendiente: boolean = true
     aceptada: boolean = false
 
     constructor(id?: number, evento?: Evento, cantidadAcompaniantes?: number) {
+        this.id = id
         this.evento = evento
         this.cantidadAcompaniantesInvitacion = cantidadAcompaniantes
+     
     }
 
     getEvento(): Evento {

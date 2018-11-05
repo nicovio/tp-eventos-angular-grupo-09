@@ -40,4 +40,35 @@ describe('AmigosComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  it('Tiene 6 amigos', async () => {
+    expect(component.amigosUsuario.length).toBe(6)
+  })
+
+  it('Nombre de amigo con id 1 es Fernando', async () => {
+    const resultHtml = fixture.debugElement.nativeElement
+    const nombreApellido = resultHtml.querySelector('#nombre_1')
+    expect(nombreApellido.textContent).toBe('Fernando')
+  })
+
+  it('Apellido de amigo con id 5 es White', async () => {
+    const resultHtml = fixture.debugElement.nativeElement
+    const nombreApellido = resultHtml.querySelector('#apellido_5')
+    expect(nombreApellido.textContent).toBe('White')
+  })
+
+  it('Username de amigo con id 3 es @theRedOne', async () => {
+    const resultHtml = fixture.debugElement.nativeElement
+    const nombreApellido = resultHtml.querySelector('#username_3')
+    expect(nombreApellido.textContent).toBe('@theRedOne')
+  })
+
+  it('Elimina a un amigo y pasa a tener 5 amigos', async () => {
+    const resultHtml = fixture.debugElement.nativeElement
+    resultHtml.querySelector('#eliminar_1').click()
+    fixture.detectChanges()
+    resultHtml.querySelector('#confirmar_eliminacion_1').click()
+    await fixture.detectChanges()
+    expect(component.amigosUsuario.length).toBe(5)
+  })
+
 })

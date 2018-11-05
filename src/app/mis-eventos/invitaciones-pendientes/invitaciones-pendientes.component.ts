@@ -38,8 +38,8 @@ export class InvitacionesPendientesComponent {
     this.invitacionesPendientes = await this.usuarioService.getInvitacionesPendientes(this.IdUsuarioLogueado)
   }
 
-  setInvitacionSeleccionada(invitacion: Invitacion) {
-    this.IdInvitacionSeleccionada = invitacion.id
+  setInvitacionSeleccionada(idInvitacion: Number) {
+    this.IdInvitacionSeleccionada = idInvitacion
   }
 
   async aceptarInvitacion() {

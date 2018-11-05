@@ -5,7 +5,6 @@ import { ModalDirective } from 'angular-bootstrap-md';
 import { FormControl, Validators } from '@angular/forms';
 import Evento from 'src/app/domain/eventos/evento';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 import Locacion from 'src/app/domain/eventos/locacion';
 import { LocacionService } from 'src/app/servicios/locacion.service';
 import TipoUsuario from 'src/app/domain/usuarios/tipo-de-usuario';
@@ -14,8 +13,8 @@ export abstract class NuevoEvento  implements AfterViewInit {
   @ViewChild('modalEvento')
   modal: ModalDirective;
   errors = []
-  eventosOrganizadosAbiertos
-  eventosOrganizadosCerrados
+  eventosOrganizadosAbiertos: Array<Evento>
+  eventosOrganizadosCerrados: Array<Evento>
   locaciones: Array<Locacion>
   todosLosEventos: Array<Evento>
   tipoUsuario: TipoUsuario

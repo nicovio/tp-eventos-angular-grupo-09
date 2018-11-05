@@ -20,14 +20,6 @@ describe('MisEventosComponent', () => {
     })
       .compileComponents()
 
-    // TestBed.overrideComponent(MisEventosComponent, {
-    //   set: {
-    //     providers: [
-    //       { provide: UsuarioService, useClass: StubUsuarioService }
-    //     ]
-    //   }
-    // })
-
     fixture = TestBed.createComponent(MisEventosComponent)
     fixture.detectChanges()
     await fixture.whenStable()

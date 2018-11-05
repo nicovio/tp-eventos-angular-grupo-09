@@ -14,13 +14,11 @@ import { LocacionService } from 'src/app/servicios/locacion.service';
 })
 export class NuevoEventoCerradoComponent extends NuevoEvento {
 
-  IDUsuarioLogueado: Number
   usuarioService
 
 
   constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
     super(serviceEvento, router, serviceUsuario, locacionService);
-    this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     this.nuevoEvento = new EventoCerrado();
     this.usuarioService = serviceUsuario
   }

@@ -4,6 +4,7 @@ import { AgendaComponent } from './agenda.component';
 import { AppModule } from 'src/app/app.module';
 import { APP_BASE_HREF } from '@angular/common';
 import { UsuarioService, StubUsuarioService } from 'src/app/servicios/usuario.service';
+import { EventoService, StubEventoService } from 'src/app/servicios/evento.service';
 
 describe('AgendaComponent', () => {
   let component: AgendaComponent
@@ -23,7 +24,8 @@ describe('AgendaComponent', () => {
     TestBed.overrideComponent(AgendaComponent, {
       set: {
         providers: [
-          { provide: UsuarioService, useClass: StubUsuarioService }
+          { provide: UsuarioService, useClass: StubUsuarioService },
+          { provide: EventoService, useClass: StubEventoService }
         ]
       }
     })

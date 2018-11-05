@@ -10,19 +10,20 @@ export default class Usuario {
   apellido: string;
   userName: string;
   tipoUsuario: TipoUsuario;
-  eventosPorOrganizar: Array<Evento>
+  eventosPorOrganizar: Array<Evento> = []
   email: string;
-  invitaciones: Array<Invitacion>;
+  invitaciones: Array<Invitacion> = []
   amigos: Array<Usuario> = [];
   entradas: Array<Entrada> = [];
   cantidadAmigos: string
 
-  constructor(id?, nombre?, apellido?, userName?, email?) {
+  constructor(nombre?, apellido?, id?, userName?, email?) {
+    this.id = id
     this.nombre = nombre;
     this.apellido = apellido;
     this.userName = userName;
     this.email = email;
-    this.id = id
+    
   }
 
   todosLosEventos(): Array<Evento> {

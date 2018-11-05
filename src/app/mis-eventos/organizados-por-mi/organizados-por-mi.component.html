@@ -1,7 +1,7 @@
 <div class="contenedor-tabla">
 <mdb-card class="amigos-card">
   <div class="table-responsive  texto-centrado">
-    <strong>Eventos Cerrados </strong>
+    <strong class="titulo">Eventos Cerrados </strong>
     <table class="table">
       <thead class="colorear-celeste">
         <tr> 
@@ -25,13 +25,16 @@
       </tbody>
     </table>
   </div>
+    <span class="sin-eventos" *ngIf="eventosOrganizadosCerrados && eventosOrganizadosCerrados.length === 0">
+      No hay eventos cerrados para mostrar
+    </span>
 </mdb-card>
 </div>
 
 <div class="contenedor-tabla">
   <mdb-card class="amigos-card">
     <div class="table-responsive texto-centrado">
-      <strong>Eventos Abiertos</strong>
+      <strong class="titulo">Eventos Abiertos</strong>
     <table class="table">    
       <thead class="rellenar">
         <tr> 
@@ -40,6 +43,7 @@
           <th>Lugar</th>
         </tr>
       </thead>
+      
       <tbody *ngFor="let evento of eventosOrganizadosAbiertos">
         <tr>
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
@@ -49,6 +53,9 @@
       </tbody>
     </table>
   </div>
+    <span class="sin-eventos" *ngIf="eventosOrganizadosAbiertos && eventosOrganizadosAbiertos.length === 0">
+      No hay eventos abiertos para mostrar
+    </span>
 </mdb-card>
 </div>
 

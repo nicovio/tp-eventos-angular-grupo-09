@@ -4,24 +4,25 @@
       Amigos
     </span>
   </div>
-  <mdb-card class="amigos-card">
+  <mdb-card  class="amigos-card">
     <table class="table" *ngFor='let amigo of amigosUsuario'>
       <div class="margen-amigos">
         <div class="row">
           <div class="col-nombre-apellido">
-            {{amigo.nombre}}
-            {{amigo.apellido}}
+            <span id="nombre_{{amigo.id}}">{{amigo.nombre}}</span>
+            &nbsp;
+            <span id="apellido_{{amigo.id}}">{{amigo.apellido}}</span>
           </div>
-          <div class="col-user-name">{{amigo.userName}}</div>
+          <div class="col-user-name" id="username_{{amigo.id}}">{{amigo.userName}}</div>
           <div class="col-eliminar">
-            <button type="button" class="fas fa-times waves-light" mdbTooltip="Eliminar Amigo" placement="right"
-              (click)="setUsuarioAEliminar(amigo.id)" (click)="frame.show()" mdbWavesEffect></button>
+            <button type="button" class=" fas fa-times waves-light" mdbTooltip="Eliminar Amigo"
+              placement="right" (click)="setUsuarioAEliminar(amigo.id)" (click)="frame.show()" id="eliminar_{{amigo.id}}" mdbWavesEffect></button>
           </div>
         </div>
       </div>
     </table>
   </mdb-card>
-  <!-- <img *ngIf="amigosUsuario.length === 0" class="img-fluid" alt="no friends" src="assets/images/ea6.gif"> -->
+  <img *ngIf="amigosUsuario && amigosUsuario.length === 0" class="img-fluid" alt="no friends" src="assets/images/ea6.gif">
 </div>
 
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -41,7 +42,7 @@
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="eliminarAmigo()"
+        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="eliminarAmigo()" id="confirmar_eliminacion_{{IdUsuarioAEliminar}}"
           (click)="frame.hide()" mdbWavesEffect>Si</a>
         <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
       </div>

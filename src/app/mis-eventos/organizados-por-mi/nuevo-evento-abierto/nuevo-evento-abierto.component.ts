@@ -10,21 +10,20 @@ import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 @Component({
   selector: 'app-nuevo-evento-abierto',
   templateUrl: './nuevo-evento-abierto.component.html',
-  styleUrls: ['./nuevo-evento-abierto.component.scss']
+  styleUrls: ['./nuevo-evento-abierto.component.scss'],
+  providers: [UsuarioService, EventoService, LocacionService]
+  
 })
 export class NuevoEventoAbiertoComponent extends NuevoEvento {
-  IDUsuarioLogueado: Number
   errors = []
   servicioUsuario
 
   constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
     super(serviceEvento, router, serviceUsuario, locacionService);
     this.servicioUsuario = serviceUsuario
-    this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     this.nuevoEvento = new EventoAbierto();
 
   }
-
 
   async aceptar(idUsuarioLogueado: number) {
     try {

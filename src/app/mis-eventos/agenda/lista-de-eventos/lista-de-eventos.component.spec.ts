@@ -19,14 +19,6 @@ describe('ListaDeEventosComponent', () => {
     })
       .compileComponents()
 
-    // TestBed.overrideComponent(ListaDeEventosComponent, {
-    //   set: {
-    //     providers: [
-    //       { provide: UsuarioService, useClass: StubUsuarioService }
-    //     ]
-    //   }
-    // })
-
     fixture = TestBed.createComponent(ListaDeEventosComponent)
     fixture.detectChanges()
     await fixture.whenStable()

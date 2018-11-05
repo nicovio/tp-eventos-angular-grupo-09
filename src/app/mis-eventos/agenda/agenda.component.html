@@ -1,12 +1,17 @@
 <div class="componente-container">
+  <div class= "sin-eventos" *ngIf="eventosDeHoy && eventosDeHoy.length === 0 && eventosDeEstaSemana && eventosDeEstaSemana.length === 0 && eventosProximos && eventosProximos.length === 0 ">
+    No hay eventos para mostrar
+  </div>
   <mdb-card class="amigos-card">
 
-    <lista-de-eventos *ngIf= "eventosDeHoy" [eventosAMostrar] = "eventosDeHoy" [titulo] = "'Hoy'"> </lista-de-eventos>
+    <lista-de-eventos *ngIf="eventosDeHoy" [eventosAMostrar]="eventosDeHoy" [titulo]="'Hoy'"> </lista-de-eventos>
 
-    <lista-de-eventos *ngIf= "eventosDeEstaSemana" [eventosAMostrar] = "eventosDeEstaSemana" [titulo] = "'Esta Semana'"> </lista-de-eventos>
+    <lista-de-eventos *ngIf="eventosDeEstaSemana" [eventosAMostrar]="eventosDeEstaSemana" [titulo]="'Esta Semana'">
+    </lista-de-eventos>
 
-    <lista-de-eventos *ngIf= "eventosProximos" [eventosAMostrar] = "eventosProximos" [titulo] = "'Próximos'">  </lista-de-eventos>
+    <lista-de-eventos *ngIf="eventosProximos" [eventosAMostrar]="eventosProximos" [titulo]="'Próximos'">
+    </lista-de-eventos>
 
   </mdb-card>
-  
+
 </div>

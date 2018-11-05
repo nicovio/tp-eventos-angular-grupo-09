@@ -25,7 +25,7 @@ describe('OrganizadosPorMiComponent', () => {
       set: {
         providers: [
           { provide: UsuarioService, useClass: StubUsuarioService },
-          // { provide: EventoService, useClass: StubEventoService }
+          { provide: EventoService, useClass: StubEventoService }
         ]
       }
     })

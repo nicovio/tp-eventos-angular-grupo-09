@@ -27,6 +27,7 @@ import { MaterialModule } from 'src/app/angular-material-module/material.module'
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { AppModule } from 'src/app/app.module';
+import { Invitacion } from 'src/app/domain/eventos/invitacion';
 
 
 describe('InvitacionesPendientesComponent', () => {
@@ -64,38 +65,29 @@ describe('InvitacionesPendientesComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('deberia mostrar 2 invitaciones pendientes', () => {
+  it('Tiene 2 invitaciones pendientes', () => {
     expect(3).toBe(component.invitacionesPendientes.length)
   })
 
-  // it('should show 2 pending tasks', async () => {
-  //   expect(2).toBe(component.tareas.length)
-  // })
+  it('Aceptar invitacion', async () => {
+    const resultHtml = fixture.debugElement.nativeElement
+    component.cantidadAcompaniantes = 2
+    fixture.detectChanges()
+    resultHtml.querySelector('#aceptarInvitacion_0').click()
+    fixture.detectChanges()
+    resultHtml.querySelector('#confirmarAceptacion_0').click()
+    await fixture.detectChanges()
+    const invitacionAceptada: Invitacion = component.invitacionesPendientes.find(invitacion => invitacion.id === 0)
+    expect(invitacionAceptada.aceptada).toBe(true)
+  })
 
-  // it('first task could be mark as done', async () => {
-  //   const resultHtml = fixture.debugElement.nativeElement
-  //   expect(resultHtml.querySelector('#cumplir_1')).toBeTruthy()
-  // })
-
-  // it('mark first task as done', async () => {
-  //   const resultHtml = fixture.debugElement.nativeElement
-  //   resultHtml.querySelector('#cumplir_1').click()
-  //   fixture.detectChanges()
-  //   expect(resultHtml.querySelector('#porcentaje_1').textContent).toBe("100,00")
-  // })
-
-  // it('unassign first task', async () => {
-  //   const resultHtml = fixture.debugElement.nativeElement
-  //   resultHtml.querySelector('#desasignar_1').click()
-  //   fixture.detectChanges()
-  //   expect(resultHtml.querySelector('#asignatario_1').textContent).toBe("")
-  // })
-
-  // it('searching for second task should have one tr in tasks list', async () => {
-  //   component.tareaBuscada = "2"
-  //   fixture.detectChanges()
-  //   const resultHtml = fixture.debugElement.nativeElement
-  //   expect(resultHtml.querySelectorAll('.animate-repeat').length).toBe(1)
-  // })
-
+  it('Rechazar invitacion', async () => {
+    const resultHtml = fixture.debugElement.nativeElement
+    fixture.detectChanges()
+    resultHtml.querySelector('#rechazarInvitacion_0').click()
+    fixture.detectChanges()
+    resultHtml.querySelector('#confirmarRechazo_0').click()
+    await fixture.detectChanges()
+    expect(component.invitacionesPendientes.length).toBe(2)
+  })
 })

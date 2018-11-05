@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  UsuarioService } from 'src/app/servicios/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Usuario from 'src/app/domain/usuarios/usuario';
 
 export function mostrarError(component, error) {
   console.log("error", error)
@@ -17,7 +18,7 @@ export class AmigosComponent implements OnInit {
 
   IdUsuarioLogueado: Number
   IdUsuarioAEliminar: Number
-  amigosUsuario
+  amigosUsuario: Array<Usuario>
   errors = []
 
   constructor(private usuarioService: UsuarioService, private router: Router) {
