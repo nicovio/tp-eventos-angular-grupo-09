@@ -1,15 +1,11 @@
-import EventoAbierto from '../domain/eventos/evento-abierto';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { REST_SERVER_URL } from './configuration';
-import Evento from '../domain/eventos/evento';
-import Usuario from '../domain/usuarios/usuario';
-import EventoCerrado from '../domain/eventos/evento-cerrado';
-import { MockUsuarioService } from './usuario.service';
-import * as moment from 'moment';
+import { StubUsuarioService } from './usuario.service';
 import Locacion from '../domain/eventos/locacion';
 
 export interface ILocacionService {
+  locaciones()
 }
 
 
@@ -18,7 +14,7 @@ export interface ILocacionService {
 })
 
 
-export class LocacionService implements LocacionService {
+export class LocacionService implements ILocacionService {
 
   constructor(private http: Http) {
 
@@ -37,9 +33,15 @@ export class LocacionService implements LocacionService {
 })
 
 
-export class MockLocacionService implements ILocacionService {
+export class StubLocacionService implements ILocacionService {
 
-  constructor(private usuarioService: MockUsuarioService) {
+  listaLocaciones: Array<Locacion> = [new Locacion("La Monica bailable"), new Locacion("River Plate"), new Locacion("La bombonera"), new Locacion("UNSAM") ]
+
+  constructor(private usuarioService: StubUsuarioService) {
+  }
+
+  async locaciones() {
+    return this.listaLocaciones
   }
 
 }

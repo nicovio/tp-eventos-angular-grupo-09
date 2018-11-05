@@ -1,10 +1,10 @@
-import { EventoService, MockEventoService } from 'src/app/servicios/evento.service';
+import { EventoService } from 'src/app/servicios/evento.service';
 import { Router } from '@angular/router';
 import { ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { FormControl, Validators } from '@angular/forms';
 import Evento from 'src/app/domain/eventos/evento';
-import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 import Locacion from 'src/app/domain/eventos/locacion';
 import { LocacionService } from 'src/app/servicios/locacion.service';

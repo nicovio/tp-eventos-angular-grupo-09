@@ -1,25 +1,43 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AppModule } from 'src/app/app.module';
+import { APP_BASE_HREF } from '@angular/common';
+import { UsuarioService, StubUsuarioService } from 'src/app/servicios/usuario.service';
 import { MisEventosComponent } from './mis-eventos.component';
 
 describe('MisEventosComponent', () => {
-  let component: MisEventosComponent;
-  let fixture: ComponentFixture<MisEventosComponent>;
+  let component: MisEventosComponent
+  let fixture: ComponentFixture<MisEventosComponent>
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [ MisEventosComponent ]
+      imports: [
+        AppModule
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ]
     })
-    .compileComponents();
-  }));
+      .compileComponents()
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MisEventosComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    // TestBed.overrideComponent(MisEventosComponent, {
+    //   set: {
+    //     providers: [
+    //       { provide: UsuarioService, useClass: StubUsuarioService }
+    //     ]
+    //   }
+    // })
+
+    fixture = TestBed.createComponent(MisEventosComponent)
+    fixture.detectChanges()
+    await fixture.whenStable()
+    fixture.detectChanges()
+
+    component = fixture.componentInstance
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+
+})

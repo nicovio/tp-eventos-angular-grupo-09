@@ -11,9 +11,17 @@ import Evento from '../domain/eventos/evento';
 import * as moment from 'moment';
 
 export interface IUsuarioService {
+  getUsuarioById(userID?: Number)
   crearEventoAbierto(userID: Number, evento: Evento)
   crearEventoCerrado(userID: Number, evento: Evento)
-
+  getAmigosEnServidor(userID: Number)
+  eliminarAmigo(idLogueado: Number, idAEliminar: Number)
+  getInvitacionesPendientes(userID: Number)
+  aceptarInvitacion(idLogueado: Number, idPorAceptar: Number, cantidadAcompañantes: Number)
+  rechazarInvitacion(idLogueado: Number, idPorRechazar: Number)
+  getTipoDeUsuario(userID: Number)
+  crearEventoAbierto(userID: Number, evento: Evento)
+  crearEventoCerrado(userID: Number, evento: Evento)
 }
 
 @Injectable({
@@ -88,39 +96,34 @@ export class UsuarioService implements IUsuarioService {
   formatearFechaJson(fechaAFormatear: string) {
     return moment(fechaAFormatear).format("YYYY/MM/DD HH:mm")
   }
-  
+
 
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class MockUsuarioService implements IUsuarioService {
+export class StubUsuarioService implements IUsuarioService {
 
+  IDUsuarioLogueado: Number
   usuarioLogueado: Usuario
-
+  usuarios: Array<Usuario> = []
 
   constructor() {
-    let karaDanvers = new Usuario('Kara', 'Danvers', '@kara95');
-    let fernandoDodino = new Usuario('Fernando', 'Dodino', '@dodain');
-    let cristianMaggiorano = new Usuario('Cristian', 'Maggiorano', '@crismagg');
+    this.IDUsuarioLogueado = 0
+    let karaDanvers = new Usuario(0, 'Kara', 'Danvers', '@kara95');
+    let fernandoDodino = new Usuario(1, 'Fernando', 'Dodino', '@dodain');
+    let cristianMaggiorano = new Usuario(2, 'Cristian', 'Maggiorano', '@crismagg');
+    let timothyDrake = new Usuario(3, 'Timothy', 'Drake', '@theRedOne')
+    let catherineGrant = new Usuario(4, 'Catherine', 'Grant', '@catGrant')
+    let perryWhite = new Usuario(5, 'Perry', 'White', '@whiteDP')
+    let jamesGordon = new Usuario(6, 'James', 'Gordon', '@jimG')
     karaDanvers.tipoUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
-    karaDanvers.agregarAmigo(new Usuario('Timothy', 'Drake', '@theRedOne'));
-    karaDanvers.agregarAmigo(new Usuario('Catherine', 'Grant', '@catGrant'));
-    karaDanvers.agregarAmigo(new Usuario('Perry', 'White', '@whiteDP'));
-    karaDanvers.agregarAmigo(new Usuario('James', 'Gordon', '@jimG'));
-    karaDanvers.agregarAmigo(new Usuario('James', 'Olsen', '@jimmy_olsn'));
-    karaDanvers.agregarAmigo(new Usuario('Katherine', 'Kane', '@kathyKane'));
-    karaDanvers.agregarAmigo(new Usuario('Julia', 'Pennyworth', '@JuliiPen'));
-    karaDanvers.agregarAmigo(new Usuario('Jackson', 'Hyde', '@JHyde'));
-    karaDanvers.agregarAmigo(new Usuario('Maravilla', 'Martinez', '@SaliDeAhiMaravilla'));
-    karaDanvers.agregarAmigo(new Usuario('Marcelo', 'Tinelli', '@marcelotinelli'));
-    karaDanvers.agregarAmigo(new Usuario('Carolina', 'Ardohain ', '@pampitaoficial '));
-    karaDanvers.agregarAmigo(new Usuario('Sean', 'Penn', '@elmachopenn'));
-    karaDanvers.agregarAmigo(new Usuario('Jennifer', 'Lawrence', '@JSLawrence'));
-    karaDanvers.agregarAmigo(new Usuario('Carlos', 'Gardel', '@carlitosgardel'));
-    karaDanvers.agregarAmigo(new Usuario('Lady', 'Gaga', '@ladygaga'));
+    karaDanvers.agregarAmigo(timothyDrake);
+    karaDanvers.agregarAmigo(catherineGrant);
+    karaDanvers.agregarAmigo(perryWhite);
+    karaDanvers.agregarAmigo(jamesGordon);
     karaDanvers.agregarAmigo(cristianMaggiorano);
     karaDanvers.agregarAmigo(fernandoDodino);
     let cumpleKara = new EventoCerrado("Cumple Kara", new Date(), new Date('2019/10/19 07:00'), "Mi Casa", cristianMaggiorano)
@@ -128,17 +131,75 @@ export class MockUsuarioService implements IUsuarioService {
     let salidaBoliche = new EventoCerrado("Salida a bailar", new Date('2018/10/19 00:00'), new Date('2010/10/12 06:00'), "Soul Train", cristianMaggiorano)
     let racingBoca = new EventoAbierto("Recital Abel Pintos", new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), "Luna Park", fernandoDodino, 500)
     let casamientoMarley = new EventoAbierto("Casamiento Marley", new Date('2018/10/20'), new Date('2020/3/2 21:00'), "Uganda", cristianMaggiorano, 250000)
-    let invitacionCumpleKara = new Invitacion(cumpleKara, 2)
-    karaDanvers.invitaciones = [invitacionCumpleKara, new Invitacion(cumpleDodain, 5), new Invitacion(salidaBoliche, 10)]
-    karaDanvers.agregarInvitacion(invitacionCumpleKara)
+    let invitacionCumpleKara = new Invitacion(0, cumpleKara, 2)
+    let invitacionCumpleDodain = new Invitacion(1, cumpleDodain, 5)
+    let invitacionSalidaBoliche = new Invitacion(2, salidaBoliche, 10)
+    karaDanvers.invitaciones = [invitacionCumpleKara, invitacionCumpleDodain, invitacionSalidaBoliche]
     karaDanvers.comprarEntrada(racingBoca)
     karaDanvers.comprarEntrada(casamientoMarley)
     this.usuarioLogueado = karaDanvers
+    this.agregarUsuario(karaDanvers)
+    this.agregarUsuario(fernandoDodino)
+    this.agregarUsuario(cristianMaggiorano)
+    this.agregarUsuario(timothyDrake)
+    this.agregarUsuario(catherineGrant)
+    this.agregarUsuario(perryWhite)
+    this.agregarUsuario(jamesGordon)
   }
 
-  crearEventoAbierto(){}
-
-  crearEventoCerrado(){
-    
+  agregarUsuario(usuario: Usuario) {
+    this.usuarios.push(usuario)
   }
+
+  searchInvitacionById(idInvitacion: Number) {
+    return this.usuarioLogueado.invitaciones.find((invitacion) => invitacion.id === idInvitacion)
+  }
+
+  async getUsuarioById(userID: Number) {
+    return this.usuarios.find((usuario) => usuario.id === userID)
+  }
+
+  async getAmigosEnServidor(userID: Number) {
+    return this.usuarioLogueado.amigos
+  }
+
+  async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
+    const amigoAEliminar = await this.getUsuarioById(idAEliminar)
+    const index = this.usuarioLogueado.amigos.indexOf(amigoAEliminar, 0);
+    if (index > -1) {
+      this.usuarioLogueado.amigos.splice(index, 1);
+    }
+  }
+
+  async getInvitacionesPendientes(userID: Number) {
+    return this.usuarioLogueado.invitaciones
+  }
+
+  async aceptarInvitacion(idLogueado: Number, idPorAceptar: Number, cantidadAcompañantes: Number) {
+    const invitacion = this.searchInvitacionById(idPorAceptar)
+    invitacion.aceptada = true;
+  }
+
+  async rechazarInvitacion(idLogueado: Number, idPorRechazar: Number) {
+    const invitacionARechazar = this.searchInvitacionById(idPorRechazar)
+    const index = this.usuarioLogueado.invitaciones.indexOf(invitacionARechazar, 0);
+    if (index > -1) {
+      this.usuarioLogueado.invitaciones.splice(index, 1);
+    }
+  }
+
+  async getTipoDeUsuario(userID: Number) {
+    return this.usuarioLogueado.tipoUsuario
+  }
+
+  async crearEventoAbierto(userID: Number, evento: Evento) {
+    this.usuarioLogueado.eventosPorOrganizar.push(evento)
+
+  }
+
+  async crearEventoCerrado(userID: Number, evento: Evento) {
+    this.usuarioLogueado.eventosPorOrganizar.push(evento)
+  }
+
+
 }

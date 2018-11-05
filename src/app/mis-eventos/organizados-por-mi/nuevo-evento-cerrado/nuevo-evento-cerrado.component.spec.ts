@@ -1,28 +1,47 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
+import { AppModule } from 'src/app/app.module';
+import { APP_BASE_HREF } from '@angular/common';
+import { UsuarioService, StubUsuarioService } from 'src/app/servicios/usuario.service';
+import { EventoService, StubEventoService } from 'src/app/servicios/evento.service';
+import { LocacionService, StubLocacionService } from 'src/app/servicios/locacion.service';
 import { NuevoEventoCerradoComponent } from './nuevo-evento-cerrado.component';
 
 describe('NuevoEventoCerradoComponent', () => {
-  let component: NuevoEventoCerradoComponent;
-  let fixture: ComponentFixture<NuevoEventoCerradoComponent>;
+  let component: NuevoEventoCerradoComponent
+  let fixture: ComponentFixture<NuevoEventoCerradoComponent>
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [ NuevoEventoCerradoComponent ]
+      imports: [
+        AppModule
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ]
     })
-    .compileComponents();
-  }));
+      .compileComponents()
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NuevoEventoCerradoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    TestBed.overrideComponent(NuevoEventoCerradoComponent, {
+      set: {
+        providers: [
+          { provide: UsuarioService, useClass: StubUsuarioService },
+          // { provide: EventoService, useClass: StubEventoService},
+          // { provide: LocacionService, useClass: StubLocacionService }
+        ]
+      }
+    })
+
+    fixture = TestBed.createComponent(NuevoEventoCerradoComponent)
+    fixture.detectChanges()
+    await fixture.whenStable()
+    fixture.detectChanges()
+
+    component = fixture.componentInstance
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+
+})

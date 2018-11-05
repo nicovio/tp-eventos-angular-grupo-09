@@ -9,7 +9,7 @@ export class Invitacion {
     pendiente: boolean = true
     aceptada: boolean = false
 
-    constructor(evento?: Evento, cantidadAcompaniantes?: number) {
+    constructor(id?: number, evento?: Evento, cantidadAcompaniantes?: number) {
         this.evento = evento
         this.cantidadAcompaniantesInvitacion = cantidadAcompaniantes
     }

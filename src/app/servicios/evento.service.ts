@@ -5,7 +5,7 @@ import { REST_SERVER_URL } from './configuration';
 import Evento from '../domain/eventos/evento';
 import Usuario from '../domain/usuarios/usuario';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
-import { MockUsuarioService } from './usuario.service';
+import { StubUsuarioService } from './usuario.service';
 
 
 
@@ -63,12 +63,12 @@ export class EventoService implements IEventoService {
 })
 
 
-export class MockEventoService implements IEventoService {
+export class StubEventoService implements IEventoService {
   eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca', new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), 'La bombonera', null, 500);
   listaEventos: Array<Evento> = [this.eventoAbierto]
   usuarioLogueado: Usuario
 
-  constructor(private usuarioService: MockUsuarioService) {
+  constructor(private usuarioService: StubUsuarioService) {
     this.usuarioLogueado = usuarioService.usuarioLogueado
   }
 

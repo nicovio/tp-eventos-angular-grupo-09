@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
+import {  UsuarioService } from 'src/app/servicios/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 export function mostrarError(component, error) {

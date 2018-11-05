@@ -8,7 +8,8 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-invitaciones-pendientes',
   templateUrl: './invitaciones-pendientes.component.html',
-  styleUrls: ['./invitaciones-pendientes.component.scss']
+  styleUrls: ['./invitaciones-pendientes.component.scss'],
+  providers: [UsuarioService]
 })
 export class InvitacionesPendientesComponent {
   IdUsuarioLogueado: Number

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { MockUsuarioService, UsuarioService } from 'src/app/servicios/usuario.service';
-import { MockEventoService, EventoService } from 'src/app/servicios/evento.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { EventoService } from 'src/app/servicios/evento.service';
 import { Router } from '@angular/router';
-import Evento from 'src/app/domain/eventos/evento';
 
 
 @Component({
     selector: 'app-agenda',
     templateUrl: './agenda.component.html',
-    styleUrls: ['./agenda.component.scss']
+    styleUrls: ['./agenda.component.scss'],
+    providers: [UsuarioService,EventoService]
 })
 export class AgendaComponent {
     eventosDeHoy
