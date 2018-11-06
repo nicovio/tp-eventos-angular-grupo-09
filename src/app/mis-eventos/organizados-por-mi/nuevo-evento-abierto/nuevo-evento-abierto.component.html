@@ -79,7 +79,7 @@
         <div class="error-fechas" *ngIf="empiezaDespuesDeTerminar()">El evento debe finalizar en una fecha posterior a
           la de fecha de inicio</div>
         <button type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar(IDUsuarioLogueado)"
-          [disabled]="noPuedeCrearEvento()" id="crear_evento_{{IDUsuarioLogueado}}" mdbWavesEffect>Aceptar</button>
+          [disabled]="noPuedeCrearEvento()" id="aceptar_{{IDUsuarioLogueado}}" mdbWavesEffect>Aceptar</button>
         <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="cancelar()"
           mdbWavesEffect>Cancelar</button>
       </div>

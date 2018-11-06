@@ -64,12 +64,13 @@ export class EventoService implements IEventoService {
 
 
 export class StubEventoService implements IEventoService {
-  eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca', new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), 'La bombonera', null, 500);
-  listaEventos: Array<Evento> = [this.eventoAbierto]
+  listaEventos: Array<Evento> = []
   usuarioLogueado: Usuario
 
   constructor(private usuarioService: StubUsuarioService) {
     this.usuarioLogueado = usuarioService.usuarioLogueado
+    const eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca', new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), 'La bombonera', this.usuarioLogueado, 500);
+    this.listaEventos.push(eventoAbierto)
   }
 
 

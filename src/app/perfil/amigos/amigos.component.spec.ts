@@ -40,23 +40,23 @@ describe('AmigosComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('Tiene 6 amigos', async () => {
+  it('Tiene 6 amigos', () => {
     expect(component.amigosUsuario.length).toBe(6)
   })
 
-  it('Nombre de amigo con id 1 es Fernando', async () => {
+  it('Nombre de amigo con id 1 es Fernando',  () => {
     const resultHtml = fixture.debugElement.nativeElement
     const nombreApellido = resultHtml.querySelector('#nombre_1')
     expect(nombreApellido.textContent).toBe('Fernando')
   })
 
-  it('Apellido de amigo con id 5 es White', async () => {
+  it('Apellido de amigo con id 5 es White',  () => {
     const resultHtml = fixture.debugElement.nativeElement
     const nombreApellido = resultHtml.querySelector('#apellido_5')
     expect(nombreApellido.textContent).toBe('White')
   })
 
-  it('Username de amigo con id 3 es @theRedOne', async () => {
+  it('Username de amigo con id 3 es @theRedOne',  () => {
     const resultHtml = fixture.debugElement.nativeElement
     const nombreApellido = resultHtml.querySelector('#username_3')
     expect(nombreApellido.textContent).toBe('@theRedOne')

@@ -37,7 +37,7 @@ export class StubLocacionService implements ILocacionService {
 
   listaLocaciones: Array<Locacion> = [new Locacion("La Monica bailable"), new Locacion("River Plate"), new Locacion("La bombonera"), new Locacion("UNSAM") ]
 
-  constructor(private usuarioService: StubUsuarioService) {
+  constructor() {
   }
 
   async locaciones() {

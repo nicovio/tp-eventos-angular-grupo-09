@@ -54,7 +54,7 @@ describe('NuevoEventoAbiertoComponent', () => {
     let eventoTest = new EventoAbierto("Stravaganza", new Date('2019/7/22 21:30'), new Date('2019/7/22 23:00'), new Locacion("Teatro Broadway"), karaDanvers, 2000)
     component.nuevoEvento = eventoTest
     fixture.detectChanges()
-    resultHtml.querySelector('#crear_evento_0').click()
+    resultHtml.querySelector('#aceptar_0').click()
     await fixture.detectChanges()
     const eventoCreado: Evento = karaDanvers.eventosPorOrganizar.find(evento => evento.descripcion === "Stravaganza")
     expect(eventoCreado.descripcion).toBe("Stravaganza")
