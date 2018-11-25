@@ -18,13 +18,6 @@ export class OrganizadosPorMiComponent implements OnInit {
   tipoUsuario
   errors = []
 
-
-
-  // QUE TAL LA IDEA DE TENER UNA LISTA LOCAL DE EVENTOS QUE SEA POBLADA EN ESTE CONSTRUCTOR?
-  // DADO QUE EL MODAL ES UN COMPONENTE, DEBERIA CREARSE UNO NUEVO CADA VEZ QUE LO ABRIS, 
-  // CON LO CUAL ESTARIAS PEGANDOLE AL SERVER TODO EL TIEMPO. ESTO LO PODIAMOS VER CADA VEZ QUE
-  // ABRIAMOS EL MODAL Y EN NgOnInit LE PEDIAMOS UN CONSOLE LOG NEW DATE()
-
   constructor(private serviceEvento: EventoService, private serviceUsuario: UsuarioService) {
     this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     try {
