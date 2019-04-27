@@ -9,6 +9,7 @@ describe('AmigosComponent', () => {
   let component: AmigosComponent
   let fixture: ComponentFixture<AmigosComponent>
 
+
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
@@ -19,22 +20,22 @@ describe('AmigosComponent', () => {
       ]
     })
       .compileComponents()
-
-    TestBed.overrideComponent(AmigosComponent, {
-      set: {
-        providers: [
-          { provide: UsuarioService, useClass: StubUsuarioService }
-        ]
-      }
-    })
-
     fixture = TestBed.createComponent(AmigosComponent)
     fixture.detectChanges()
     await fixture.whenStable()
     fixture.detectChanges()
-
     component = fixture.componentInstance
+  });
+
+  TestBed.overrideComponent(AmigosComponent, {
+    set: {
+      providers: [
+        { provide: UsuarioService, useClass: StubUsuarioService }
+      ]
+    }
   })
+
+
 
   it('should create', () => {
     expect(component).toBeTruthy()
@@ -44,19 +45,19 @@ describe('AmigosComponent', () => {
     expect(component.amigosUsuario.length).toBe(6)
   })
 
-  it('Nombre de amigo con id 1 es Fernando',  () => {
+  it('Nombre de amigo con id 1 es Fernando', () => {
     const resultHtml = fixture.debugElement.nativeElement
     const nombreApellido = resultHtml.querySelector('#nombre_1')
     expect(nombreApellido.textContent).toBe('Fernando')
   })
 
-  it('Apellido de amigo con id 5 es White',  () => {
+  it('Apellido de amigo con id 5 es White', () => {
     const resultHtml = fixture.debugElement.nativeElement
     const nombreApellido = resultHtml.querySelector('#apellido_5')
     expect(nombreApellido.textContent).toBe('White')
   })
 
-  it('Username de amigo con id 3 es @theRedOne',  () => {
+  it('Username de amigo con id 3 es @theRedOne', () => {
     const resultHtml = fixture.debugElement.nativeElement
     const nombreApellido = resultHtml.querySelector('#username_3')
     expect(nombreApellido.textContent).toBe('@theRedOne')
