@@ -49,7 +49,7 @@ describe('NuevoEventoCerradoComponent', () => {
   })
 
   it('crear un evento cerrado', async () => {
-    const karaDanvers: Usuario = await component.usuarioService.getUsuarioById(0)
+    const karaDanvers: Usuario = await component.serviceUsuario.getUsuarioById(0)
     const resultHtml = fixture.debugElement.nativeElement
     let eventoTest = new EventoCerrado("Estreno Creed II", new Date('2019/10/26 22:30'), new Date('2019/10/27 01:00'), new Locacion("The Egyptian theatre"), karaDanvers, new Date('2019/5/20 00:30'))
     component.nuevoEvento = eventoTest

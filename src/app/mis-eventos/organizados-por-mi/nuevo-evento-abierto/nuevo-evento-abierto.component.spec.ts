@@ -49,7 +49,7 @@ describe('NuevoEventoAbiertoComponent', () => {
   })
 
   it('crear un evento abierto', async () => {
-    const karaDanvers: Usuario = await component.servicioUsuario.getUsuarioById(0)
+    const karaDanvers: Usuario = await component.serviceUsuario.getUsuarioById(0)
     const resultHtml = fixture.debugElement.nativeElement
     let eventoTest = new EventoAbierto("Stravaganza", new Date('2019/7/22 21:30'), new Date('2019/7/22 23:00'), new Locacion("Teatro Broadway"), karaDanvers, 2000)
     component.nuevoEvento = eventoTest
