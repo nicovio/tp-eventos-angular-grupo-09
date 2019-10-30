@@ -18,11 +18,11 @@ export class InvitacionesPendientesComponent {
   invitacionesPendientes: Invitacion[]
   errors = []
   maximoAcompaniantes
-  
+
   cantidadAcompaniantesFormControl = new FormControl('', [
     Validators.max(this.maximoAcompaniantes)
   ]);
-  
+
   constructor(private usuarioService: UsuarioService, private router: Router) {
     this.IdUsuarioLogueado = usuarioService.IDUsuarioLogueado
 
@@ -45,7 +45,7 @@ export class InvitacionesPendientesComponent {
   async aceptarInvitacion() {
     try {
       await this.usuarioService.aceptarInvitacion(this.IdUsuarioLogueado, this.invitacionSeleccionada.id, this.cantidadAcompaniantes)
-      this.invitacionesPendientes.push(this.invitacionSeleccionada)
+      this.removerInvitacion()
     } catch (error) {
       mostrarError(this, error)
     }
@@ -54,13 +54,17 @@ export class InvitacionesPendientesComponent {
   async rechazarInvitacion() {
     try {
       await this.usuarioService.rechazarInvitacion(this.IdUsuarioLogueado, this.invitacionSeleccionada.id)
-      this.invitacionesPendientes = this.invitacionesPendientes.filter(invitacion => invitacion.id != this.invitacionSeleccionada.id)
+      this.removerInvitacion()
     } catch (e) {
       this.errors.push(e._body)
     }
   }
 
-  noPuedeAceptar(maximo: Number){
+  removerInvitacion() {
+    this.invitacionesPendientes = this.invitacionesPendientes.filter(invitacion => invitacion.id != this.invitacionSeleccionada.id)
+  }
+
+  noPuedeAceptar(maximo: Number) {
     return this.cantidadAcompaniantes > maximo || !this.cantidadAcompaniantes || this.cantidadAcompaniantes < 0
   }
 
