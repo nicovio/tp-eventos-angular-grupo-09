@@ -1,68 +1,74 @@
 <div class="contenedor-tabla">
-<mdb-card class="amigos-card">
-  <div class="table-responsive  texto-centrado">
-    <strong class="titulo">Eventos Cerrados </strong>
-    <table class="table">
-      <thead class="colorear-celeste">
-        <tr> 
-          <th>Fecha</th>
-          <th>Evento</th>
-          <th>Lugar</th>
-          <th>Invitados</th>
-          <th>Confirmados</th>
-          <th>Rechazados</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let evento of serviceEvento.eventosCerradosOrganizados">
-        <tr>
-          <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
-          <td>{{ evento.descripcion }}</td>
-          <td>{{ evento.locacion.descripcion }}</td>
-          <td>{{ evento.totalPersonasInvitadas }}</td>
-          <td>{{ evento.totalPersonasConfirmadas }}</td>
-          <td>{{ evento.totalPersonasRechazadas }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-    <span class="sin-eventos" *ngIf="serviceEvento.eventosCerradosOrganizados && serviceEvento.eventosCerradosOrganizados.length === 0">
+  <mdb-card class="amigos-card">
+    <div class="table-responsive  texto-centrado">
+      <strong class="titulo">Eventos Cerrados </strong>
+      <table class="table">
+        <thead class="colorear-celeste">
+          <tr>
+            <th>Fecha</th>
+            <th>Evento</th>
+            <th>Lugar</th>
+            <th>Invitados</th>
+            <th>Confirmados</th>
+            <th>Rechazados</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let evento of serviceEvento.eventosCerradosOrganizados">
+          <tr>
+            <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
+            <td>{{ evento.descripcion }}</td>
+            <td>{{ evento.locacion.descripcion }}</td>
+            <td>{{ evento.totalPersonasInvitadas }}</td>
+            <td>{{ evento.totalPersonasConfirmadas }}</td>
+            <td>{{ evento.totalPersonasRechazadas }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="sin-eventos"
+      *ngIf="serviceEvento.eventosCerradosOrganizados && serviceEvento.eventosCerradosOrganizados.length === 0">
       No hay eventos cerrados para mostrar
     </span>
-</mdb-card>
+  </mdb-card>
+  <div class="nuevo-evento">
+    <button type="button" mdbBtn color="warning" class="relative waves-light" routerLink="nuevo-evento-cerrado"
+      mdbWavesEffect>Nuevo evento cerrado</button>
+  </div>
 </div>
 
 <div class="contenedor-tabla">
   <mdb-card class="amigos-card">
     <div class="table-responsive texto-centrado">
       <strong class="titulo">Eventos Abiertos</strong>
-    <table class="table">    
-      <thead class="rellenar">
-        <tr> 
-          <th>Fecha</th>
-          <th>Evento</th>
-          <th>Lugar</th>
-        </tr>
-      </thead>
-      
-      <tbody *ngFor="let evento of serviceEvento.eventosAbiertosOrganizados">
-        <tr>
-          <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
-          <td>{{ evento.descripcion }}</td>
-          <td>{{ evento.locacion.descripcion }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-    <span class="sin-eventos" *ngIf="serviceEvento.eventosAbiertosOrganizados && serviceEvento.eventosAbiertosOrganizados.length === 0">
+      <table class="table">
+        <thead class="rellenar">
+          <tr>
+            <th>Fecha</th>
+            <th>Evento</th>
+            <th>Lugar</th>
+          </tr>
+        </thead>
+
+        <tbody *ngFor="let evento of serviceEvento.eventosAbiertosOrganizados">
+          <tr>
+            <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
+            <td>{{ evento.descripcion }}</td>
+            <td>{{ evento.locacion.descripcion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <span class="sin-eventos"
+      *ngIf="serviceEvento.eventosAbiertosOrganizados && serviceEvento.eventosAbiertosOrganizados.length === 0">
       No hay eventos abiertos para mostrar
     </span>
-</mdb-card>
+  </mdb-card>
+  <div class="nuevo-evento">
+    <button *ngIf="tipoUsuario" type="button" mdbBtn color="primary" class="relative waves-light"
+      routerLink="nuevo-evento-abierto" [disabled]="!tipoUsuario.puedeHacerEventosAbiertos()" mdbWavesEffect>Nuevo
+      evento
+      abierto</button></div>
 </div>
 
-  <div class="botones-nuevos-eventos"  >
-    <button  *ngIf= "tipoUsuario" type="button" mdbBtn color="primary" class="relative waves-light" routerLink="nuevo-evento-abierto" [disabled]="!tipoUsuario.puedeHacerEventosAbiertos()" mdbWavesEffect>Nuevo evento abierto</button>
-    <button type="button" mdbBtn color="warning" class="relative waves-light" routerLink="nuevo-evento-cerrado" mdbWavesEffect>Nuevo evento cerrado</button>
-  </div>
-
-    <router-outlet></router-outlet>
-    
+<router-outlet></router-outlet>
