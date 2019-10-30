@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Invitacion } from 'src/app/domain/eventos/invitacion';
-import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { Router } from '@angular/router';
-import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Invitacion } from 'src/app/domain/eventos/invitacion';
+import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-invitaciones-pendientes',
   templateUrl: './invitaciones-pendientes.component.html',
   styleUrls: ['./invitaciones-pendientes.component.scss'],
-  providers: [UsuarioService]
+  providers: []
 })
 export class InvitacionesPendientesComponent {
   IdUsuarioLogueado: Number
@@ -62,7 +62,6 @@ export class InvitacionesPendientesComponent {
 
   noPuedeAceptar(maximo: Number){
     return this.cantidadAcompaniantes > maximo || !this.cantidadAcompaniantes || this.cantidadAcompaniantes < 0
-
   }
 
 }

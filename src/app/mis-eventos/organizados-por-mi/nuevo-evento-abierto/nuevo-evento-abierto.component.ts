@@ -11,8 +11,7 @@ import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
   selector: 'app-nuevo-evento-abierto',
   templateUrl: './nuevo-evento-abierto.component.html',
   styleUrls: ['./nuevo-evento-abierto.component.scss'],
-  providers: [UsuarioService, EventoService, LocacionService]
-
+  providers: []
 })
 export class NuevoEventoAbiertoComponent extends NuevoEvento {
   errors = []

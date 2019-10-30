@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {  UsuarioService } from 'src/app/servicios/usuario.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import Usuario from 'src/app/domain/usuarios/usuario';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 export function mostrarError(component, error) {
   console.log("error", error)
@@ -12,10 +12,9 @@ export function mostrarError(component, error) {
   selector: 'app-amigos',
   templateUrl: './amigos.component.html',
   styleUrls: ['./amigos.component.scss'],
-  providers: [UsuarioService]
+  providers: []
 })
 export class AmigosComponent implements OnInit {
-
   IdUsuarioLogueado: Number
   IdUsuarioAEliminar: Number
   amigosUsuario: Array<Usuario>

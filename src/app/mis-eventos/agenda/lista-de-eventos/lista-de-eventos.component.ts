@@ -8,9 +8,6 @@ import Evento from 'src/app/domain/eventos/evento';
 })
 
 export class ListaDeEventosComponent {
-
   @Input() titulo: String
-
   @Input() eventosAMostrar: Array<Evento>
-
 }

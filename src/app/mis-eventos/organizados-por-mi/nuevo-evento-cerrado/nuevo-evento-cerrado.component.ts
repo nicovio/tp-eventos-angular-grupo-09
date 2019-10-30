@@ -13,7 +13,6 @@ import { LocacionService } from 'src/app/servicios/locacion.service';
   styleUrls: ['./nuevo-evento-cerrado.component.scss']
 })
 export class NuevoEventoCerradoComponent extends NuevoEvento {
-
   usuarioService
 
   constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {

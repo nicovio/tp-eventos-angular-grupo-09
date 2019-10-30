@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import * as moment from 'moment';
 import Usuario from 'src/app/domain/usuarios/usuario';
+import Evento from '../domain/eventos/evento';
 import EventoAbierto from '../domain/eventos/evento-abierto';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
 import { Invitacion } from '../domain/eventos/invitacion';
-import { Http } from '@angular/http';
-import { REST_SERVER_URL } from './configuration';
-import TipoUsuario, { getTipoUsuarioInstance } from '../domain/usuarios/tipo-de-usuario';
-import Profesional from '../domain/usuarios/profesional';
-import Evento from '../domain/eventos/evento';
-import * as moment from 'moment';
 import Locacion from '../domain/eventos/locacion';
+import Profesional from '../domain/usuarios/profesional';
+import { getTipoUsuarioInstance } from '../domain/usuarios/tipo-de-usuario';
+import { REST_SERVER_URL } from './configuration';
 
 export interface IUsuarioService {
   getUsuarioById(userID?: Number)
@@ -97,7 +97,6 @@ export class UsuarioService implements IUsuarioService {
   formatearFechaJson(fechaAFormatear: string) {
     return moment(fechaAFormatear).format("YYYY/MM/DD HH:mm")
   }
-
 
 }
 
@@ -200,6 +199,5 @@ export class StubUsuarioService implements IUsuarioService {
   async crearEventoCerrado(userID: Number, evento: Evento) {
     this.usuarioLogueado.eventosPorOrganizar.push(evento)
   }
-
 
 }

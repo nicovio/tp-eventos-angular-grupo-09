@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EventoService } from 'src/app/servicios/evento.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -7,11 +7,9 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   selector: 'app-organizados-por-mi',
   templateUrl: './organizados-por-mi.component.html',
   styleUrls: ['./organizados-por-mi.component.scss'],
-  providers: [UsuarioService, EventoService]
-
+  providers: []
 })
-export class OrganizadosPorMiComponent implements OnInit {
-
+export class OrganizadosPorMiComponent {
   IDUsuarioLogueado: Number
   eventosOrganizadosAbiertos
   eventosOrganizadosCerrados
@@ -25,10 +23,6 @@ export class OrganizadosPorMiComponent implements OnInit {
     } catch (error) {
       this.errors.push(error._body)
     }
-
-  }
-
-  ngOnInit() {
   }
 
   async initialize() {

@@ -7,8 +7,6 @@ import Usuario from '../domain/usuarios/usuario';
 import EventoCerrado from '../domain/eventos/evento-cerrado';
 import { StubUsuarioService } from './usuario.service';
 
-
-
 export interface IEventoService {
   abiertosOrganizadosPorUsuario(userID: Number)
   cerradosOrganizadosPorUsuario(userID: Number)
@@ -17,7 +15,6 @@ export interface IEventoService {
   eventosProximos(userID: Number)
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,10 +22,7 @@ export interface IEventoService {
 
 export class EventoService implements IEventoService {
 
-
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) { }
 
   async abiertosOrganizadosPorUsuario(userID: Number) {
     const res = await this.http.get(REST_SERVER_URL + '/eventos/abiertos/' + userID).toPromise()
@@ -57,11 +51,9 @@ export class EventoService implements IEventoService {
 
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
-
 
 export class StubEventoService implements IEventoService {
   listaEventos: Array<Evento> = []
@@ -72,7 +64,6 @@ export class StubEventoService implements IEventoService {
     const eventoAbierto: EventoAbierto = new EventoAbierto('Racing vs Boca', new Date('2019/3/2 19:00'), new Date('2019/3/2 21:00'), 'La bombonera', this.usuarioLogueado, 500);
     this.listaEventos.push(eventoAbierto)
   }
-
 
   organizadosPorUsuario() {
     return this.listaEventos.filter(evento => evento.organizador === this.usuarioLogueado)
@@ -85,7 +76,6 @@ export class StubEventoService implements IEventoService {
   abiertosOrganizadosPorUsuario() {
     return this.organizadosPorUsuario().filter(evento => evento.constructor.name === EventoAbierto.name)
   }
-
 
   eventosDeHoy() {
     var principioDelDia = new Date()
@@ -108,7 +98,6 @@ export class StubEventoService implements IEventoService {
     var semanaQueViene = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, 23, 59, 59, 59)
     return this.usuarioLogueado.todosLosEventos().filter(evento => evento.fechaHoraInicio > semanaQueViene)
   }
-
 
   filtrarEventosPorFechas(eventosAFiltrar: Array<Evento>, fechaDesde, fechaHasta) {
     return eventosAFiltrar.filter(evento => (evento.fechaHoraInicio >= fechaDesde) && (evento.fechaHoraInicio <= fechaHasta))
