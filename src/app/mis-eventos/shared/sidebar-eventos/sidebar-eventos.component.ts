@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarEventosComponent implements OnInit {
 
+  opcionSeleccionada: String = ""
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  seleccionarOpcion(opcion) {
+    this.opcionSeleccionada = opcion
+  }
+
+  seleccionado(opcion) {
+   return opcion == this.opcionSeleccionada
   }
 
 }

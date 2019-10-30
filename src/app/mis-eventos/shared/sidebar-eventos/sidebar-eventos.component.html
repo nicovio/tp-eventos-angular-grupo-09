@@ -15,9 +15,9 @@
     <div class="col-sm-3 hidden-xs">
       <div data-spy="affix" data-offset-top="0">
         <div class="list-group">
-          <a class="list-group-item" routerLink="agenda"> Agenda</a>
-          <a class="list-group-item" routerLink="organizados-por-mi">Organizados por mí</a>
-          <a class="list-group-item" routerLink="pendientes">Pendientes</a>
+          <a class="list-group-item" [ngClass]="{'azul': seleccionado('agenda')}" (click)="seleccionarOpcion('agenda')" routerLink="agenda"> Agenda</a>
+          <a class="list-group-item" [ngClass]="{'azul': seleccionado('organizados')}" (click)="seleccionarOpcion('organizados')" routerLink="organizados-por-mi">Organizados por mí</a>
+          <a class="list-group-item" [ngClass]="{'azul': seleccionado('pendientes')}" (click)="seleccionarOpcion('pendientes')" routerLink="pendientes">Pendientes</a>
         </div>
       </div>
     </div>
