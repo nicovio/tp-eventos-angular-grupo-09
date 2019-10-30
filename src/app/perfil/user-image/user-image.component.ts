@@ -12,7 +12,6 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class UserImageComponent {
   IdUsuarioLogueado: Number
-  usuarioLogueado: Usuario
   errors = []
 
   constructor(private usuarioService: UsuarioService, private router: Router) {
@@ -26,6 +25,10 @@ export class UserImageComponent {
   }
 
   async initialize() {
-    this.usuarioLogueado = await this.usuarioService.getUsuarioById(this.IdUsuarioLogueado)
+    await this.usuarioService.fetchUsuarioLogueado()
+  }
+
+  get usuarioLogueado(): Usuario {
+    return this.usuarioService.usuarioLogueado
   }
 }

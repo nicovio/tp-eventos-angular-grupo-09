@@ -30,11 +30,15 @@ export interface IUsuarioService {
 })
 export class UsuarioService implements IUsuarioService {
   IDUsuarioLogueado: Number
-
+  usuarioLogueado: Usuario
 
   constructor(private http: Http) {
     const IDKaraDanvers = 0   //SE LO DEBERIA PEDIR AL SERVER POR LOGIN
     this.IDUsuarioLogueado = IDKaraDanvers
+  }
+
+  async fetchUsuarioLogueado() {
+    this.usuarioLogueado = await this.getUsuarioById(this.IDUsuarioLogueado)
   }
 
   async getUsuarioById(userID: Number) {
@@ -49,7 +53,7 @@ export class UsuarioService implements IUsuarioService {
 
   async eliminarAmigo(idLogueado: Number, idAEliminar: Number) {
     const jsonEliminado = JSON.parse('{ "idAEliminar": ' + String(idAEliminar) + ' }');
-
+    this.usuarioLogueado.cantidadAmigos = String(Number(this.usuarioLogueado.cantidadAmigos) - 1)
     return this.http.put(REST_SERVER_URL + "/usuario/amigos/" + idLogueado, jsonEliminado).toPromise()
   }
 
@@ -111,13 +115,13 @@ export class StubUsuarioService implements IUsuarioService {
 
   constructor() {
     this.IDUsuarioLogueado = 0
-    let karaDanvers = new Usuario('Kara','Danvers',0,'@kara95');
-    let fernandoDodino = new Usuario('Fernando','Dodino',1,'@dodain');
-    let cristianMaggiorano = new Usuario('Cristian','Maggiorano',2,'@crismagg');
-    let timothyDrake = new Usuario('Timothy','Drake',3,'@theRedOne')
-    let catherineGrant = new Usuario('Catherine','Grant', 4, '@catGrant')
-    let perryWhite = new Usuario('Perry', 'White',5,'@whiteDP')
-    let jamesGordon = new Usuario('James', 'Gordon',6,'@jimG')
+    let karaDanvers = new Usuario('Kara', 'Danvers', 0, '@kara95');
+    let fernandoDodino = new Usuario('Fernando', 'Dodino', 1, '@dodain');
+    let cristianMaggiorano = new Usuario('Cristian', 'Maggiorano', 2, '@crismagg');
+    let timothyDrake = new Usuario('Timothy', 'Drake', 3, '@theRedOne')
+    let catherineGrant = new Usuario('Catherine', 'Grant', 4, '@catGrant')
+    let perryWhite = new Usuario('Perry', 'White', 5, '@whiteDP')
+    let jamesGordon = new Usuario('James', 'Gordon', 6, '@jimG')
     karaDanvers.tipoUsuario = new Profesional
     karaDanvers.email = 'kara@catco.com';
     karaDanvers.agregarAmigo(timothyDrake);
@@ -155,7 +159,7 @@ export class StubUsuarioService implements IUsuarioService {
     return this.usuarioLogueado.invitaciones.find((invitacion) => invitacion.id === idInvitacion)
   }
 
-  async getUsuarioById(userID: Number){
+  async getUsuarioById(userID: Number) {
     return this.usuarios.find((usuario) => usuario.id === userID)
   }
 
