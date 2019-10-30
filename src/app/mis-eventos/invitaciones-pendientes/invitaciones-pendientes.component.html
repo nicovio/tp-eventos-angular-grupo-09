@@ -1,4 +1,5 @@
-<div class="espaciado-estetico">
+<div class="espaciado">
+  <h1 class="title">Invitaciones</h1>
   <mdb-card class="amigos-card">
     <div class="table-responsive">
       <table class="table table-striped">
@@ -13,7 +14,7 @@
               <th>Acciones</th>
             </tr>
           </thead>
-          <div *ngIf= "invitacionesPendientes && invitacionesPendientes.length === 0">
+          <div *ngIf="invitacionesPendientes && invitacionesPendientes.length === 0">
             No hay invitaciones para mostrar
           </div>
           <tbody *ngFor="let invitacion of invitacionesPendientes">
@@ -23,8 +24,10 @@
             <td> {{ invitacion.evento.organizador.nombre }} {{ invitacion.evento.organizador.apellido }}</td>
             <td>
               <mat-form-field class="acompaniantes-field">
-                <input matInput class="acompaniantes" type="number" [(ngModel)]= cantidadAcompaniantes min="1" max="{{ invitacion.cantidadAcompaniantesInvitacion }}"
-                  [formControl]="cantidadAcompaniantesFormControl" ><i> de {{ invitacion.cantidadAcompaniantesInvitacion }}</i>
+                <input matInput class="acompaniantes" type="number" [(ngModel)]=cantidadAcompaniantes min="1"
+                  max="{{ invitacion.cantidadAcompaniantesInvitacion }}"
+                  [formControl]="cantidadAcompaniantesFormControl"><i> de
+                  {{ invitacion.cantidadAcompaniantesInvitacion }}</i>
                 <mat-error *ngIf="cantidadAcompaniantesFormControl.hasError('max')">
                   <strong>
                     La cantidad de acompañantes debe estar entre 0 y {{ invitacion.cantidadAcompaniantesInvitacion }}
@@ -34,12 +37,15 @@
             </td>
             <td>
               <i class="material-icons">
-                <button type="button" class="colorear-verde" [disabled]="noPuedeAceptar(invitacion.cantidadAcompaniantesInvitacion)" mdbTooltip="Aceptar Invitacion" placement="bottom" (click)="setInvitacionSeleccionada(invitacion)"
+                <button type="button" class="colorear-verde"
+                  [disabled]="noPuedeAceptar(invitacion.cantidadAcompaniantesInvitacion)"
+                  mdbTooltip="Aceptar Invitacion" placement="bottom" (click)="setInvitacionSeleccionada(invitacion)"
                   (click)="aceptar.show()" id="aceptarInvitacion_{{invitacion.id}}">check</button>
               </i>
               <i class="material-icons">
-                <button type="button" class="colorear-rojo" mdbTooltip="Rechazar Invitacion" placement="right" (click)="setInvitacionSeleccionada(invitacion)"
-                  (click)="rechazar.show()" id="rechazarInvitacion_{{invitacion.id}}">clear</button>
+                <button type="button" class="colorear-rojo" mdbTooltip="Rechazar Invitacion" placement="right"
+                  (click)="setInvitacionSeleccionada(invitacion)" (click)="rechazar.show()"
+                  id="rechazarInvitacion_{{invitacion.id}}">clear</button>
               </i>
             </td>
             <tr>
@@ -53,8 +59,8 @@
 </div>
 
 <!-- MODAL ACEPTAR INVITACION -->
-<div mdbModal #aceptar="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
+<div mdbModal #aceptar="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-notify modal-success" role="document">
     <!--Content-->
     <div class="modal-content text-center">
@@ -70,9 +76,10 @@
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a mdbBtn color="success" outline="true" class="waves-effect" (click)="aceptarInvitacion()"  id="confirmarAceptacion_{{IdInvitacionSeleccionada}}" (click)="aceptar.hide()"
-          mdbWavesEffect>Si</a>
-        <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="aceptar.hide()">No</a>
+        <a mdbBtn color="success" outline="true" class="waves-effect" (click)="aceptarInvitacion()"
+          id="confirmarAceptacion_{{IdInvitacionSeleccionada}}" (click)="aceptar.hide()" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect data-dismiss="modal"
+          (click)="aceptar.hide()">No</a>
       </div>
     </div>
     <!--/.Content-->
@@ -97,9 +104,10 @@
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="rechazarInvitacion()" id="confirmarRechazo_{{IdInvitacionSeleccionada}}" (click)="rechazar.hide()"
-          mdbWavesEffect>Si</a>
-        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="rechazar.hide()">No</a>
+        <a mdbBtn color="danger" outline="true" class="waves-effect" (click)="rechazarInvitacion()"
+          id="confirmarRechazo_{{IdInvitacionSeleccionada}}" (click)="rechazar.hide()" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal"
+          (click)="rechazar.hide()">No</a>
       </div>
     </div>
     <!--/.Content-->

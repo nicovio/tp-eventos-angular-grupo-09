@@ -5,6 +5,7 @@
 
 body {
     background-color: #023f7d;
+
     // background-color: #0074d947;
     // background-color: #0098ff0f;
     font-family: 'Roboto Condensed', sans-serif;
@@ -25,4 +26,13 @@ body::-webkit-scrollbar-thumb {
 .mat-form-field-appearance-legacy .mat-form-field-infix {
     padding-top: 0rem;
     border-top: none;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    max-height: 3rem;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
 }
