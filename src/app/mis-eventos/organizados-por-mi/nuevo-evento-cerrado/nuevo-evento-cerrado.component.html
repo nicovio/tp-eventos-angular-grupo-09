@@ -84,13 +84,13 @@
             [owlDateTimeFilter]="filtroFechaConfirmacion">
           <mat-error *ngIf="fechaMaximaFormControl.hasError('required')">
             <strong>
-              La fecha maxima de confirmación no puede estar vacía
+              La fecha máxima de confirmación no puede estar vacía
             </strong>
           </mat-error>
         </mat-form-field>
         <span [owlDateTimeTrigger]="fechaHoraConfirmacion"><i class="fa fa-calendar"></i></span>
         <owl-date-time #fechaHoraConfirmacion></owl-date-time>
-        <div class="error-fechas" *ngIf="fechaMaximaSuperaInicio()">La fecha maxima de confirmación debe
+        <div class="error-fechas" *ngIf="fechaMaximaSuperaInicio()">La fecha máxima de confirmación debe
           ser anterior a la fecha de inicio</div>
       </div>
       <div class="modal-footer">
