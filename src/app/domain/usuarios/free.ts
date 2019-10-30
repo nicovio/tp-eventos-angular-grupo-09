@@ -4,7 +4,6 @@ import Evento from "../eventos/evento";
 export default class Free implements TipoUsuario {
     descripcion = "Free"
 
-
     maximoEventosMensuales() {
         return 3
     }

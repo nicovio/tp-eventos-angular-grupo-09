@@ -9,12 +9,12 @@ import Locacion from 'src/app/domain/eventos/locacion';
 import { LocacionService } from 'src/app/servicios/locacion.service';
 import TipoUsuario from 'src/app/domain/usuarios/tipo-de-usuario';
 
-export abstract class NuevoEvento  implements AfterViewInit {
+export abstract class NuevoEvento implements AfterViewInit {
   @ViewChild('modalEvento')
   modal: ModalDirective;
   errors = []
-  eventosOrganizadosAbiertos: Array<Evento>
-  eventosOrganizadosCerrados: Array<Evento>
+  eventosOrganizadosAbiertos: Evento[]
+  eventosOrganizadosCerrados: Evento[]
   locaciones: Array<Locacion>
   todosLosEventos: Array<Evento>
   tipoUsuario: TipoUsuario
@@ -50,7 +50,7 @@ export abstract class NuevoEvento  implements AfterViewInit {
   minimaFecha = new Date();
 
 
-  constructor(private serviceEvento: EventoService, private router: Router, private serviceUsuario: UsuarioService, private locacionService: LocacionService) {
+  constructor(public serviceEvento: EventoService, private router: Router, public serviceUsuario: UsuarioService, public locacionService: LocacionService) {
     this.IDUsuarioLogueado = serviceUsuario.IDUsuarioLogueado
     try {
       this.initialize()
@@ -59,12 +59,16 @@ export abstract class NuevoEvento  implements AfterViewInit {
     }
   }
 
-  async initialize(){
-    this.eventosOrganizadosAbiertos = await this.serviceEvento.abiertosOrganizadosPorUsuario(this.IDUsuarioLogueado)
-    this.eventosOrganizadosCerrados = await this.serviceEvento.cerradosOrganizadosPorUsuario(this.IDUsuarioLogueado)
+  async initialize() {
+    this.eventosOrganizadosAbiertos = this.serviceEvento.eventosAbiertosOrganizados
+    this.eventosOrganizadosCerrados = this.serviceEvento.eventosCerradosOrganizados
     this.tipoUsuario = await this.serviceUsuario.getTipoDeUsuario(this.IDUsuarioLogueado)
     this.locaciones = await this.locacionService.locaciones()
     this.todosLosEventos = this.eventosOrganizadosAbiertos.concat(this.eventosOrganizadosCerrados)
+  }
+
+  dataIsReady() {
+    return this.eventosOrganizadosCerrados && this.eventosOrganizadosCerrados && this.locaciones && this.todosLosEventos && this.tipoUsuario
   }
 
   ngAfterViewInit() {
@@ -84,10 +88,15 @@ export abstract class NuevoEvento  implements AfterViewInit {
       this.empiezaDespuesDeTerminar() ||
       this.noPusoNombre() ||
       this.noPusoLocacion() ||
+      this.noPusoFechaMaxima() ||
       this.noPusoFechas() ||
       this.superaEventosSimultaneos() ||
       this.superaEventosMensuales()
     );
+  }
+
+  llenoFechas() {
+    return this.nuevoEvento.fechaHoraInicio && this.nuevoEvento.fechaHoraFin
   }
 
   superaEventosSimultaneos() {
@@ -103,23 +112,19 @@ export abstract class NuevoEvento  implements AfterViewInit {
   }
 
   noPusoNombre() {
-    return (
-      this.nuevoEvento.descripcion === '' ||
-      this.nuevoEvento.descripcion === undefined
-    );
+    return !this.nuevoEvento.descripcion
   }
 
   noPusoLocacion() {
-    return (
-      this.nuevoEvento.locacion === undefined
-    );
+    return !this.nuevoEvento.locacion
   }
 
   noPusoFechas() {
-    return (
-      this.nuevoEvento.fechaHoraInicio === undefined ||
-      this.nuevoEvento.fechaHoraFin === undefined
-    );
+    return !this.nuevoEvento.fechaHoraInicio || !this.nuevoEvento.fechaHoraFin
+  }
+
+  noPusoFechaMaxima() {
+    return !this.nuevoEvento.fechaMaximaConfirmacion
   }
 
   public filtroFechaFin = (fechaFin: Date): boolean => {

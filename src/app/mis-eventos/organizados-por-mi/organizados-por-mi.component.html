@@ -13,7 +13,7 @@
           <th>Rechazados</th>
         </tr>
       </thead>
-      <tbody *ngFor="let evento of eventosOrganizadosCerrados">
+      <tbody *ngFor="let evento of serviceEvento.eventosCerradosOrganizados">
         <tr>
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
           <td>{{ evento.descripcion }}</td>
@@ -25,7 +25,7 @@
       </tbody>
     </table>
   </div>
-    <span class="sin-eventos" *ngIf="eventosOrganizadosCerrados && eventosOrganizadosCerrados.length === 0">
+    <span class="sin-eventos" *ngIf="serviceEvento.eventosCerradosOrganizados && serviceEvento.eventosCerradosOrganizados.length === 0">
       No hay eventos cerrados para mostrar
     </span>
 </mdb-card>
@@ -44,7 +44,7 @@
         </tr>
       </thead>
       
-      <tbody *ngFor="let evento of eventosOrganizadosAbiertos">
+      <tbody *ngFor="let evento of serviceEvento.eventosAbiertosOrganizados">
         <tr>
           <td>{{ evento.fechaHoraInicio | date: 'dd/MM/yyyy h:mm a' }} </td>
           <td>{{ evento.descripcion }}</td>
@@ -53,7 +53,7 @@
       </tbody>
     </table>
   </div>
-    <span class="sin-eventos" *ngIf="eventosOrganizadosAbiertos && eventosOrganizadosAbiertos.length === 0">
+    <span class="sin-eventos" *ngIf="serviceEvento.eventosAbiertosOrganizados && serviceEvento.eventosAbiertosOrganizados.length === 0">
       No hay eventos abiertos para mostrar
     </span>
 </mdb-card>

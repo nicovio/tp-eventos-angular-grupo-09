@@ -13,18 +13,17 @@ import { LocacionService } from 'src/app/servicios/locacion.service';
   styleUrls: ['./nuevo-evento-cerrado.component.scss']
 })
 export class NuevoEventoCerradoComponent extends NuevoEvento {
-  usuarioService
 
   constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
     super(serviceEvento, router, serviceUsuario, locacionService);
     this.nuevoEvento = new EventoCerrado();
-    this.usuarioService = serviceUsuario
   }
 
   async aceptar(idUsuarioLogueado: number) {
     try {
-      await this.usuarioService.crearEventoCerrado(idUsuarioLogueado, this.nuevoEvento);
-      this.eventosOrganizadosCerrados.push(this.nuevoEvento)
+      await this.serviceUsuario.crearEventoCerrado(idUsuarioLogueado, this.nuevoEvento);
+      this.serviceEvento.nuevoEventoCerrado(this.nuevoEvento);
+      this.volverAOrganizadosPorMi()
     } catch (error) {
       mostrarError(this, error)
     }

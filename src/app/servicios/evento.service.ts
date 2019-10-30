@@ -8,8 +8,6 @@ import EventoCerrado from '../domain/eventos/evento-cerrado';
 import { StubUsuarioService } from './usuario.service';
 
 export interface IEventoService {
-  abiertosOrganizadosPorUsuario(userID: Number)
-  cerradosOrganizadosPorUsuario(userID: Number)
   eventosDeHoy(userID: Number)
   eventosDeEstaSemana(userID: Number)
   eventosProximos(userID: Number)
@@ -22,16 +20,27 @@ export interface IEventoService {
 
 export class EventoService implements IEventoService {
 
+  eventosAbiertosOrganizados: Evento[] = []
+  eventosCerradosOrganizados: Evento[] = []
+
   constructor(private http: Http) { }
 
-  async abiertosOrganizadosPorUsuario(userID: Number) {
-    const res = await this.http.get(REST_SERVER_URL + '/eventos/abiertos/' + userID).toPromise()
-    return res.json().map(EventoAbierto.fromJSON)
+  nuevoEventoAbierto(evento: Evento) {
+    this.eventosAbiertosOrganizados.push(evento)
   }
 
-  async cerradosOrganizadosPorUsuario(userID: Number) {
+  nuevoEventoCerrado(evento: Evento) {
+    this.eventosCerradosOrganizados.push(evento)
+  }
+
+  async fetchAbiertosOrganizadosPorUsuario(userID: Number) {
+    const res = await this.http.get(REST_SERVER_URL + '/eventos/abiertos/' + userID).toPromise()
+    this.eventosAbiertosOrganizados = res.json().map(EventoAbierto.fromJSON)
+  }
+
+  async fetchCerradosOrganizadosPorUsuario(userID: Number) {
     const res = await this.http.get(REST_SERVER_URL + '/eventos/cerrados/' + userID).toPromise()
-    return res.json().map(EventoCerrado.fromJSON)
+    this.eventosCerradosOrganizados = res.json().map(EventoAbierto.fromJSON)
   }
 
   async eventosDeHoy(userID: Number) {

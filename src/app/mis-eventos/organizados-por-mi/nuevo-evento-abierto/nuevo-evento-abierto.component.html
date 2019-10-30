@@ -76,6 +76,8 @@
         </div>
       </div>
       <div class="modal-footer">
+        <div class="error-fechas" *ngIf="dataIsReady() && llenoFechas() && superaEventosSimultaneos()">Supera la cantidad de eventos simultáneos permitida</div>
+        <div class="error-fechas" *ngIf="dataIsReady() && llenoFechas() && superaEventosMensuales()">Supera la cantidad de ventos mensuales permitida</div>
         <div class="error-fechas" *ngIf="empiezaDespuesDeTerminar()">El evento debe finalizar en una fecha posterior a
           la de fecha de inicio</div>
         <button type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar(IDUsuarioLogueado)"

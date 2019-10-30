@@ -7,12 +7,10 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   selector: 'app-organizados-por-mi',
   templateUrl: './organizados-por-mi.component.html',
   styleUrls: ['./organizados-por-mi.component.scss'],
-  providers: []
+  providers: [EventoService]
 })
 export class OrganizadosPorMiComponent {
   IDUsuarioLogueado: Number
-  eventosOrganizadosAbiertos
-  eventosOrganizadosCerrados
   tipoUsuario
   errors = []
 
@@ -27,8 +25,8 @@ export class OrganizadosPorMiComponent {
 
   async initialize() {
     this.tipoUsuario = await this.serviceUsuario.getTipoDeUsuario(this.IDUsuarioLogueado)
-    this.eventosOrganizadosAbiertos = await this.serviceEvento.abiertosOrganizadosPorUsuario(this.IDUsuarioLogueado)
-    this.eventosOrganizadosCerrados = await this.serviceEvento.cerradosOrganizadosPorUsuario(this.IDUsuarioLogueado)
+    await this.serviceEvento.fetchAbiertosOrganizadosPorUsuario(this.IDUsuarioLogueado)
+    await this.serviceEvento.fetchCerradosOrganizadosPorUsuario(this.IDUsuarioLogueado)
   }
 
 }

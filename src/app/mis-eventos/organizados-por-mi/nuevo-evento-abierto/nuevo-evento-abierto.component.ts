@@ -15,21 +15,20 @@ import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
 })
 export class NuevoEventoAbiertoComponent extends NuevoEvento {
   errors = []
-  servicioUsuario
 
   constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
     super(serviceEvento, router, serviceUsuario, locacionService);
-    this.servicioUsuario = serviceUsuario
     this.nuevoEvento = new EventoAbierto();
   }
 
   async aceptar(idUsuarioLogueado: number) {
     try {
-      await this.servicioUsuario.crearEventoAbierto(idUsuarioLogueado, this.nuevoEvento);
-      this.eventosOrganizadosAbiertos.push(this.nuevoEvento);
+      await this.serviceUsuario.crearEventoAbierto(idUsuarioLogueado, this.nuevoEvento);
+      this.serviceEvento.nuevoEventoAbierto(this.nuevoEvento);
+      this.volverAOrganizadosPorMi();
     } catch (error) {
       mostrarError(this, error)
     }
   }
-  
+
 }

@@ -12,7 +12,7 @@
       <div class="modal-body container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <div class ="sasa">
+            <div>
               <!-- TEXTBOX NOMBRE INICIO -->
               <mat-form-field>
                 <input class="margen-holder" matInput placeholder="Nombre" [(ngModel)]="nuevoEvento.descripcion"
@@ -29,9 +29,9 @@
             <div>
               <div class="margen-fecha"><br></div>
               <mat-form-field>
-                <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaHoraInicio" [owlDateTime]="fechaHoraInicio"
-                  placeholder="Fecha y hora de inicio" (change)="fechaHoraInicio.open()" [formControl]="fechaInicioFormControl"
-                  [min]="hoy">
+                <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaHoraInicio"
+                  [owlDateTime]="fechaHoraInicio" placeholder="Fecha y hora de inicio" (change)="fechaHoraInicio.open()"
+                  [formControl]="fechaInicioFormControl" [min]="hoy">
                 <mat-error *ngIf="fechaInicioFormControl.hasError('required')">
                   <strong>
                     La fecha y hora de inicio no puede estar vacía
@@ -39,21 +39,22 @@
                 </mat-error>
               </mat-form-field>
               <span [owlDateTimeTrigger]="fechaHoraInicio"><i class="fa fa-calendar"></i></span>
-              <owl-date-time  #fechaHoraInicio></owl-date-time>
+              <owl-date-time #fechaHoraInicio></owl-date-time>
             </div>
           </div>
           <div class="col-sm-6">
             <div>
               <!-- SELECTOR LOCACION INICIO -->
-          <mat-form-field>
-            <mat-select placeholder="Locacion" [formControl]="locacionFormControl" [(ngModel)]="nuevoEvento.locacion">
-              <mat-option>--</mat-option>
-              <mat-option *ngFor="let locacion of locaciones" [value]="locacion">
-                {{locacion.descripcion}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="locacionFormControl.hasError('required')">La locación no puede estar vacía</mat-error>
-          </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Locacion" [formControl]="locacionFormControl"
+                  [(ngModel)]="nuevoEvento.locacion">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let locacion of locaciones" [value]="locacion">
+                    {{locacion.descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="locacionFormControl.hasError('required')">La locación no puede estar vacía</mat-error>
+              </mat-form-field>
               <!-- SELECTOR LOCACION FIN -->
             </div>
             <br>
@@ -61,9 +62,9 @@
 
               <div class="margen-fecha"><br></div>
               <mat-form-field>
-                <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaHoraFin" [owlDateTime]="fechaHoraFin"
-                  (change)="fechaHoraFin.open()" [formControl]="fechaFinFormControl" placeholder="Fecha y hora de fin"
-                  [min]="hoy" [owlDateTimeFilter]="filtroFechaFin">
+                <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaHoraFin"
+                  [owlDateTime]="fechaHoraFin" (change)="fechaHoraFin.open()" [formControl]="fechaFinFormControl"
+                  placeholder="Fecha y hora de fin" [min]="hoy" [owlDateTimeFilter]="filtroFechaFin">
                 <mat-error *ngIf="fechaFinFormControl.hasError('required')">
                   <strong>
                     La fecha y hora de fin no puede estar vacía
@@ -71,31 +72,39 @@
                 </mat-error>
               </mat-form-field>
               <span [owlDateTimeTrigger]="fechaHoraFin"><i class="fa fa-calendar"></i></span>
-              <owl-date-time  #fechaHoraFin></owl-date-time>
+              <owl-date-time #fechaHoraFin></owl-date-time>
             </div>
           </div>
         </div>
         <div class="margen-maxima"><br></div>
-          <mat-form-field class= "margen-final">
-            <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaMaximaConfirmacion" [owlDateTime]="fechaHoraConfirmacion"
-              (change)="fechaHoraConfirmacion.open()" [formControl]="fechaMaximaFormControl" placeholder="Máxima de confirmación"
-              [min]="hoy" [owlDateTimeFilter]="filtroFechaConfirmacion">
-            <mat-error *ngIf="fechaMaximaFormControl.hasError('required')">
-              <strong>
-               La fecha maxima de confirmación no puede estar vacía
-              </strong>
-            </mat-error>
-          </mat-form-field>
-          <span [owlDateTimeTrigger]="fechaHoraConfirmacion"><i class="fa fa-calendar"></i></span>
-          <owl-date-time  #fechaHoraConfirmacion></owl-date-time>
+        <mat-form-field class="margen-final">
+          <input class="margen-holder" matInput [(ngModel)]="nuevoEvento.fechaMaximaConfirmacion"
+            [owlDateTime]="fechaHoraConfirmacion" (change)="fechaHoraConfirmacion.open()"
+            [formControl]="fechaMaximaFormControl" placeholder="Máxima de confirmación" [min]="hoy"
+            [owlDateTimeFilter]="filtroFechaConfirmacion">
+          <mat-error *ngIf="fechaMaximaFormControl.hasError('required')">
+            <strong>
+              La fecha maxima de confirmación no puede estar vacía
+            </strong>
+          </mat-error>
+        </mat-form-field>
+        <span [owlDateTimeTrigger]="fechaHoraConfirmacion"><i class="fa fa-calendar"></i></span>
+        <owl-date-time #fechaHoraConfirmacion></owl-date-time>
         <div class="error-fechas" *ngIf="fechaMaximaDeConfirmacionIncorrecta()">La fecha maxima de confirmación debe
           ser anterior a la fecha de inicio</div>
       </div>
       <div class="modal-footer">
+        <div class="error-fechas" *ngIf="dataIsReady() && llenoFechas() && superaEventosSimultaneos()">Supera la cantidad de eventos
+          simultáneos
+          permitida</div>
+        <div class="error-fechas" *ngIf="dataIsReady() && llenoFechas() && superaEventosMensuales()">Supera la cantidad de ventos
+          mensuales
+          permitida</div>
         <div class="error-fechas" *ngIf="empiezaDespuesDeTerminar()">El evento debe finalizar en una fecha posterior a
           la de fecha de inicio</div>
-        <button *ngIf= "tipoUsuario && todosLosEventos" type="button" mdbBtn color="primary" class="waves-light" (click)="aceptar(IDUsuarioLogueado)"
-          [disabled]="noPuedeCrearEventoCerrado()" id="crear_evento_{{IDUsuarioLogueado}}" mdbWavesEffect>Aceptar</button>
+        <button *ngIf="tipoUsuario && todosLosEventos" type="button" mdbBtn color="primary" class="waves-light"
+          (click)="aceptar(IDUsuarioLogueado)" [disabled]="noPuedeCrearEventoCerrado()"
+          id="crear_evento_{{IDUsuarioLogueado}}" mdbWavesEffect>Aceptar</button>
         <button type="button" mdbBtn color="danger" class="relative waves-light" aria-label="Close" (click)="cancelar()"
           mdbWavesEffect>Cancelar</button>
       </div>
