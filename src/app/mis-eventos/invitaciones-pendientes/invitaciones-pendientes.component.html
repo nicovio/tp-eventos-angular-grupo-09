@@ -34,11 +34,11 @@
             </td>
             <td>
               <i class="material-icons">
-                <button type="button" class="colorear-verde" [disabled]="noPuedeAceptar(invitacion.cantidadAcompaniantesInvitacion)" mdbTooltip="Aceptar Invitacion" placement="bottom" (click)="setInvitacionSeleccionada(invitacion.id)"
+                <button type="button" class="colorear-verde" [disabled]="noPuedeAceptar(invitacion.cantidadAcompaniantesInvitacion)" mdbTooltip="Aceptar Invitacion" placement="bottom" (click)="setInvitacionSeleccionada(invitacion)"
                   (click)="aceptar.show()" id="aceptarInvitacion_{{invitacion.id}}">check</button>
               </i>
               <i class="material-icons">
-                <button type="button" class="colorear-rojo" mdbTooltip="Rechazar Invitacion" placement="right" (click)="setInvitacionSeleccionada(invitacion.id)"
+                <button type="button" class="colorear-rojo" mdbTooltip="Rechazar Invitacion" placement="right" (click)="setInvitacionSeleccionada(invitacion)"
                   (click)="rechazar.show()" id="rechazarInvitacion_{{invitacion.id}}">clear</button>
               </i>
             </td>

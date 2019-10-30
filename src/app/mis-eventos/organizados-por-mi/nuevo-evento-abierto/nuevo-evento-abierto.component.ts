@@ -12,7 +12,7 @@ import { mostrarError } from 'src/app/perfil/amigos/amigos.component';
   templateUrl: './nuevo-evento-abierto.component.html',
   styleUrls: ['./nuevo-evento-abierto.component.scss'],
   providers: [UsuarioService, EventoService, LocacionService]
-  
+
 })
 export class NuevoEventoAbiertoComponent extends NuevoEvento {
   errors = []
@@ -22,17 +22,15 @@ export class NuevoEventoAbiertoComponent extends NuevoEvento {
     super(serviceEvento, router, serviceUsuario, locacionService);
     this.servicioUsuario = serviceUsuario
     this.nuevoEvento = new EventoAbierto();
-
   }
 
   async aceptar(idUsuarioLogueado: number) {
     try {
       await this.servicioUsuario.crearEventoAbierto(idUsuarioLogueado, this.nuevoEvento);
+      this.eventosOrganizadosAbiertos.push(this.nuevoEvento);
     } catch (error) {
       mostrarError(this, error)
     }
-    this.resfrescarPantalla();
   }
-
-
+  
 }

@@ -34,20 +34,15 @@ export class AmigosComponent implements OnInit {
     this.IdUsuarioAEliminar = idUsuario;
   }
 
-
-  async ngOnInit() {
-  }
-
   async eliminarAmigo() {
     try {
       this.errors = []
       await this.usuarioService.eliminarAmigo(this.IdUsuarioLogueado, this.IdUsuarioAEliminar)
+      this.amigosUsuario = this.amigosUsuario.filter(amigo => amigo.id != this.IdUsuarioAEliminar)
     } catch (e) {
       this.errors.push(e._body)
     }
-    this.resfrescarPantalla()
   }
-
 
   async initialize() {
     try {
@@ -56,11 +51,4 @@ export class AmigosComponent implements OnInit {
       mostrarError(this, error)
     }
   }
-
-  resfrescarPantalla(){
-    this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
-      this.router.navigate(["/perfil"]));
-  }
-
-
 }

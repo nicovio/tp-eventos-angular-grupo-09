@@ -13,7 +13,6 @@ export class Invitacion {
         this.id = id
         this.evento = evento
         this.cantidadAcompaniantesInvitacion = cantidadAcompaniantes
-     
     }
 
     getEvento(): Evento {

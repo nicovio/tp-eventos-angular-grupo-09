@@ -13,9 +13,9 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class InvitacionesPendientesComponent {
   IdUsuarioLogueado: Number
-  IdInvitacionSeleccionada: Number
+  invitacionSeleccionada: Invitacion
   cantidadAcompaniantes: Number
-  invitacionesPendientes
+  invitacionesPendientes: Invitacion[]
   errors = []
   maximoAcompaniantes
   
@@ -38,32 +38,26 @@ export class InvitacionesPendientesComponent {
     this.invitacionesPendientes = await this.usuarioService.getInvitacionesPendientes(this.IdUsuarioLogueado)
   }
 
-  setInvitacionSeleccionada(idInvitacion: Number) {
-    this.IdInvitacionSeleccionada = idInvitacion
+  setInvitacionSeleccionada(invitacion: Invitacion) {
+    this.invitacionSeleccionada = invitacion
   }
 
   async aceptarInvitacion() {
     try {
-      await this.usuarioService.aceptarInvitacion(this.IdUsuarioLogueado, this.IdInvitacionSeleccionada, this.cantidadAcompaniantes)
+      await this.usuarioService.aceptarInvitacion(this.IdUsuarioLogueado, this.invitacionSeleccionada.id, this.cantidadAcompaniantes)
+      this.invitacionesPendientes.push(this.invitacionSeleccionada)
     } catch (error) {
       mostrarError(this, error)
     }
-    this.resfrescarPantalla()
   }
-
 
   async rechazarInvitacion() {
     try {
-      await this.usuarioService.rechazarInvitacion(this.IdUsuarioLogueado, this.IdInvitacionSeleccionada)
+      await this.usuarioService.rechazarInvitacion(this.IdUsuarioLogueado, this.invitacionSeleccionada.id)
+      this.invitacionesPendientes = this.invitacionesPendientes.filter(invitacion => invitacion.id != this.invitacionSeleccionada.id)
     } catch (e) {
       this.errors.push(e._body)
     }
-    this.resfrescarPantalla()
-  }
-
-  resfrescarPantalla() {
-    this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
-      this.router.navigate(["/mis-eventos/pendientes"]));
   }
 
   noPuedeAceptar(maximo: Number){

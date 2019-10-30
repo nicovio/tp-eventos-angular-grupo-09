@@ -16,21 +16,19 @@ export class NuevoEventoCerradoComponent extends NuevoEvento {
 
   usuarioService
 
-
   constructor(serviceEvento: EventoService, router: Router, serviceUsuario: UsuarioService, locacionService: LocacionService) {
     super(serviceEvento, router, serviceUsuario, locacionService);
     this.nuevoEvento = new EventoCerrado();
     this.usuarioService = serviceUsuario
   }
 
-
   async aceptar(idUsuarioLogueado: number) {
     try {
       await this.usuarioService.crearEventoCerrado(idUsuarioLogueado, this.nuevoEvento);
+      this.eventosOrganizadosCerrados.push(this.nuevoEvento)
     } catch (error) {
       mostrarError(this, error)
     }
-    this.resfrescarPantalla();
   }
 
   noPuedeCrearEventoCerrado() {
@@ -40,6 +38,5 @@ export class NuevoEventoCerradoComponent extends NuevoEvento {
   fechaMaximaDeConfirmacionIncorrecta() {
     return this.nuevoEvento.fechaMaximaConfirmacion >= this.nuevoEvento.fechaHoraInicio;
   }
-
-
+  
 }

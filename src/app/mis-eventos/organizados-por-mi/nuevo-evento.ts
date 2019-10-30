@@ -71,19 +71,12 @@ export abstract class NuevoEvento  implements AfterViewInit {
     this.modal.show();
   }
 
-
   cancelar() {
     this.volverAOrganizadosPorMi();
   }
 
-
   volverAOrganizadosPorMi() {
     this.router.navigate(['/mis-eventos/organizados-por-mi']);
-  }
-
-  resfrescarPantalla() {
-    this.router.navigateByUrl('/refrescar-pantalla', { skipLocationChange: true }).then(() =>
-      this.volverAOrganizadosPorMi())
   }
 
   noPuedeCrearEvento() {
@@ -97,7 +90,6 @@ export abstract class NuevoEvento  implements AfterViewInit {
     );
   }
 
-
   superaEventosSimultaneos() {
     return this.tipoUsuario.superaMaximoDeEventosSimultaneos(this.nuevoEvento, this.todosLosEventos)
   }
@@ -105,7 +97,6 @@ export abstract class NuevoEvento  implements AfterViewInit {
   superaEventosMensuales() {
     return this.tipoUsuario.superaMaximoDeEventosMensuales(this.nuevoEvento, this.todosLosEventos)
   }
-
 
   empiezaDespuesDeTerminar() {
     return this.nuevoEvento.fechaHoraInicio >= this.nuevoEvento.fechaHoraFin;
