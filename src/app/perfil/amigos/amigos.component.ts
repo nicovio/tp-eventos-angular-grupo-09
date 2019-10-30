@@ -14,7 +14,7 @@ export function mostrarError(component, error) {
   styleUrls: ['./amigos.component.scss'],
   providers: []
 })
-export class AmigosComponent implements OnInit {
+export class AmigosComponent {
   IdUsuarioLogueado: Number
   IdUsuarioAEliminar: Number
   amigosUsuario: Array<Usuario>
