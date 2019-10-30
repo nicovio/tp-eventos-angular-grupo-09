@@ -90,7 +90,7 @@
         </mat-form-field>
         <span [owlDateTimeTrigger]="fechaHoraConfirmacion"><i class="fa fa-calendar"></i></span>
         <owl-date-time #fechaHoraConfirmacion></owl-date-time>
-        <div class="error-fechas" *ngIf="fechaMaximaDeConfirmacionIncorrecta()">La fecha maxima de confirmación debe
+        <div class="error-fechas" *ngIf="fechaMaximaSuperaInicio()">La fecha maxima de confirmación debe
           ser anterior a la fecha de inicio</div>
       </div>
       <div class="modal-footer">

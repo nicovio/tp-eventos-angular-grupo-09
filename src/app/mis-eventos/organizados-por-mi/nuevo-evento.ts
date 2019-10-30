@@ -88,7 +88,6 @@ export abstract class NuevoEvento implements AfterViewInit {
       this.empiezaDespuesDeTerminar() ||
       this.noPusoNombre() ||
       this.noPusoLocacion() ||
-      this.noPusoFechaMaxima() ||
       this.noPusoFechas() ||
       this.superaEventosSimultaneos() ||
       this.superaEventosMensuales()
@@ -121,10 +120,6 @@ export abstract class NuevoEvento implements AfterViewInit {
 
   noPusoFechas() {
     return !this.nuevoEvento.fechaHoraInicio || !this.nuevoEvento.fechaHoraFin
-  }
-
-  noPusoFechaMaxima() {
-    return !this.nuevoEvento.fechaMaximaConfirmacion
   }
 
   public filtroFechaFin = (fechaFin: Date): boolean => {

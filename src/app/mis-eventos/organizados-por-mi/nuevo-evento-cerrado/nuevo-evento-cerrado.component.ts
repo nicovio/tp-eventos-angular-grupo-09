@@ -30,11 +30,15 @@ export class NuevoEventoCerradoComponent extends NuevoEvento {
   }
 
   noPuedeCrearEventoCerrado() {
-    return super.noPuedeCrearEvento() || this.fechaMaximaDeConfirmacionIncorrecta()
+    return super.noPuedeCrearEvento() || this.fechaMaximaSuperaInicio() || this.noPusoFechaMaxima()
   }
 
-  fechaMaximaDeConfirmacionIncorrecta() {
-    return this.nuevoEvento.fechaMaximaConfirmacion >= this.nuevoEvento.fechaHoraInicio;
+  fechaMaximaSuperaInicio() {
+    return this.nuevoEvento.fechaMaximaConfirmacion && this.nuevoEvento.fechaMaximaConfirmacion >= this.nuevoEvento.fechaHoraInicio;
   }
-  
+
+  noPusoFechaMaxima() {
+    return !this.nuevoEvento.fechaMaximaConfirmacion
+  }
+
 }
